@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TrunkCarAssistant.iml" filepath="$PROJECT_DIR$/TrunkCarAssistant.iml" />
+      <module fileurl="file://C:\Android\TrunkCarAssistant\TrunkCarAssistant.iml" filepath="C:\Android\TrunkCarAssistant\TrunkCarAssistant.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Android\TrunkCarAssistant\app\app.iml" filepath="C:\Android\TrunkCarAssistant\app\app.iml" />
     </modules>
   </component>
 </project>
