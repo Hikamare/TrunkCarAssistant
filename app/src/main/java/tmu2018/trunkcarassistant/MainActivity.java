@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //dopisał Piotrek
+        //dopisał Wojtek
     }
 }
