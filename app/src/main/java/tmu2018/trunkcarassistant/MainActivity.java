@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
         //dopisał Piotrek
         //dopisał Wojtek
-        //dopisała Alicja
+        //dopisała Alicja 2
     }
 }
