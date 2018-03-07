@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TrunkCarAssistant</string>
+    <string name="LUGGAGE">LUGGAGE</string>
+    <string name="TRUNK">TRUNK</string>
+    <string name="START">START PACKING</string>
+
 </resources>
