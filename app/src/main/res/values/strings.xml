@@ -3,5 +3,11 @@
     <string name="LUGGAGE">LUGGAGE</string>
     <string name="TRUNK">TRUNK</string>
     <string name="START">START PACKING</string>
+    <string name="ADDT">ADD TRUNK</string>
+    <string name="ADDL">ADD LUGGAGE</string>
+    <string name="PACK">PACK IT!</string>
+    <string name="S">S</string>
+    <string name="M">M</string>
+    <string name="L">L</string>
 
 </resources>

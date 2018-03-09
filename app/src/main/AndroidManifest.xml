@@ -19,6 +19,8 @@
         <activity android:name=".StartActivity"></activity>
         <activity android:name=".LuggageActivity"></activity>
         <activity android:name=".TrunkActivity"></activity>
+        <activity android:name=".AddLuggageActivity"></activity>
+        <activity android:name=".AddTrunkActivity"></activity>
     </application>
 
 </manifest>
