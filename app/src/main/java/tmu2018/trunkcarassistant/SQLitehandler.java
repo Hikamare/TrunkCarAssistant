@@ -265,6 +265,9 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //throw exception if there are no such luggage
+        readLuggage(oldLuggage.getName());
+
         //name is the same, no need to check
         if(oldLuggage.getName().equals(newLuggage.getName()))
         {
@@ -274,8 +277,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             return;
         }
 
-        //throw exception if there are no such luggage
-        readLuggage(oldLuggage.getName());
+
 
         try
         {
@@ -291,7 +293,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
 
         //old and new names are not the same, new name is already in db
         db.close();
-        throw new IllegalArgumentException("New trunk name is already used");
+        throw new IllegalArgumentException("New luggage name is already used");
 
 
     }
@@ -318,6 +320,8 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //throw exception if there are no such trunk
+        readTrunk(oldTrunk.getName());
 
         //name is the same, no need to check
         if(oldTrunk.getName().equals(newTrunk.getName()))
@@ -328,8 +332,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             return;
         }
 
-        //throw exception if there are no such trunk
-        readTrunk(oldTrunk.getName());
+
 
         try
         {
