@@ -161,8 +161,6 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
         }
 
 
-
-        System.out.println("System out"+cursor.getString(3));
         Luggage luggage = new Luggage(
                 cursor.getString(0),
                 parseFloat(cursor.getString(1)),
@@ -276,6 +274,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             deleteLuggage(oldLuggage);
             addLuggage(newLuggage);
             db.close();
+            return;
         }
 
         try
@@ -328,6 +327,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             deleteTrunk(oldTrunk);
             addTrunk(newTrunk);
             db.close();
+            return;
         }
 
         try
