@@ -161,8 +161,6 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
         }
 
 
-
-        System.out.println("System out"+cursor.getString(3));
         Luggage luggage = new Luggage(
                 cursor.getString(0),
                 parseFloat(cursor.getString(1)),
@@ -267,16 +265,17 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        //throw exception if there are no such luggage
-        readTrunk(oldLuggage.getName());
-
         //name is the same, no need to check
         if(oldLuggage.getName().equals(newLuggage.getName()))
         {
             deleteLuggage(oldLuggage);
             addLuggage(newLuggage);
             db.close();
+            return;
         }
+
+        //throw exception if there are no such luggage
+        readLuggage(oldLuggage.getName());
 
         try
         {
@@ -319,8 +318,6 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        //throw exception if there are no such trunk
-        readTrunk(oldTrunk.getName());
 
         //name is the same, no need to check
         if(oldTrunk.getName().equals(newTrunk.getName()))
@@ -328,7 +325,11 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             deleteTrunk(oldTrunk);
             addTrunk(newTrunk);
             db.close();
+            return;
         }
+
+        //throw exception if there are no such trunk
+        readTrunk(oldTrunk.getName());
 
         try
         {
