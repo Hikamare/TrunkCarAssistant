@@ -9,7 +9,7 @@ import android.widget.RadioButton;
  * Created by anorb on 09.03.2018.
  */
 
-public class AddLuggageActivity extends AppCompatActivity {
+public class  AddLuggageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +39,8 @@ public class AddLuggageActivity extends AppCompatActivity {
                         // size L
                         break;
             }
-        }*/
+        }
 
+    }*/
     }
 }
