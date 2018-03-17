@@ -10,7 +10,7 @@
     <tmu2018.trunkcarassistant.TrunkView
         android:id="@+id/trunkView"
         android:layout_width="match_parent"
-        android:layout_height="414dp" />
+        android:layout_height="423dp" />
 
     <Button
         android:id="@+id/PACK"

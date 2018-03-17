@@ -90,13 +90,11 @@ public class TrunkView extends View {
                             trunk.getLuggage(i).setRefWidth(widthTrunkNow);
                             widthTrunkNow += trunk.getLuggage(i).getWidthScale();
                             System.out.println(trunk.getLuggage(i).getWidthScale());
-                            System.out.println("i = " + i + "_wcln: " + widthTrunkNow);
-                            trunk.getLuggage(i).info();
                         }
 
                     }
                 }
-                trunk.info();
+                //trunk.info();
             }
 
             trunk.isntNew();

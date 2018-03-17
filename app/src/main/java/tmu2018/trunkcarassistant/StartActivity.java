@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by anorb on 07.03.2018.
  */
@@ -40,16 +43,16 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Example
-/*
-                Luggage[] luggages = new Luggage[3];
+                //Example (list)
+                /*List<Luggage> luggages = new ArrayList<Luggage>();
                 TrunkView trunkView;
                 trunkView = findViewById(R.id.trunkView);
 
                 //Make luggages (we will be taking lugagges from "database")
-                for(int i =0;i<luggages.length;i++)
+                for(int i=0; i< 3;i++)
                 {
-                    luggages[i] = new Luggage("Number "+i,5*(i+1),5*(i+1),5*(i+1),true);
+                    Luggage l = new Luggage("Number "+i,5*(i+1),5*(i+1),5*(i+1),true);
+                    luggages.add(l);
                 }
                 //Make trunk (we will be taking trunk from "database")
                 Trunk trunkModel = new Trunk("Trunk",50,50,50,true);

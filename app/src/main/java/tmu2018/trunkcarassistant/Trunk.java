@@ -32,8 +32,8 @@ public class Trunk {
     private float heightScale,widthScale,lengthScale;
     private boolean isAcvite = false;
     private boolean isntP = false;
-    private Luggage[] luggages;// <- We use array for luggages
-    //private List<Luggage> luggages = new ArrayList<Luggage>(); // We use List for luggages
+    //private Luggage[] luggages;// <- We use array for luggages
+    private List<Luggage> luggages = new ArrayList<Luggage>(); // We use List for luggages
 
 
 
@@ -88,7 +88,7 @@ public class Trunk {
     }
 
     //Methods for array
-
+/*
     public void isntNew()
     {
         for(int i=0;i<luggages.length;i++)
@@ -148,10 +148,10 @@ public class Trunk {
     }
 
     //Metods for List
+    */
 
-    /*
     // This method scale all luggages
-    public void scaleBaggage(float h, float w, float l)
+    public void scaleLuggages(float h, float w, float l)
     {
         for(int i=0;i<luggages.size();i++)
         {
@@ -174,12 +174,14 @@ public class Trunk {
         {
             luggages.add(i,lg.get(i));
         }
+        isntP = true;
     }
 
     //This method add one luggage to trunk
     public void addLuggage(Luggage lg)
     {
         luggages.add(lg);
+        isntP = true;
     }
 
     public void isntNew()
@@ -195,11 +197,15 @@ public class Trunk {
     public Luggage getLuggage(int i) {
         return luggages.get(i);
     }
-    //This method return "How many luggages is in list?"
 
+    //This method return "How many luggages is in list?"
     public int howLuggages()
     {
         return luggages.size();
     }
-    */
+    //This method return info about luggages
+    public void info(){
+        for(int i =0;i<luggages.size();i++)
+            luggages.get(i).info();
+    }
 }
