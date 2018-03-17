@@ -7,7 +7,13 @@
     android:orientation="vertical"
     tools:context="tmu2018.trunkcarassistant.StartActivity">
 
+    <tmu2018.trunkcarassistant.TrunkView
+        android:id="@+id/trunkView"
+        android:layout_width="match_parent"
+        android:layout_height="414dp" />
+
     <Button
+        android:id="@+id/PACK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/PACK" />
