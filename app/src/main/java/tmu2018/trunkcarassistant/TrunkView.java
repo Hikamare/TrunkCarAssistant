@@ -51,18 +51,13 @@ public class TrunkView extends View {
         cEnd.setColor(Color.GRAY);
         cLuggageFront.setColor(Color.BLUE);
         cLuggageEnd.setColor(Color.BLACK);
-        //Do testow
         widthTrunkScale = (float) Math.sqrt(Math.pow(((widthScreen/4+ widthScreen/16)-(widthScreen*3/4+ widthScreen/16)),2)+Math.pow((heightScreen/2-heightScreen/2),2));
         heightTrunkScale = (float) Math.sqrt(Math.pow((widthScreen*3/4+ widthScreen/16)-(widthScreen*3/4+ widthScreen/16),2)+Math.pow((heightScreen/2 - heightScreen/6),2));
 
         float x1 = (widthScreen/4+ widthScreen/16);
-        System.out.println("View x1 = " +x1);
         float y1 = heightScreen/2;
-        System.out.println("View y1 = " + y1);
         float x2 = widthScreen/4+ widthScreen/16 - 120;
-        System.out.println("View x2 = " + x2);
         float y2 = heightScreen/2 + 120;
-        System.out.println("View y2 = " + y2);
         lengthTrunkScale = (float) Math.sqrt( Math.pow((double)(x1-x2),2) + Math.pow((double)(y1-y2),2));
 
         widthTrunkNow = 0;

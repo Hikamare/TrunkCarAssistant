@@ -111,10 +111,8 @@ public class Trunk {
                 lengthScale = l;
                 luggages[i].setHeightScale(luggages[i].getHeight() * heightScale / height);
 
-                System.out.println("szerokosc: "+luggages[i].getWidth()+"szerokosc bagaznika w skali: "+widthScale+ "szerokosc bagaznika"+ width);
                 float a = luggages[i].getWidth() * widthScale / width;
                 luggages[i].setWidthScale(luggages[i].getWidth() * widthScale / width);
-                System.out.println(a+ " ZAL!");
                 luggages[i].setLengthScale(luggages[i].getLength() * lengthScale / length);
             }
         }
