@@ -2,6 +2,7 @@ package tmu2018.trunkcarassistant;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -10,12 +11,16 @@ import android.widget.Toast;
 import java.util.Collections;
 import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by anorb on 07.03.2018.
  */
 
 public class StartActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     private SQLitehandler dbHandler;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,11 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+=======
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start);
+>>>>>>> f8a6c252b3d43a26f2fe0eb37a3a63b70607f1d9
         //new activity for button Luggage
         Button luggage2 = findViewById(R.id.luggage_start);
         luggage2.setOnClickListener(new View.OnClickListener(){
@@ -53,7 +63,31 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        Button pack = findViewById(R.id.PACK);
+        pack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
 
+                //Example (list)
+                /*List<Luggage> luggages = new ArrayList<Luggage>();
+                TrunkView trunkView;
+                trunkView = findViewById(R.id.trunkView);
+
+                //Make luggages (we will be taking lugagges from "database")
+                for(int i=0; i< 3;i++)
+                {
+                    Luggage l = new Luggage("Number "+i,5*(i+1),5*(i+1),5*(i+1),true);
+                    luggages.add(l);
+                }
+                //Make trunk (we will be taking trunk from "database")
+                Trunk trunkModel = new Trunk("Trunk",50,50,50,true);
+                //Add luggages to trunk
+                trunkModel.addLuggages(luggages);
+                //We make new thread for trunk and luggages
+                Thread t = new Thread(new TrunkThread(new Handler(),trunkModel,trunkView));
+                t.start();*/
+            }
+        });
 
     }
 

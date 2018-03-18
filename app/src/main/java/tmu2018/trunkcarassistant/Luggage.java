@@ -13,6 +13,8 @@ public class Luggage {
         this.length=length;
         this.height=height;
         this.usercreated=usercreated;
+        this.isActive = true;
+        this.isNew = true;
     }
 
     public Luggage()
@@ -23,6 +25,15 @@ public class Luggage {
     private float length;
     private float height;
     private boolean usercreated;
+
+
+    //Variables to draw luggages
+    private float heightScale,widthScale,lengthScale;
+    private boolean isActive = false;
+    private boolean isNew = false;
+    private float refHeight,refWidth,refLength;
+
+
 
     public String getName() {
         return name;
@@ -63,4 +74,76 @@ public class Luggage {
     public void setUsercreated(boolean usercreated) {
         this.usercreated = usercreated;
     }
+
+    //Methods to draw luggages
+    public float getHeightScale() {
+        return heightScale;
+    }
+
+    public void setHeightScale(float heightScale) {
+        this.heightScale = heightScale;
+    }
+
+    public float getWidthScale() {
+        return widthScale;
+    }
+
+    public void setWidthScale(float widthScale) {
+        this.widthScale = widthScale;
+    }
+
+    public float getLengthScale() {
+        return lengthScale;
+    }
+
+    public void setLengthScale(float lengthScale) {
+        this.lengthScale = lengthScale;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean aNew) {
+        isNew = aNew;
+    }
+
+    public float getRefHeight() {
+        return refHeight;
+    }
+
+    public void setRefHeight(float refHeight) {
+        this.refHeight = refHeight;
+    }
+
+    public float getRefWidth() {
+        return refWidth;
+    }
+
+    public void setRefWidth(float refWeight) {
+        this.refWidth = refWeight;
+    }
+
+    public float getRefLength() {
+        return refLength;
+    }
+
+    public void setRefLength(float refLength) {
+        this.refLength = refLength;
+    }
+
+    public void info()
+    {
+        //System.out.println("refH: "+refHeight+"_refW: "+refWidth+"_refD: "+refLength);
+        System.out.println("refH: "+height+"_refW: "+width+"_refD: "+length);
+    }
+
 }

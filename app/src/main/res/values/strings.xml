@@ -9,10 +9,19 @@
     <string name="S">S</string>
     <string name="M">M</string>
     <string name="L">L</string>
+<<<<<<< HEAD
     <string name="carTextView">Picked car: </string>
     <string name="pickTrunkDialogTitle">Pick a trunk</string>
     <string name="TrunkLenTextView">Trunk Length</string>
     <string name="TrunkWidTextView">Trunk Width</string>
     <string name="TrunkHeiTextView">Trunk Height</string>
     <string name="buttonADD">Add trunk</string>
+=======
+    <string name="O">Other</string>
+    <string name="length">LENGTH</string>
+    <string name="height">HIGHT</string>
+    <string name="width">WIDTH</string>
+    <string name="save">SAVE</string>
+
+>>>>>>> f8a6c252b3d43a26f2fe0eb37a3a63b70607f1d9
 </resources>
