@@ -14,5 +14,13 @@
     <string name="TrunkLenTextView">Trunk Length</string>
     <string name="TrunkWidTextView">Trunk Width</string>
     <string name="TrunkHeiTextView">Trunk Height</string>
+    <string name="TrunkListTextView">Trunks list</string>
     <string name="buttonADD">Add trunk</string>
+   <string name="O">Other</string>
+    <string name="length">LENGTH</string>
+    <string name="height">HEIGHT</string>
+    <string name="width">WIDTH</string>
+    <string name="save">SAVE</string>
+    <string name="carWidth"> Car width</string>
+    <string name="carHeight"> Car height</string>
 </resources>

@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import java.util.List;
+
 
 /**
  * Created by anorb on 09.03.2018.
@@ -17,11 +19,13 @@ import android.widget.Toast;
 
 /*
 TODO: That switch case has to be changed: we may not assume that we know the amount of cars in db. What it changes? Will be rewrite that thing all the time ;) ?
+TODO: What is more: if you do not change both model and brand you won't be able to correctly add your car to db.
  */
 
 public class AddTrunkActivity extends AppCompatActivity {
 
-    private SQLitehandler dbHandler;
+    private Database dbHandler;
+    private String trunkName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +33,19 @@ public class AddTrunkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_trunk);
 
         dbHandler = new SQLitehandler(this);
-        dbHandler.
-        final Trunk lTrunk = new Trunk();
-
         final EditText TrunkLengthText = findViewById(R.id.trunkLengthText);
         final EditText TrunkWidthText = findViewById(R.id.trunkWidthText);
         Button buttonADD = findViewById(R.id.buttonADD);
 
-        final String trunkName = "";
-
         //spinner for the car brand
         Spinner spinner = (Spinner)findViewById(R.id.car_spinner);
         final String[] car_brand = {"Ford", "Fiat", "Mazda", "Honda", "etc"};
-        /*
-         *TODO : connection to the car brands database
-         *
-         */
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, car_brand);
+        //spinner for the car model
+        final Spinner spinner2 = (Spinner)findViewById(R.id.model_spinner);
+        final String[] car_model = {"Panda", "Punto", "Tipo", "500", "etc"};
+        ArrayAdapter adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, car_model);
+
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -56,16 +56,17 @@ public class AddTrunkActivity extends AppCompatActivity {
                 switch((int)choice)
                 {
                     case 0:
-                        trunkName.concat(car_brand[0]);
+                        trunkName +=(car_brand[0]);
+
                         break;
                     case 1:
-                        trunkName.concat(car_brand[1]);
+                        trunkName +=(car_brand[1]);
                         break;
                     case 2:
-                        trunkName.concat(car_brand[2]);
+                        trunkName +=(car_brand[2]);
                         break;
                     case 3:
-                        trunkName.concat(car_brand[3]);
+                        trunkName +=(car_brand[3]);
                         break;
                     case 4:
                         //trunkName.concat(car_brand[4]);
@@ -78,17 +79,8 @@ public class AddTrunkActivity extends AppCompatActivity {
 
             }
         });
-        //spinner for the car model
-        final Spinner spinner2 = (Spinner)findViewById(R.id.model_spinner);
-        final String[] car_model = {"Panda", "Punto", "Tipo", "500", "etc"};
-        /*
-         *TODO : connection to the car models database
-         *
-         */
-        ArrayAdapter adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, car_model);
 
         spinner2.setAdapter(adapter2);
-
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -97,17 +89,17 @@ public class AddTrunkActivity extends AppCompatActivity {
                 switch((int)choice)
                 {
                     case 0:
-                        trunkName.concat(car_model[0]);
+                        trunkName +=(car_model[0]);
 
                         break;
                     case 1:
-                        trunkName.concat(car_model[1]);
+                        trunkName +=(car_model[1]);
                         break;
                     case 2:
-                        trunkName.concat(car_model[2]);
+                        trunkName +=(car_model[2]);
                         break;
                     case 3:
-                        trunkName.concat(car_model[3]);
+                        trunkName +=(car_model[3]);
                         break;
                     case 4:
                         //trunkName.concat(car_model[4]);
@@ -124,14 +116,26 @@ public class AddTrunkActivity extends AppCompatActivity {
         buttonADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Trunk lTrunk = new Trunk();
                 float lLength = Integer.parseInt(TrunkLengthText.getText().toString());
                 float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());
+
                 lTrunk.setName(trunkName);
                 lTrunk.setLength(lLength);
                 lTrunk.setWidth(lWidth);
-                dbHandler.addTrunk(lTrunk);
-                Toast lToast = Toast.makeText(AddTrunkActivity.this,"That probably worked", Toast.LENGTH_SHORT);
-                lToast.show();
+                // Setting trunkName to empty string to correctly add another one.
+                trunkName = "";
+
+                // If a trunk is already added an exception will be caught
+                try {
+                    dbHandler.addTrunk(lTrunk);
+                    Toast lToast = Toast.makeText(AddTrunkActivity.this,"That probably worked", Toast.LENGTH_SHORT);
+                    lToast.show();
+                } catch(IllegalArgumentException e){
+                    Toast lToast = Toast.makeText(AddTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                    lToast.show();
+                }
             }
         });
 

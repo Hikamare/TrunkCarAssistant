@@ -6,9 +6,14 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    public SQLitehandler dbHandler = new SQLitehandler(this);
+    // These values are to be set within activities and shall be passed to StartActivity
+    private Trunk mTrunk;
+    private List<Luggage> mLuggageList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
