@@ -19,16 +19,12 @@ import java.util.ArrayList;
  */
 
 public class StartActivity extends AppCompatActivity {
-<<<<<<< HEAD
+
 
     private Database dbHandler;
     private Trunk chosenTrunk;
     private List<Luggage> luggageList;
 
-=======
-    private SQLitehandler dbHandler;
-/*
->>>>>>> e820914c5de802c39f4280d7201b4695b0a12b7d
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -38,9 +34,12 @@ public class StartActivity extends AppCompatActivity {
         chosenTrunk = new Trunk();
 
         try{
+
             Intent i = getIntent();
             chosenTrunk = (Trunk) i.getSerializableExtra("entry");
             System.out.println(chosenTrunk.getName());
+            TextView pickedCar = findViewById(R.id.carIDTextView);
+            pickedCar.setText(chosenTrunk.getName());
 
         }
         catch(NullPointerException e){
@@ -48,17 +47,6 @@ public class StartActivity extends AppCompatActivity {
         }
 
 
-        TextView pickedCar = findViewById(R.id.carIDTextView);
-
-        pickedCar.setText(chosenTrunk.getName());
-
-
-<<<<<<< HEAD
-=======
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
->>>>>>> e820914c5de802c39f4280d7201b4695b0a12b7d
         //new activity for button Luggage
         Button luggage2 = findViewById(R.id.luggage_start);
         luggage2.setOnClickListener(new View.OnClickListener() {
