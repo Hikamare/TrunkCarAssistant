@@ -20,6 +20,11 @@ import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    private SQLitehandler dbHandler;
+>>>>>>> feb217ad8a3d7c9c76d0174488f1461c6a102606
 
     private SQLitehandler dbHandler;
 /*
@@ -44,6 +49,10 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+<<<<<<< HEAD
+=======
+>>>>>>> f8a6c252b3d43a26f2fe0eb37a3a63b70607f1d9
+>>>>>>> feb217ad8a3d7c9c76d0174488f1461c6a102606
         //new activity for button Luggage
         Button luggage2 = findViewById(R.id.luggage_start);
         luggage2.setOnClickListener(new View.OnClickListener() {
