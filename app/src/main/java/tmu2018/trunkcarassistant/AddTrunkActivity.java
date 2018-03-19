@@ -29,10 +29,12 @@ public class AddTrunkActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trunk);
 
         dbHandler = new SQLitehandler(this);
+
         final EditText TrunkLengthText = findViewById(R.id.trunkLengthText);
         final EditText TrunkWidthText = findViewById(R.id.trunkWidthText);
         final EditText TrunkHeightText = findViewById(R.id.trunkHeightText);

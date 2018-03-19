@@ -8,7 +8,7 @@ public class TrunkThread implements Runnable {
 
     private android.os.Handler handler;
     private Trunk trunkModel;
-     private Luggage[] bb;
+    private Luggage[] bb;
     private TrunkView trunkView;
     public TrunkThread(android.os.Handler h, Trunk clm, TrunkView clv)
     {

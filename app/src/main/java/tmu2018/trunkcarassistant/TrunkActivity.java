@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,6 +15,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 /**
  * Created by anorb on 07.03.2018.
@@ -52,6 +55,15 @@ public class TrunkActivity extends AppCompatActivity {
        adapter = new LuggageArrayAdapter(this, dbHandler.readAllTrunks() );
        trunkListView.setAdapter(adapter);
 
+       trunkListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               Intent intent = new Intent( TrunkActivity.this, StartActivity.class);
+               Trunk entry = (Trunk) adapterView.getItemAtPosition(i);
+               intent.putExtra("entry", entry);
+               startActivity(intent);
+           }
+       });
 
 
     }

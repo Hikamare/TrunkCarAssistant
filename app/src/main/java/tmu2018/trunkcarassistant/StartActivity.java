@@ -6,53 +6,48 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Collections;
 import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by anorb on 07.03.2018.
+ * TODO: Create a field which will hold a choosen trunk and luggages list. If there are no picked -> open respective activity. Else: open trunk drawing.
  */
 
 public class StartActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    private SQLitehandler dbHandler;
->>>>>>> feb217ad8a3d7c9c76d0174488f1461c6a102606
+    private Database dbHandler;
+    private Trunk chosenTrunk;
+    private List<Luggage> luggageList;
 
-    private SQLitehandler dbHandler;
-/*
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        // Initializing connection to db
-        dbHandler = new SQLitehandler(this);
 
-        //events handling for Pack It! button
-        Button buttonPackIt = findViewById(R.id.packit_start);
-        buttonPackIt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pickTrunk();
-            }
-        });
-    }
-*/
+        chosenTrunk = new Trunk();
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
-<<<<<<< HEAD
-=======
->>>>>>> f8a6c252b3d43a26f2fe0eb37a3a63b70607f1d9
->>>>>>> feb217ad8a3d7c9c76d0174488f1461c6a102606
+        try{
+            Intent i = getIntent();
+            chosenTrunk = (Trunk) i.getSerializableExtra("entry");
+            System.out.println(chosenTrunk.getName());
+
+        }
+        catch(NullPointerException e){
+            System.out.println("No trunk was given now\n");
+        }
+
+
+        TextView pickedCar = findViewById(R.id.carIDTextView);
+
+        pickedCar.setText(chosenTrunk.getName());
+
+
         //new activity for button Luggage
         Button luggage2 = findViewById(R.id.luggage_start);
         luggage2.setOnClickListener(new View.OnClickListener() {
@@ -78,39 +73,43 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Example (list)
-                /*List<Luggage> luggages = new ArrayList<Luggage>();
-                TrunkView trunkView;
-                trunkView = findViewById(R.id.trunkView);
+                    List<Luggage> luggages = new ArrayList<Luggage>();
+                    TrunkView trunkView;
+                    trunkView = findViewById(R.id.trunkView);
 
-                //Make luggages (we will be taking lugagges from "database")
-                for(int i=0; i< 3;i++)
-                {
-                    Luggage l = new Luggage("Number "+i,5*(i+1),5*(i+1),5*(i+1),true);
-                    luggages.add(l);
+                    //Make luggages (we will be taking lugagges from "database")
+
+
+                    for(int i=0; i< 3;i++)
+                    {
+                        Luggage l = new Luggage("Number "+i,5*(i+1),5*(i+1),5*(i+1),true);
+                        luggages.add(l);
+                    }
+                    //Make trunk (we will be taking trunk from "database")
+                    //Trunk trunkModel = new Trunk("Trunk",50,50,50,true);
+                    //Add luggages to trunk
+                chosenTrunk.addLuggages(luggages);
+                    //We make new thread for trunk and luggages
+                    Thread t = new Thread(new TrunkThread(new Handler(), chosenTrunk,trunkView));
+                    t.start();
                 }
-                //Make trunk (we will be taking trunk from "database")
-                Trunk trunkModel = new Trunk("Trunk",50,50,50,true);
-                //Add luggages to trunk
-                trunkModel.addLuggages(luggages);
-                //We make new thread for trunk and luggages
-                Thread t = new Thread(new TrunkThread(new Handler(),trunkModel,trunkView));
-                t.start();*/
-            }
+
+
         });
 
     }
 
-    public List<Trunk> pickTrunk() {
+    public boolean pickTrunk() {
 
         if (dbHandler.readAllTrunks().isEmpty()) {
             Intent intent_trunk2 = new Intent(StartActivity.this, TrunkActivity.class);
             startActivity(intent_trunk2);
             Toast lToast = Toast.makeText(this, "You don't have any trunk picked yet. \nAdd one!", Toast.LENGTH_SHORT);
             lToast.show();
-            return Collections.emptyList();
+            return false;
         }
 
-        return Collections.emptyList();
+        return true;
 
     }
 }

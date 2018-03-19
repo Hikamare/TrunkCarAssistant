@@ -1,5 +1,6 @@
 package tmu2018.trunkcarassistant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Marcin on 13.03.2018.
  */
 
-public class Trunk {
+public class Trunk implements Serializable {
 
     public Trunk(String name,float width,float length,float height,boolean usercreated)
     {
@@ -20,7 +21,7 @@ public class Trunk {
     }
 
     public Trunk()
-    {}
+    { this.name = ""; }
 
     private String name;
     private float width;
