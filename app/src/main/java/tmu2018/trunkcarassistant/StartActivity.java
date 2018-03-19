@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
 import java.util.List;
 
 import java.util.ArrayList;
@@ -71,27 +72,35 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Example (list)
-                    List<Luggage> luggages = new ArrayList<Luggage>();
-                    TrunkView trunkView;
-                    trunkView = findViewById(R.id.trunkView);
+                List<Luggage> luggages = new ArrayList<>();
+                TrunkView trunkView;
+                trunkView = findViewById(R.id.trunkView);
+
+                try {
+                    //Example (list)
 
                     //Make luggages (we will be taking lugagges from "database")
 
-
-                    for(int i=0; i< 3;i++)
-                    {
+                    for (int i = 0; i < 3; i++) {
                         Luggage l = new Luggage("Number "+i,5*(i+1),5*(i+1),5*(i+1),true);
                         luggages.add(l);
                     }
                     //Make trunk (we will be taking trunk from "database")
                     //Trunk trunkModel = new Trunk("Trunk",50,50,50,true);
                     //Add luggages to trunk
-                chosenTrunk.addLuggages(luggages);
+                    chosenTrunk.addLuggages(luggages);
                     //We make new thread for trunk and luggages
                     Thread t = new Thread(new TrunkThread(new Handler(), chosenTrunk,trunkView));
                     t.start();
+                } catch (NullPointerException e) {
+                    if (chosenTrunk == null) {
+                        Intent intent_trunk2 = new Intent(StartActivity.this, TrunkActivity.class);
+                        startActivity(intent_trunk2);
+                        System.out.println("No trunk was chosen");
+                    }
+
                 }
+            }
 
 
         });
