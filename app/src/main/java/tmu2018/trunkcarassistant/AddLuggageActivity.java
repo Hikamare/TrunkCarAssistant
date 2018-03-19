@@ -22,7 +22,10 @@ import android.widget.TextView;
 /**
  * Created by anorb on 09.03.2018.
  */
+<<<<<<< HEAD
 
+=======
+>>>>>>> e820914c5de802c39f4280d7201b4695b0a12b7d
 public class AddLuggageActivity extends AppCompatActivity implements OnClickListener{
 
     private EditText edit_length;
@@ -31,7 +34,10 @@ public class AddLuggageActivity extends AppCompatActivity implements OnClickList
 
 
     private Button save_luggage;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e820914c5de802c39f4280d7201b4695b0a12b7d
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
