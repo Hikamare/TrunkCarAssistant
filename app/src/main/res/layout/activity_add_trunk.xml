@@ -44,10 +44,23 @@
         android:ems="10"
         android:inputType="numberSigned" />
 
+    <TextView
+        android:id="@+id/TrunkHeiTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/TrunkHeiTextView" />
+
+    <EditText
+        android:id="@+id/trunkHeightText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned" />
+
     <Button
         android:id="@+id/buttonADD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/buttonADD"/>
+        android:text="@string/buttonADD" />
 
 </LinearLayout>

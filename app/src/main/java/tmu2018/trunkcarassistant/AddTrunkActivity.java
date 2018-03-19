@@ -35,6 +35,7 @@ public class AddTrunkActivity extends AppCompatActivity {
         dbHandler = new SQLitehandler(this);
         final EditText TrunkLengthText = findViewById(R.id.trunkLengthText);
         final EditText TrunkWidthText = findViewById(R.id.trunkWidthText);
+        final EditText TrunkHeightText = findViewById(R.id.trunkHeightText);
         Button buttonADD = findViewById(R.id.buttonADD);
 
         //spinner for the car brand
@@ -57,7 +58,6 @@ public class AddTrunkActivity extends AppCompatActivity {
                 {
                     case 0:
                         trunkName +=(car_brand[0]);
-
                         break;
                     case 1:
                         trunkName +=(car_brand[1]);
@@ -120,10 +120,14 @@ public class AddTrunkActivity extends AppCompatActivity {
                 Trunk lTrunk = new Trunk();
                 float lLength = Integer.parseInt(TrunkLengthText.getText().toString());
                 float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());
+                float lHeight = Integer.parseInt(TrunkHeightText.getText().toString());
 
+                System.out.println("L= "+lLength+"W= "+lWidth+"H= "+lHeight);
                 lTrunk.setName(trunkName);
                 lTrunk.setLength(lLength);
                 lTrunk.setWidth(lWidth);
+                lTrunk.setHeight(lHeight);
+
                 // Setting trunkName to empty string to correctly add another one.
                 trunkName = "";
 

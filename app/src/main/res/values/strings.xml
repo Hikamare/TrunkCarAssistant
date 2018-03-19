@@ -22,5 +22,6 @@
     <string name="width">WIDTH</string>
     <string name="save">SAVE</string>
     <string name="carWidth"> Car width</string>
+    <string name="carLength"> Car length</string>
     <string name="carHeight"> Car height</string>
 </resources>

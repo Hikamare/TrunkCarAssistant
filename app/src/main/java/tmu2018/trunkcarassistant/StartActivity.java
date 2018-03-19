@@ -20,9 +20,9 @@ import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
-    private SQLitehandler dbHandler;
 
+    private SQLitehandler dbHandler;
+/*
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
@@ -35,36 +35,36 @@ public class StartActivity extends AppCompatActivity {
         buttonPackIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             pickTrunk();
+                pickTrunk();
             }
         });
+    }
+*/
 
-=======
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
->>>>>>> f8a6c252b3d43a26f2fe0eb37a3a63b70607f1d9
         //new activity for button Luggage
         Button luggage2 = findViewById(R.id.luggage_start);
-        luggage2.setOnClickListener(new View.OnClickListener(){
+        luggage2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent intent_luggage2 = new Intent(StartActivity.this,LuggageActivity.class);
+            public void onClick(View view) {
+                Intent intent_luggage2 = new Intent(StartActivity.this, LuggageActivity.class);
                 startActivity(intent_luggage2);
             }
         });
         //new activity for button Trunk
         Button trunk2 = findViewById(R.id.trunk_start);
-        trunk2.setOnClickListener(new View.OnClickListener(){
+        trunk2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent intent_trunk2 = new Intent(StartActivity.this,TrunkActivity.class);
+            public void onClick(View view) {
+                Intent intent_trunk2 = new Intent(StartActivity.this, TrunkActivity.class);
                 startActivity(intent_trunk2);
             }
         });
 
-        Button pack = findViewById(R.id.PACK);
-        pack.setOnClickListener(new View.OnClickListener(){
+        Button pack = findViewById(R.id.packit_start);
+        pack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -91,12 +91,12 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    public List<Trunk> pickTrunk(){
+    public List<Trunk> pickTrunk() {
 
         if (dbHandler.readAllTrunks().isEmpty()) {
-            Intent intent_trunk2 = new Intent(StartActivity.this,TrunkActivity.class);
+            Intent intent_trunk2 = new Intent(StartActivity.this, TrunkActivity.class);
             startActivity(intent_trunk2);
-            Toast lToast = Toast.makeText(this,"You don't have any trunk picked yet. \nAdd one!",Toast.LENGTH_SHORT);
+            Toast lToast = Toast.makeText(this, "You don't have any trunk picked yet. \nAdd one!", Toast.LENGTH_SHORT);
             lToast.show();
             return Collections.emptyList();
         }
@@ -105,3 +105,4 @@ public class StartActivity extends AppCompatActivity {
 
     }
 }
+

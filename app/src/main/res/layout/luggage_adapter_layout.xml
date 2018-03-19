@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/carH"
+        android:id="@+id/carL"
         android:layout_width="80dp"
         android:layout_height="29dp"
         android:layout_marginTop="12dp"
@@ -44,13 +44,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/carHeight"
+        android:id="@+id/carLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/carHeight"
-        app:layout_constraintStart_toEndOf="@+id/carH"
+        android:layout_marginTop="32dp"
+        android:text="@string/carLength"
+        app:layout_constraintStart_toEndOf="@+id/carL"
         app:layout_constraintTop_toBottomOf="@+id/carWidth" />
+
+    <TextView
+        android:id="@+id/carH"
+        android:layout_width="80dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toBottomOf="@+id/carL"
+        tools:layout_editor_absoluteX="152dp" />
+
+    <TextView
+        android:id="@+id/carHeight"
+        android:text="car height"
+        android:layout_width="64dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/carH"
+        app:layout_constraintTop_toBottomOf="@+id/carLength" />
 
 </android.support.constraint.ConstraintLayout>

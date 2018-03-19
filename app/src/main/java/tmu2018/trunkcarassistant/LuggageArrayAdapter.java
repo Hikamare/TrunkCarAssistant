@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,12 +31,15 @@ public class LuggageArrayAdapter extends ArrayAdapter<Trunk> {
         TextView carName = (TextView) convertView.findViewById(R.id.carName);
         TextView carH = (TextView) convertView.findViewById(R.id.carH);
         TextView carW = (TextView) convertView.findViewById(R.id.carW);
+        TextView carL = (TextView) convertView.findViewById(R.id.carL);
         // Populate the data into the template view using the data object
         carName.setText(lTrunk.getName());
         String carHString = (lTrunk.getHeight()+"");
         String carWString = (lTrunk.getWidth()+"");
+        String carLString = (lTrunk.getLength()+"");
         carH.setText( carHString );
         carW.setText( carWString );
+        carL.setText( carLString );
         // Return the completed view to render on screen
         return convertView;
     }
