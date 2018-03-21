@@ -24,4 +24,9 @@
     <string name="carWidth"> Car width</string>
     <string name="carLength"> Car length</string>
     <string name="carHeight"> Car height</string>
+    <string name="luggageWidth"> Luggage width</string>
+    <string name="luggageLength"> Luggage length</string>
+    <string name="luggageHeight"> Luggage height</string>
+    <string name="luggageListTextView">Luggages list</string>
+    <string name="textView_name">NAME</string>
 </resources>

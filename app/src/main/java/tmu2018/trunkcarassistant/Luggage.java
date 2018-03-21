@@ -1,10 +1,12 @@
 package tmu2018.trunkcarassistant;
 
+import java.io.Serializable;
+
 /**
  * Created by Marcin on 13.03.2018.
  */
 
-public class Luggage {
+public class Luggage implements Serializable {
 
     public Luggage(String name,float width,float length,float height,boolean usercreated)
     {
