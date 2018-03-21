@@ -13,19 +13,20 @@ import java.util.List;
  * Created by hikamare on 18.03.18.
  */
 
-public class LuggageArrayAdapter extends ArrayAdapter<Trunk> {
+public class TrunkArrayAdapter extends ArrayAdapter<Trunk> {
 
-    public LuggageArrayAdapter(Context context, List<Trunk> aTrunk) {
+    public TrunkArrayAdapter(Context context, List<Trunk> aTrunk) {
         super(context, 0, aTrunk);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         // Get the data item for this position
         Trunk lTrunk = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.luggage_adapter_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.trunk_adapter_layout, parent, false);
         }
         // Lookup view for data population
         TextView carName = (TextView) convertView.findViewById(R.id.carName);

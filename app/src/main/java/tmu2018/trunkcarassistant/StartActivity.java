@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anorb on 07.03.2018.
- * TODO: Create a field which will hold a choosen trunk and luggages list. If there are no picked -> open respective activity. Else: open trunk drawing.
+ * TODO: Create a field which will hold a choosen trunk (DONE) and luggages list. If there are no picked -> open respective activity. Else: open trunk drawing. (PARTLY DONE)
  */
 
 public class StartActivity extends AppCompatActivity {
@@ -38,7 +38,6 @@ public class StartActivity extends AppCompatActivity {
 
             Intent i = getIntent();
             chosenTrunk = (Trunk) i.getSerializableExtra("entry");
-            System.out.println(chosenTrunk.getName());
             TextView pickedCar = findViewById(R.id.carIDTextView);
             pickedCar.setText(chosenTrunk.getName());
 
