@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anorb on 07.03.2018.
- * TODO: Create a field which will hold a choosen trunk (DONE) and luggages list. If there are no picked -> open respective activity. Else: open trunk drawing. (PARTLY DONE)
+ TODO: Delete function buttons (PACK IT, LUGGAGE, TRUNK). Activity should only show packed trunk and list of chosen trunk and luggages.
  */
 
 public class StartActivity extends AppCompatActivity {
@@ -24,7 +24,6 @@ public class StartActivity extends AppCompatActivity {
 
     private Database dbHandler;
     private Trunk chosenTrunk;
-    private List<Luggage> luggageList;
 
     protected void onCreate(Bundle savedInstanceState) {
 

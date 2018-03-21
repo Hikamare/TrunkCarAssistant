@@ -37,7 +37,6 @@ public class Trunk implements Serializable {
     private List<Luggage> luggages = new ArrayList<Luggage>(); // We use List for luggages
 
 
-
     public String getName() {
         return name;
     }

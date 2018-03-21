@@ -12,18 +12,7 @@ import android.widget.TextView;
 
 /**
  * Created by anorb on 09.03.2018.
- *  /*
- *TODO : something is wrong in this metod, Paweł can look at this? I used this code from https://developer.android.com/guide/topics/ui/controls/radiobutton.html
- *
- */
-        /*
-         *TODO : if we chose radioButton_S, number fields must be filled: length(37) , hight(56) , width(20)
-         */
-        /*
-         *TODO : if we chose radioButton_M, number fields must be filled: length(46) , hight(68) , width(23)
-         */
-        /*
-         *TODO : if we chose radioButton_L, number fields must be filled: length(53) , hight(79) , width(27)
+ * TODO: Handle empty input or incorrect data. Luggage sizes shall be moved to string.xml
 */
 public class AddLuggageActivity extends AppCompatActivity{
 
@@ -76,6 +65,7 @@ public class AddLuggageActivity extends AppCompatActivity{
 
             case R.id.radioButton_S:
                 if(checked){
+                    // Set textView of all dimensions to inactive for all radioButtons
                     edit_length.setText("37");
                     edit_width.setText("20");
                     edit_height.setText("56");
@@ -97,6 +87,7 @@ public class AddLuggageActivity extends AppCompatActivity{
                     edit_height.setText("79");
                 }
                 break;
+
             case R.id.radioButton_O:
                 if(checked){
                     edit_length.setText("");

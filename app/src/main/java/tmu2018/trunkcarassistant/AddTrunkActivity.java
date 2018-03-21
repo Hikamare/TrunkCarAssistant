@@ -20,6 +20,7 @@ import java.util.List;
 /*
 TODO: That switch case has to be changed: we may not assume that we know the amount of cars in db. What it changes? Will be rewrite that thing all the time ;) ?
 TODO: What is more: if you do not change both model and brand you won't be able to correctly add your car to db.
+TODO: Handle invalid or empty input event. Prevent SQLInjection (REGEX)
  */
 
 public class AddTrunkActivity extends AppCompatActivity {
@@ -124,7 +125,6 @@ public class AddTrunkActivity extends AppCompatActivity {
                 float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());
                 float lHeight = Integer.parseInt(TrunkHeightText.getText().toString());
 
-                System.out.println("L= "+lLength+"W= "+lWidth+"H= "+lHeight);
                 lTrunk.setName(trunkName);
                 lTrunk.setLength(lLength);
                 lTrunk.setWidth(lWidth);

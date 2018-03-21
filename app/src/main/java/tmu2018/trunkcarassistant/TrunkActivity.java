@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by anorb on 07.03.2018.
  *
-
+    TODO: Refreshing view each time activity opens.
  */
 
 public class TrunkActivity extends AppCompatActivity {
@@ -22,7 +22,6 @@ public class TrunkActivity extends AppCompatActivity {
 
 
     private Database dbHandler = new SQLitehandler(this);
-    private List<String> exampleList = new ArrayList<>();
     private TrunkArrayAdapter adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class TrunkActivity extends AppCompatActivity {
         Button trunk1 = findViewById(R.id.add_trunk);
         ListView trunkListView = findViewById(R.id.trunkListView);
 
-        // new activity for button Trunk
+        // new activity for button Trunkprivate List<String> exampleList = new ArrayList<>();
         trunk1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

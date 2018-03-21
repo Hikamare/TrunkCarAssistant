@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by Marcin on 13.03.2018.
+ * TODO: Add a database to handle cars (models and brands.
  */
 
 public interface Database {
