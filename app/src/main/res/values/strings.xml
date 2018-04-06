@@ -29,4 +29,5 @@
     <string name="luggageHeight"> Luggage height</string>
     <string name="luggageListTextView">Luggages list</string>
     <string name="textView_name">NAME</string>
+    <string name="TrunkOKButton">OK</string>
 </resources>
