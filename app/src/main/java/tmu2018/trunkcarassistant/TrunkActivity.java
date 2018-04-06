@@ -8,15 +8,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by anorb on 07.03.2018.
- *
-    TODO: Refreshing view each time activity opens.
+    TrunkActivity is responsible for listing a list of added trunks with basic info about them and providing a button to add a new trunk.
  */
-
 public class TrunkActivity extends AppCompatActivity {
 
 
@@ -31,11 +26,12 @@ public class TrunkActivity extends AppCompatActivity {
         Button trunk1 = findViewById(R.id.add_trunk);
         ListView trunkListView = findViewById(R.id.trunkListView);
 
-        // new activity for button Trunkprivate List<String> exampleList = new ArrayList<>();
+        // new activity for button Add Trunk. PutExtra tells AddTrunk
         trunk1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent_trunk = new Intent(TrunkActivity.this,AddTrunkActivity.class);
+
                 startActivity(intent_trunk);
             }
         });
@@ -44,16 +40,27 @@ public class TrunkActivity extends AppCompatActivity {
        adapter = new TrunkArrayAdapter(this, dbHandler.readAllTrunks() );
        trunkListView.setAdapter(adapter);
 
+       // When a trunk is selected a new activity is opened with a trunk passed to it.
        trunkListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Intent intent = new Intent( TrunkActivity.this, StartActivity.class);
+               Intent intent = new Intent( TrunkActivity.this, LuggageActivity.class);
                Trunk entry = (Trunk) adapterView.getItemAtPosition(i);
                intent.putExtra("entry", entry);
+               intent.putExtra("which_activ", ActivityContants.TrunkActivity);
                startActivity(intent);
            }
        });
 
 
+    }
+
+    // onResume will refresh trunkList each time activity is opened (i.e. when back button is pressed)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ListView trunkListView = findViewById(R.id.trunkListView);
+        adapter = new TrunkArrayAdapter(this, dbHandler.readAllTrunks() );
+        trunkListView.setAdapter(adapter);
     }
 }
