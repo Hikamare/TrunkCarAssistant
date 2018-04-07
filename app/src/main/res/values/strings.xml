@@ -30,4 +30,5 @@
     <string name="luggageListTextView">Luggages list</string>
     <string name="textView_name">NAME</string>
     <string name="TrunkOKButton">OK</string>
+    <string name="TrunkNickTextView">Trunk Alias</string>
 </resources>

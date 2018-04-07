@@ -57,6 +57,18 @@
         android:ems="10"
         android:inputType="numberSigned" />
 
+    <TextView
+        android:id="@+id/TrunkNickTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/TrunkNickTextView" />
+
+    <EditText
+        android:id="@+id/trunkNickText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"    />
+
     <Button
         android:id="@+id/buttonADD"
         android:layout_width="match_parent"

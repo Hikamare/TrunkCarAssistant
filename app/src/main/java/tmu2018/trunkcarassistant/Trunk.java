@@ -208,4 +208,8 @@ public class Trunk implements Serializable {
         for(int i =0;i<luggages.size();i++)
             luggages.get(i).info();
     }
+
+    public List<Luggage> getLuggages() {
+        return luggages;
+    }
 }
