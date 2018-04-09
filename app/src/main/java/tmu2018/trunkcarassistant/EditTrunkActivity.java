@@ -1,42 +1,49 @@
 package tmu2018.trunkcarassistant;
 
 import android.content.Context;
-import android.view.View;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.List;
 
 
-/**
- * Created by anorb on 09.03.2018.
- */
+public class EditTrunkActivity extends AppCompatActivity {
 
-/*
-TODO: That switch case has to be changed: we may not assume that we know the amount of cars in db. What it changes? Will be rewrite that thing all the time ;) ?
-TODO: What is more: if you do not change both model and brand you won't be able to correctly add your car to db.
-TODO: Handle invalid or empty input event. Prevent SQLInjection (REGEX)
- */
-
-public class AddTrunkActivity extends AppCompatActivity {
-
-    Spinner spinner;
-    Spinner spinner2;
     private Database dbHandler;
+    private String trunkName = "";
+    private Trunk editTrunk;
+    private Spinner spinner;
+    private Spinner spinner2;
+    private Button delete_Trunk;
     Context cont;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_trunk);
+        setContentView(R.layout.activity_edit_trunk);
+
+        delete_Trunk = findViewById(R.id.buttonDEL);
+
+        try{
+            Intent i = getIntent();
+            editTrunk = (Trunk) i.getSerializableExtra("entry");
+        }
+        catch(NullPointerException e){
+            System.out.println("No trunk to edit\n");
+        }
 
         dbHandler = new SQLitehandler(this);
 
@@ -83,36 +90,43 @@ public class AddTrunkActivity extends AppCompatActivity {
 
             }
         });
-
-
-
         buttonADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
 
                 Trunk lTrunk = new Trunk();
                 float lLength = Integer.parseInt(TrunkLengthText.getText().toString());
                 float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());
                 float lHeight = Integer.parseInt(TrunkHeightText.getText().toString());
-                lTrunk.setName(spinner.getSelectedItem().toString()+" "+spinner2.getSelectedItem().toString()+" "+TrunkNick.getText());
+
+                lTrunk.setName(trunkName);
                 lTrunk.setLength(lLength);
                 lTrunk.setWidth(lWidth);
                 lTrunk.setHeight(lHeight);
 
 
+                // Setting trunkName to empty string to correctly add another one.
+                trunkName = "";
+
                 // If a trunk is already added an exception will be caught
+
                 try {
-                    dbHandler.addTrunk(lTrunk);
-                    Toast lToast = Toast.makeText(AddTrunkActivity.this,"That probably worked", Toast.LENGTH_SHORT);
+                    dbHandler.updateTrunk(editTrunk,lTrunk);
+                    Toast lToast = Toast.makeText(EditTrunkActivity.this,"That probably worked", Toast.LENGTH_SHORT);
                     lToast.show();
                 } catch(IllegalArgumentException e){
-                    Toast lToast = Toast.makeText(AddTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                    Toast lToast = Toast.makeText(EditTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
                     lToast.show();
                 }
-            onBackPressed();
+                Intent intent_trunk = new Intent(EditTrunkActivity.this,TrunkActivity.class);
+                int flag =1;
+                intent_trunk.putExtra("flag",flag);
+                intent_trunk.putExtra("which_activ",ActivityContants.TrunkActivity);
+                startActivity(intent_trunk);
             }
         });
 
-
-    }
-}
+}}

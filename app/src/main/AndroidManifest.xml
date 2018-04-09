@@ -16,11 +16,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StartActivity"></activity>
-        <activity android:name=".LuggageActivity"></activity>
-        <activity android:name=".TrunkActivity"></activity>
-        <activity android:name=".AddLuggageActivity"></activity>
-        <activity android:name=".AddTrunkActivity"></activity>
+        <activity android:name=".StartActivity" />
+        <activity android:name=".LuggageActivity" />
+        <activity android:name=".TrunkActivity" />
+        <activity android:name=".AddLuggageActivity" />
+        <activity android:name=".AddTrunkActivity" />
+        <activity
+            android:name=".EditTrunkActivity"
+            android:label="@string/title_activity_edit_trunk"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditLuggageArrayAdapter"
+            android:label="@string/title_activity_edit_luggage_array_adapter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditLuggageActivity"
+            android:label="@string/title_activity_edit_luggage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LuggageToEditActivity"
+            android:label="@string/title_activity_luggage_to_edit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
