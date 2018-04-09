@@ -40,6 +40,7 @@ public class LuggageActivity extends AppCompatActivity {
             }
         });
 
+
         // List of all already added luggages
         final ListView luggageListView = findViewById(R.id.luggageListView);
         final LuggageArrayAdapter adapter = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );

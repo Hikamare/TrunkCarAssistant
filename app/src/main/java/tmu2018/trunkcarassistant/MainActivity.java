@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         luggage1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent_luggage = new Intent(MainActivity.this,LuggageActivity.class);
+                Intent intent_luggage = new Intent(MainActivity.this,LuggageToEditActivity.class);
                 startActivity(intent_luggage);
             }
         });
@@ -44,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent_trunk = new Intent(MainActivity.this,TrunkActivity.class);
+                int flag =1;
+                intent_trunk.putExtra("flag",flag);
+                intent_trunk.putExtra("which_activ",ActivityContants.TrunkActivity);
                 startActivity(intent_trunk);
             }
         });
-
     }
 }
