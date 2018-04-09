@@ -142,9 +142,9 @@ public class AddTrunkActivity extends AppCompatActivity {
                     Toast lToast = Toast.makeText(AddTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
                     lToast.show();
                 }
+            onBackPressed();
             }
         });
-
 
 
     }

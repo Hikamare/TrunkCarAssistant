@@ -4,9 +4,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import java.util.Random;
 
 /**
  * Created by Wojtek on 16.03.2018.
@@ -17,8 +20,9 @@ import android.view.View;
 public class TrunkView extends View {
     private Paint cFront = new Paint();
     private Paint cEnd = new Paint();
-    private Paint cLuggageFront = new Paint();
     private Paint cLuggageEnd = new Paint();
+    private Paint cLugg = new Paint();
+    private Paint[] cTable = new Paint[10];
 
     private boolean isInit = false;
     private float heightTrunkReal,widthTrunkReal,lengthTrunkReal; // CarLuggage
@@ -44,13 +48,32 @@ public class TrunkView extends View {
 
     public TrunkView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        for(int i =0; i<cTable.length; i++)
+        {
+            cTable[i] = new Paint();
+            cTable[i].setStyle(Paint.Style.FILL);
+        }
+        cTable[0].setColor(Color.rgb(205,255,0));
+        cTable[1].setColor(Color.rgb(0,255,230));
+        cTable[2].setColor(Color.rgb(9,0,255));
+        cTable[3].setColor(Color.rgb(255,0,51));
+        cTable[4].setColor(Color.rgb(255,0,205));
+        cTable[5].setColor(Color.rgb(198,15,243));
+        cTable[6].setColor(Color.rgb(15,144,243));
+        cTable[7].setColor(Color.rgb(243,243,15));
+        cTable[8].setColor(Color.rgb(243,190,15));
+        cTable[9].setColor(Color.rgb(243,68,15));
+
+
+
     }
     private void initCarLaggage()
     {
         cFront.setColor(Color.RED);
         cEnd.setColor(Color.GRAY);
-        cLuggageFront.setColor(Color.BLUE);
         cLuggageEnd.setColor(Color.BLACK);
+        cLugg.setColor(Color.BLUE);
+        cLugg.setStyle(Paint.Style.FILL);
         widthTrunkScale = (float) Math.sqrt(Math.pow(((widthScreen/4+ widthScreen/16)-(widthScreen*3/4+ widthScreen/16)),2)+Math.pow((heightScreen/2-heightScreen/2),2));
         heightTrunkScale = (float) Math.sqrt(Math.pow((widthScreen*3/4+ widthScreen/16)-(widthScreen*3/4+ widthScreen/16),2)+Math.pow((heightScreen/2 - heightScreen/6),2));
 
@@ -60,10 +83,10 @@ public class TrunkView extends View {
         float y2 = heightScreen/2 + 120;
         lengthTrunkScale = (float) Math.sqrt( Math.pow((double)(x1-x2),2) + Math.pow((double)(y1-y2),2));
 
-        widthTrunkNow = 0;
+        /*widthTrunkNow = 0;
         heightTrunkNow = 0;
         lengthTrunkNow = 0;
-
+*/
 
         isInit = true;
     }
@@ -81,31 +104,29 @@ public class TrunkView extends View {
 
         if(isLuggage == true)
         {
-        if(trunk.isIsntP() == true) {
+        if(trunk.isP() == true) {
+            widthTrunkNow = 0;
+            heightTrunkNow = 0;
+            lengthTrunkNow = 0;
             for (int i = 0; i < trunk.howLuggages(); i++) {
                 if (trunk.isAcvite()) {
-                    if (trunk.getLuggage(i).isActive() == true) {
-                        if (trunk.getLuggage(i).isNew() == true) {
+                    if (trunk.getLuggage(i).isActive()) {
+                        if (trunk.getLuggage(i).isNew()) {
                             trunk.scaleLuggages(heightTrunkScale, widthTrunkScale, lengthTrunkScale);
                             trunk.getLuggage(i).setRefWidth(widthTrunkNow);
                             widthTrunkNow += trunk.getLuggage(i).getWidthScale();
                             System.out.println(trunk.getLuggage(i).getWidthScale());
                         }
-
                     }
                 }
                 //trunk.info();
             }
-
             trunk.isntNew();
             drawLuggage(canvas);
-
         }
             //This circle is used as a reference point
             canvas.drawCircle(widthScreen/4 + widthScreen/16,heightScreen/2,5,circle);
         }
-
-
     }
 
     private void drawTrunk(Canvas c)
@@ -144,36 +165,47 @@ public class TrunkView extends View {
         for(int i =0;i<trunk.howLuggages();i++) {
 
             if (trunk.getLuggage(i).getWidthScale() < refWeight && trunk.getLuggage(i).getHeightScale() < refHeight && trunk.getLuggage(i).getLengthScale() < refDepth) {
-                //1
+                Random r = new Random();
+                int a = r.nextInt(10);
+                cLugg = cTable[a];
                 float x = (widthScreen / 4 + widthScreen / 16) + trunk.getLuggage(i).getRefWidth();
                 float y = heightScreen / 2;
 
-                c.drawLine(x, y, x + trunk.getLuggage(i).getWidthScale(), y,cLuggageEnd );
+                Path luggageV = new Path();
+                luggageV.reset();
+                luggageV.moveTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+                luggageV.lineTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+                luggageV.lineTo(x, y - trunk.getLuggage(i).getHeightScale());
+                luggageV.lineTo(x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale());
+                luggageV.lineTo(x + trunk.getLuggage(i).getWidthScale(), y);
+                luggageV.lineTo( (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+                luggageV.lineTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+                c.drawPath(luggageV,cLugg);
+
+                //1
+                //c.drawLine(x, y, x + trunk.getLuggage(i).getWidthScale(), y,cLuggageEnd );
                 //2
-                c.drawLine(x, y, x, y - trunk.getLuggage(i).getHeightScale(), cLuggageEnd);
+                //c.drawLine(x, y, x, y - trunk.getLuggage(i).getHeightScale(), cLuggageEnd);
                 //3
-                c.drawLine(x, y, (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)),cLuggageEnd );
+                //c.drawLine(x, y, (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)),cLuggageEnd );
                 //4
-                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y, (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageFront);
-
+                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y, (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
                 //5
-                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageFront);//6
-
+                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
                 //6
-                c.drawLine(x, y - trunk.getLuggage(i).getHeightScale(), x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), cLuggageFront);
-
+                c.drawLine(x, y - trunk.getLuggage(i).getHeightScale(), x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), cLuggageEnd);
                 //7
-                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y, x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), cLuggageFront);
+                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y, x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), cLuggageEnd);
                 //8
-                c.drawLine((float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageFront);
+                c.drawLine((float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
                 //9
-                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), cLuggageFront);//6
+                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), cLuggageEnd);//6
                 //10
-                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageFront);
+                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
                 //11
-                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), cLuggageFront);
+                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), cLuggageEnd);
                 //12
-                c.drawLine(x, y - trunk.getLuggage(i).getHeightScale(), (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageFront);
+                c.drawLine(x, y - trunk.getLuggage(i).getHeightScale(), (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)),cLuggageEnd);
             }
         }
     }
