@@ -4,22 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by anorb on 07.03.2018.
+ LuggageActivity is responsible for listing a list of added luggages with basic info about them and providing a button to add a new luggage.
  */
 
 public class LuggageActivity extends AppCompatActivity {
 
     private Database dbHandler = new SQLitehandler(this);
-    private List<String> exampleList = new ArrayList<>();
-    private LuggageArrayAdapter adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,23 +33,10 @@ public class LuggageActivity extends AppCompatActivity {
 
         // List of all already added luggages
         ListView luggageListView = findViewById(R.id.luggageListView);
-        adapter = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );
+        LuggageArrayAdapter adapter = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );
 
         luggageListView.setAdapter(adapter);
 
-        /*
-        TODO: Doesn't work well. Need to think about it.
-
-        luggageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent( LuggageActivity.this, StartActivity.class);
-                Luggage luggage = (Luggage) adapterView.getItemAtPosition(i);
-                intent.putExtra("luggage", luggage);
-                startActivity(intent);
-            }
-        });
-    */
     }
 
 }

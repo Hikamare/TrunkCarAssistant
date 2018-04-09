@@ -22,7 +22,13 @@
     <ListView
         android:id="@+id/luggageListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="396dp" />
+
+    <Button
+        android:id="@+id/TrunkOKButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/TrunkOKButton"/>
 
 
 </LinearLayout>

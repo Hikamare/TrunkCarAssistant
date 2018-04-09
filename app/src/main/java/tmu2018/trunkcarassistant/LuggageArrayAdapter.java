@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Created by hikamare on 19.03.18.
+ *
+ * Adapter for list of luggages. Handles layout of the list.
  */
 
 public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {

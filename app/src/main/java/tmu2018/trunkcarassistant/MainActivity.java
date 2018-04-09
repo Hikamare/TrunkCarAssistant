@@ -8,11 +8,12 @@ import android.widget.Button;
 
 import java.util.List;
 
+/*
+TODO: Define different behaviour for opening new activities (Trunk, Luggages)
+TODO: Redesigning
+ */
 public class MainActivity extends AppCompatActivity {
 
-    // These values are to be set within activities and shall be passed to StartActivity
-    private Trunk mTrunk;
-    private List<Luggage> mLuggageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

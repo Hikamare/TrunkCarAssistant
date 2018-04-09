@@ -4,9 +4,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.lang.Boolean.parseBoolean;
@@ -22,9 +29,12 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
 
     private static final String DATABASE_NAME = "trunk_assistant.db";
 
-    //2 basic tables
+    private Context myContext;
+
+    //3 basic tables
     private static final String TABLE_LUGGAGES = "luggages";
     private static final String TABLE_TRUNKS = "trunks";
+    private static final String TABLE_BRANDS = "brands";
 
     //columns luggages
     private static final String luggage_name = "name";
@@ -40,9 +50,15 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
     private static final String trunk_heigth = "heigth";
     private static final String trunk_usercreated = "usercreated";
 
+    //columns brands
+    private static final String car_brand = "brand";
+    private static final String car_model = "model";
+
+
 
     public SQLitehandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        myContext = context;
     }
 
     //create tables
@@ -63,8 +79,13 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 +trunk_heigth+" TEXT,"
                 +trunk_usercreated+" TEXT)";
 
+        String create_brands_table = "CREATE TABLE "+TABLE_BRANDS+ " ("
+                +car_brand+" TEXT,"
+                +car_model+" TEXT)";
+
         db.execSQL(create_luggages_table);
         db.execSQL(create_trunks_table);
+        db.execSQL(create_brands_table);
     }
 
     @Override
@@ -351,5 +372,75 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             throw new IllegalArgumentException("New trunk name is already used");
 
     }
+
+    public List<String> readAllCarBrands() throws IOException {
+
+        List<String> carBrands = new ArrayList<String>();
+        String carsPath = "/data/data/tmu2018.trunkcarassistant/sample.sqlite";
+
+        InputStream myInput = myContext.getAssets().open("sample.sqlite");
+
+        OutputStream myOutput = new FileOutputStream(carsPath);
+
+        //transfer bytes from the inputfile to the outputfile
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer))>0){
+            myOutput.write(buffer, 0, length);
+        }
+
+        //Close the streams
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(carsPath, null, SQLiteDatabase.OPEN_READONLY);
+
+        String string_query = "SELECT DISTINCT make FROM brands order by make";
+        Cursor cursor = db.rawQuery(string_query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                carBrands.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        return carBrands;
+    }
+
+    public List<String> readAllModels(String brand) throws IOException {
+
+        List<String> carBrands = new ArrayList<String>();
+        String carsPath = "/data/data/tmu2018.trunkcarassistant/sample.sqlite";
+
+        InputStream myInput = myContext.getAssets().open("sample.sqlite");
+
+        OutputStream myOutput = new FileOutputStream(carsPath);
+
+        //transfer bytes from the inputfile to the outputfile
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer))>0){
+            myOutput.write(buffer, 0, length);
+        }
+
+        //Close the streams
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(carsPath, null, SQLiteDatabase.OPEN_READONLY);
+
+        String string_query = "SELECT distinct model FROM brands where make = '"+brand+"' order by model";
+        Cursor cursor = db.rawQuery(string_query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                carBrands.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        return carBrands;
+    }
+
+
 
 }

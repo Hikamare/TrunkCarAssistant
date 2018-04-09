@@ -1,9 +1,11 @@
 package tmu2018.trunkcarassistant;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by Marcin on 13.03.2018.
+ * TODO: Add a database to handle cars (models and brands.
  */
 
 public interface Database {
@@ -41,5 +43,10 @@ public interface Database {
     //delete trunk(trunks if there are multiple, there should be none), with given name
     public void deleteTrunk(Trunk trunk);
 
+    //get all brands from db
+    public List<String> readAllCarBrands() throws IOException;
+
+    //get all models with given brand, returns empty if there is none
+    public List<String> readAllModels(String brand) throws IOException;
 
 }
