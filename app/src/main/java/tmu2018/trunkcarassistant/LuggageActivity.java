@@ -1,11 +1,17 @@
 package tmu2018.trunkcarassistant;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
+import android.view.ViewGroup;
+import android.widget.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -15,6 +21,7 @@ import android.widget.ListView;
 public class LuggageActivity extends AppCompatActivity {
 
     private Database dbHandler = new SQLitehandler(this);
+    private List<Luggage> luggagesList = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +29,8 @@ public class LuggageActivity extends AppCompatActivity {
 
         //new activity for button Trunk
         Button luggage1 = findViewById(R.id.add_luggage);
+        Button okButton = findViewById(R.id.TrunkOKButton);
+
 
         luggage1.setOnClickListener(new View.OnClickListener() {
             @Override
