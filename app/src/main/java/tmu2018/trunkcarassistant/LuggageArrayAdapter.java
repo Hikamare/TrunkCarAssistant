@@ -20,10 +20,14 @@ import java.util.List;
 public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {
 
 
+    public static CheckBox cb;
+    public static TextView name;
 
     public LuggageArrayAdapter(Context context, List<Luggage> aLuggage) {
 
         super(context, 0, aLuggage);
+        cb = new CheckBox(context);
+        name = new TextView(context);
     }
 
     @Override
@@ -37,7 +41,9 @@ public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.luggage_adapter_layout, parent, false);
         }
         // Lookup view for data population
+        this.cb = convertView.findViewById(R.id.luggageCheckBox);
         TextView luggageName = convertView.findViewById(R.id.luggageName);
+        this.name = convertView.findViewById(R.id.luggageName);
         TextView luggageH = convertView.findViewById(R.id.luggageH);
         TextView luggageW = convertView.findViewById(R.id.luggageW);
         TextView luggageL = convertView.findViewById(R.id.luggageL);
@@ -51,6 +57,13 @@ public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {
         luggageL.setText( carLString );
         // Return the completed view to render on screen
         return convertView;
+  }
+
+  public void changeCheckBox(boolean state) {
+      if (cb != null) {
+          cb.setSelected(state);
+          System.out.println(state);
+      }
   }
 
 }
