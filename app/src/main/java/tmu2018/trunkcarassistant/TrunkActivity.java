@@ -63,7 +63,7 @@ public class TrunkActivity extends AppCompatActivity {
                     Intent intent = new Intent(TrunkActivity.this, LuggageActivity.class);
                     Trunk entry = (Trunk) adapterView.getItemAtPosition(i);
                     intent.putExtra("entry", entry);
-                    intent.putExtra("which_activ", ActivityContants.TrunkActivity);
+                    //intent.putExtra("which_activ", ActivityContants.TrunkActivity);
                     startActivity(intent);
                 }
             });

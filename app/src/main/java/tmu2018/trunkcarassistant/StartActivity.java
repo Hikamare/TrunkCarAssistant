@@ -31,24 +31,33 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
 
-        chosenTrunk = new Trunk();
 
         try{
 
             Intent i = getIntent();
-            chosenTrunk = (Trunk) i.getSerializableExtra("entry");
-            TextView pickedCar = findViewById(R.id.carIDTextView);
-            pickedCar.setText(chosenTrunk.getName());
+            chosenTrunk = (Trunk) i.getSerializableExtra("Trunk");
+            System.out.println(chosenTrunk.getName());
+            chosenTrunk.info();
+        }
+        catch(NullPointerException e){
+            System.out.println("No trunk was given now\n");
+        }
+
+        TrunkView trunkView = findViewById(R.id.trunkView);
+
+        try{
+
+            Thread t = new Thread(new TrunkThread(new Handler(), chosenTrunk,trunkView));
+            t.start();
 
         }
         catch(NullPointerException e){
             System.out.println("No trunk was given now\n");
         }
 
-
         
 
-        Button pack = findViewById(R.id.packit_start);
+        /*Button pack = findViewById(R.id.packit_start);
         pack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,8 +93,16 @@ public class StartActivity extends AppCompatActivity {
             }
 
 
-        });
+        });*/
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(StartActivity.this,MainActivity.class);
+        startActivity(i);
     }
 
     public boolean pickTrunk() {

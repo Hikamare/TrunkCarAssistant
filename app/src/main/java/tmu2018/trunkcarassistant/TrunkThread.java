@@ -21,6 +21,7 @@ public class TrunkThread implements Runnable {
     @Override
     public void run() {
 
+            System.out.println("Jestem w nowym wątku");
             trunkView.setTrunk(trunkModel);
 
             try {
@@ -38,6 +39,7 @@ public class TrunkThread implements Runnable {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+            System.out.println("Koniec watku");
         }
     }
 

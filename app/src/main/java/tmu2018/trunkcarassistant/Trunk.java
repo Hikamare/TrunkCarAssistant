@@ -103,6 +103,8 @@ public class Trunk implements Serializable {
     }
 
 
+    public void cleanLuggages(){luggages.clear();
+    }
 
     //This method add luggages to trunk ( form list)
         public void addLuggages(List<Luggage> lg)
