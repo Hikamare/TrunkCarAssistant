@@ -38,6 +38,16 @@ public class LuggageActivity extends AppCompatActivity {
 
         luggageListView.setAdapter(adapter);
 
+        //new activity for button luggageOKButton
+        Button luggage3 = findViewById(R.id.luggageOKButton);
+        luggage3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_luggage3 = new Intent(LuggageActivity.this, StartActivity.class);
+                startActivity(intent_luggage3);
+            }
+        });
+
     }
 
 }
