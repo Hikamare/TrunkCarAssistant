@@ -31,6 +31,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
 
+        chosenTrunk = new Trunk();
 
         try{
 
@@ -55,7 +56,7 @@ public class StartActivity extends AppCompatActivity {
             System.out.println("No trunk was given now\n");
         }
 
-        
+
 
         /*Button pack = findViewById(R.id.packit_start);
         pack.setOnClickListener(new View.OnClickListener() {
