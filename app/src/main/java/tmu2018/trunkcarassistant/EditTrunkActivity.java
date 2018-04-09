@@ -35,7 +35,6 @@ public class EditTrunkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_trunk);
 
-        delete_Trunk = findViewById(R.id.buttonDEL);
 
         try{
             Intent i = getIntent();
@@ -126,6 +125,22 @@ public class EditTrunkActivity extends AppCompatActivity {
                 intent_trunk.putExtra("flag",flag);
                 intent_trunk.putExtra("which_activ",ActivityContants.TrunkActivity);
                 startActivity(intent_trunk);
+            }
+        });
+
+        delete_Trunk = findViewById(R.id.buttonDEL);
+        delete_Trunk.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                try {
+                    dbHandler.deleteTrunk(editTrunk);
+                    Toast lToast = Toast.makeText(EditTrunkActivity.this,"Removed", Toast.LENGTH_SHORT);
+                    lToast.show();
+                } catch(IllegalArgumentException e){
+                    Toast lToast = Toast.makeText(EditTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                    lToast.show();
+                }
+                onBackPressed();
             }
         });
 
