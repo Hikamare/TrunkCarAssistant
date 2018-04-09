@@ -33,7 +33,6 @@ public class Trunk implements Serializable {
     private float heightScale,widthScale,lengthScale;
     private boolean isAcvite = false;
     private boolean isP = false;
-    //private Luggage[] luggages;// <- We use array for luggages
     private List<Luggage> luggages = new ArrayList<Luggage>(); // We use List for luggages
 
 

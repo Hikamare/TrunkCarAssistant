@@ -1,33 +1,40 @@
 package tmu2018.trunkcarassistant;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
-/**
- * Created by anorb on 09.03.2018.
- * TODO: Handle empty input or incorrect data. Luggage sizes shall be moved to string.xml
-*/
-public class AddLuggageActivity extends AppCompatActivity{
+public class EditLuggageActivity extends AppCompatActivity{
 
     private EditText edit_length;
     private EditText edit_height;
     private EditText edit_width;
     private EditText edit_name;
     private Button save_luggage;
+    private Button delete_luggage;
     private Database dbHandler;
+    private Luggage editLuggage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_luggage);
+        setContentView(R.layout.activity_edit_luggage);
+
+        try{
+            Intent i = getIntent();
+            editLuggage = (Luggage) i.getSerializableExtra("luggage");
+        }
+        catch(NullPointerException e){
+            System.out.println("No luggage to edit\n");
+        }
 
         dbHandler = new SQLitehandler(this);
         final Luggage lLuggage = new Luggage();
@@ -47,18 +54,40 @@ public class AddLuggageActivity extends AppCompatActivity{
                 lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
                 lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
                 lLuggage.setName(edit_name.getText().toString());
+                //dbHandler.addLuggage(lLuggage);
 
-                    try {
-                        dbHandler.addLuggage(lLuggage);
-                        Toast lToast = Toast.makeText(AddLuggageActivity.this,"That probably worked", Toast.LENGTH_SHORT);
-                        lToast.show();
-                    } catch(IllegalArgumentException e){
-                        Toast lToast = Toast.makeText(AddLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
-                        lToast.show();
-                    }
-                    onBackPressed();
+                try {
+                    dbHandler.updateLuggage(editLuggage,lLuggage);
+                    Toast lToast = Toast.makeText(EditLuggageActivity.this,"That probably worked", Toast.LENGTH_SHORT);
+                    lToast.show();
+                } catch(IllegalArgumentException e){
+                    Toast lToast = Toast.makeText(EditLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                    lToast.show();
+                }
+                onBackPressed();
             }
         });
+
+        delete_luggage = findViewById(R.id.delete);
+        delete_luggage.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                System.out.println("zal");
+
+                try {
+                    System.out.println(editLuggage.getName());
+                    dbHandler.deleteLuggage(editLuggage);
+                    Toast lToast = Toast.makeText(EditLuggageActivity.this,"Remove", Toast.LENGTH_SHORT);
+                    lToast.show();
+                } catch(IllegalArgumentException e){
+                    Toast lToast = Toast.makeText(EditLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                    lToast.show();
+                }
+                onBackPressed();
+            }
+        });
+
     }
 
 
@@ -106,3 +135,4 @@ public class AddLuggageActivity extends AppCompatActivity{
         }
     }
 }
+
