@@ -17,6 +17,7 @@ public class Luggage implements Serializable {
         this.usercreated=usercreated;
         this.isActive = true;
         this.isNew = true;
+        this.isPicked = false;
     }
 
     public Luggage()
@@ -27,6 +28,7 @@ public class Luggage implements Serializable {
     private float length;
     private float height;
     private boolean usercreated;
+    private boolean isPicked;
 
 
     //Variables to draw luggages
@@ -140,6 +142,14 @@ public class Luggage implements Serializable {
 
     public void setRefLength(float refLength) {
         this.refLength = refLength;
+    }
+
+    public void setPicked(boolean set) {
+        isPicked = set;
+    }
+
+    public boolean isPicked() {
+        return isPicked;
     }
 
     public void info()
