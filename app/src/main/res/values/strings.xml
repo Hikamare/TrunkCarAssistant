@@ -30,7 +30,7 @@
     <string name="luggageHeight"> Luggage height</string>
     <string name="luggageListTextView">Luggages list</string>
     <string name="textView_name">NAME</string>
-    <string name="TrunkOKButton">OK</string>
+    <string name="luggageOKButton">OK</string>
     <string name="title_activity_edit_trunk">EditTrunkActivity</string>
     <string name="title_activity_edit_luggage">EditLuggageActivity</string>
     <string name="title_activity_edit_luggage_array_adapter">EditLuggageArrayAdapter</string>

@@ -46,24 +46,7 @@ public class StartActivity extends AppCompatActivity {
         }
 
 
-        //new activity for button Luggage
-        Button luggage2 = findViewById(R.id.luggage_start);
-        luggage2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_luggage2 = new Intent(StartActivity.this, LuggageActivity.class);
-                startActivity(intent_luggage2);
-            }
-        });
-        //new activity for button Trunk
-        Button trunk2 = findViewById(R.id.trunk_start);
-        trunk2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_trunk2 = new Intent(StartActivity.this, TrunkActivity.class);
-                startActivity(intent_trunk2);
-            }
-        });
+        
 
         Button pack = findViewById(R.id.packit_start);
         pack.setOnClickListener(new View.OnClickListener() {

@@ -23,13 +23,13 @@ public class LuggageActivity extends AppCompatActivity {
     private Database dbHandler = new SQLitehandler(this);
     private List<Luggage> luggagesList = new ArrayList<>();
 
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_luggage);
 
         //new activity for button Trunk
         Button luggage1 = findViewById(R.id.add_luggage);
-        Button okButton = findViewById(R.id.TrunkOKButton);
+        Button okButton = findViewById(R.id.luggageOKButton);
 
 
         luggage1.setOnClickListener(new View.OnClickListener() {
@@ -42,16 +42,14 @@ public class LuggageActivity extends AppCompatActivity {
 
 
         // List of all already added luggages
-        final ListView luggageListView = findViewById(R.id.luggageListView);
+        ListView luggageListView = findViewById(R.id.luggageListView);
         final LuggageArrayAdapter adapter = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );
+
         luggageListView.setAdapter(adapter);
-        luggageListView.setClickable(true);
 
-
-
-        // When OK button is pressed all luggages are added to local list which will be passed into lCar which then will be passed into packing activity
-        okButton.setOnClickListener(new View.OnClickListener() {
-
+        //new activity for button luggageOKButton
+        Button luggage3 = findViewById(R.id.luggageOKButton);
+        luggage3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -64,48 +62,9 @@ public class LuggageActivity extends AppCompatActivity {
                 {
                     System.out.println(l.getName());
                 }
+                Intent intent_luggage3 = new Intent(LuggageActivity.this, StartActivity.class);
+                startActivity(intent_luggage3);
             }
-        });
-
-        luggageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
-                TextView tv = null;
-
-                System.out.println("Position = "+position+" "+"Name = "+adapter.getItem(position).getName());
-
-                if (!adapter.getItem(position).isPicked()) {
-
-                    CheckBox cb = adapter.cb;
-                    adapter.getItem(position).setPicked(true);
-                    adapter.changeCheckBox(true);
-                    cb.setChecked(true);
-                    tv = adapter.name;
-                    tv.setTextColor(Color.BLUE);
-
-                    System.out.println(id+" COLOR CHANGED");
-                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage picked", Toast.LENGTH_LONG);
-                    t.show();
-
-
-                }
-                else {
-
-                    CheckBox cb = adapter.cb;
-                    adapter.getItem(position).setPicked(false);
-                    adapter.changeCheckBox(false);
-                    cb.setChecked(false);
-                    tv = adapter.name;
-                    System.out.println("COLOR CHANGED");
-                    tv.setTextColor(Color.BLACK);
-                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage removed", Toast.LENGTH_LONG);
-                    t.show();
-                }
-            }
-
         });
 
     }
