@@ -21,14 +21,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onCheckboxClicked"
-        />
+                android:focusable="false"
+                android:checked="false"/>
 
         <TextView
                 android:id="@+id/luggageName"
                 android:layout_width="91dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:focusable="false"/>
 
     </LinearLayout>
 
@@ -36,13 +38,15 @@
             android:layout_width="200dp"
             android:layout_height="5dp"
             android:layout_marginLeft="15dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:focusable="false">
 
         <TextView
                 android:id="@+id/luggageH"
                 android:layout_width="197dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:focusable="false"/>
 
         <TextView
                 android:id="@+id/luggageHeight"
@@ -50,7 +54,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="26dp"
                 android:layout_weight="1"
-                android:text="luggage height"/>
+                android:text="luggage height"
+                android:focusable="false"/>
 
     </LinearLayout>
     <LinearLayout
@@ -58,13 +63,15 @@
             android:layout_height="0dp"
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="false">
 
         <TextView
                 android:id="@+id/luggageL"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:focusable="false"/>
 
         <TextView
                 android:id="@+id/luggageLength"
@@ -72,20 +79,23 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="26dp"
                 android:layout_weight="1"
-                android:text="luggage length"/>
+                android:text="luggage length"
+                android:focusable="false"/>
     </LinearLayout>
 
     <LinearLayout
             android:layout_width="200dp"
             android:layout_height="0dp"
             android:layout_marginLeft="15dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+    >
 
         <TextView
                 android:id="@+id/luggageW"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:focusable="false"/>
 
         <TextView
                 android:id="@+id/luggageWidth"
@@ -93,7 +103,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="26dp"
                 android:layout_weight="1"
-                android:text="luggage width"/>
+                android:text="luggage width"
+                android:focusable="false"/>
 
     </LinearLayout>
 

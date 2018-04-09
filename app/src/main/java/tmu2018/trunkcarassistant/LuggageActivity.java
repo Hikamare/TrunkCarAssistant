@@ -39,10 +39,15 @@ public class LuggageActivity extends AppCompatActivity {
         final ListView luggageListView = findViewById(R.id.luggageListView);
         final LuggageArrayAdapter adapter = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );
         luggageListView.setAdapter(adapter);
+        luggageListView.setClickable(true);
+
 
         okButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
+                System.out.println("CLICKED");
                 for (int i=0; i < adapter.getCount(); ++i){
                     if (adapter.getItem(i).isPicked())
                         luggagesList.add(adapter.getItem(i));
@@ -56,14 +61,21 @@ public class LuggageActivity extends AppCompatActivity {
         });
 
         luggageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
 
-                System.out.print("DUPA@");
-                Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+                if (!adapter.getItem(position).isPicked()) {
+                    adapter.getItem(position).setPicked(true);
+                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage picked", Toast.LENGTH_LONG);
+                    t.show();
+                }
+                else {
+                    adapter.getItem(position).setPicked(false);
+                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage removed", Toast.LENGTH_LONG);
+                    t.show();
+                }
             }
         });
 
