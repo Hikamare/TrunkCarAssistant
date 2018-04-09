@@ -22,7 +22,8 @@
                 android:layout_weight="1"
                 android:onClick="onCheckboxClicked"
                 android:focusable="false"
-                android:checked="false"/>
+                android:checked="false"
+                android:clickable="false"/>
 
         <TextView
                 android:id="@+id/luggageName"
