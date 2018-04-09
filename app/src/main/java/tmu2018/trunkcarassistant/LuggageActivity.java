@@ -114,7 +114,7 @@ public class LuggageActivity extends AppCompatActivity {
     public void onCheckboxClicked(View view){
 
     }
-   /* // onResume will refresh luggageList each time activity is opened (i.e. when back button is pressed)
+    // onResume will refresh luggageList each time activity is opened (i.e. when back button is pressed)
     @Override
     protected void onResume() {
         super.onResume();
@@ -122,6 +122,6 @@ public class LuggageActivity extends AppCompatActivity {
         LuggageArrayAdapter adapter = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );
         luggageListView.setAdapter(adapter);
     }
-*/
+
 
 }
