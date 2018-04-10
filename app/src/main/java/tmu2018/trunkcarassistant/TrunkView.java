@@ -158,13 +158,9 @@ public class TrunkView extends View {
     }
 
     private void drawLuggage(Canvas c) {
-        float refDepth = 0;
-        float refWeight = 0;
-        float refHeight = 0;
-
-        refDepth = this.lengthTrunkScale - this.lengthTrunkNow;
-        refWeight = this.widthTrunkScale - this.widthTrunkNow;
-        refHeight = this.heightTrunkScale - this.heightTrunkNow;
+        float refDepth = this.lengthTrunkScale - this.lengthTrunkNow;
+        float refWeight = this.widthTrunkScale - this.widthTrunkNow;
+        float refHeight = this.heightTrunkScale - this.heightTrunkNow;
 
         for(int i =0;i<trunk.howLuggages();i++) {
 
@@ -214,6 +210,29 @@ public class TrunkView extends View {
         }
     }
 
+    public void drawLuggages(Canvas c){
+
+        for(int i =0;i<trunk.howLuggages();i++) {
+            Random r = new Random();
+            int a = r.nextInt(10);
+            cLugg = cTable[a];
+            float x = (widthScreen / 4 + widthScreen / 16) + trunk.getLuggage(i).getRefWidth();
+            float y = heightScreen / 2;
+
+            Path luggageV = new Path();
+            luggageV.reset();
+            luggageV.moveTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+            luggageV.lineTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+            luggageV.lineTo(x, y - trunk.getLuggage(i).getHeightScale());
+            luggageV.lineTo(x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale());
+            luggageV.lineTo(x + trunk.getLuggage(i).getWidthScale(), y);
+            luggageV.lineTo((float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+            luggageV.lineTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
+            c.drawPath(luggageV, cLugg);
+
+        }
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -222,3 +241,5 @@ public class TrunkView extends View {
     }
 
 }
+
+
