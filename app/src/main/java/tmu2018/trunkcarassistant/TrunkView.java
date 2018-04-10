@@ -110,20 +110,21 @@ public class TrunkView extends View {
 
             for (int i = 0; i < trunk.howLuggages(); i++) {
                 //if (trunk.isAcvite()) {
-                  //  if (trunk.getLuggage(i).isActive()) {
-                    //    if (trunk.getLuggage(i).isNew()) {
-                            trunk.scaleLuggages(heightTrunkScale, widthTrunkScale, lengthTrunkScale);
-                            trunk.getLuggage(i).setRefWidth(widthTrunkNow);
-                            widthTrunkNow += trunk.getLuggage(i).getWidthScale();
-                            System.out.println(trunk.getLuggage(i).getWidthScale());
-                      //  }
-                   // }
-               // }
+                //  if (trunk.getLuggage(i).isActive()) {
+                //    if (trunk.getLuggage(i).isNew()) {
+                trunk.scaleLuggages(heightTrunkScale, widthTrunkScale, lengthTrunkScale);
+                trunk.getLuggage(i).setRefWidth(widthTrunkNow);
+                widthTrunkNow += trunk.getLuggage(i).getWidthScale();
+                System.out.println(trunk.getLuggage(i).getWidthScale());
+                //  }
+                // }
+                // }
                 //trunk.info();
-         //   }
-            //trunk.isntNew();
+                //   }
+                //trunk.isntNew();
+            }
             drawLuggage(canvas);
-        }
+
             //This circle is used as a reference point
             //canvas.drawCircle(widthScreen/4 + widthScreen/16,heightScreen/2,5,circle);
         }
@@ -158,6 +159,7 @@ public class TrunkView extends View {
     }
 
     private void drawLuggage(Canvas c) {
+        System.out.println("@@@@@@@");
         float refDepth = 0;
         float refWeight = 0;
         float refHeight = 0;

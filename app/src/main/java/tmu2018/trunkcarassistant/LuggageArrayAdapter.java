@@ -20,8 +20,8 @@ import java.util.List;
 public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {
 
 
-    public static CheckBox cb;
-    public static TextView name;
+    public CheckBox cb;
+    public TextView name;
 
     public LuggageArrayAdapter(Context context, List<Luggage> aLuggage) {
 

@@ -22,6 +22,7 @@ public class TrunkThread implements Runnable {
     public void run() {
 
             System.out.println("Jestem w nowym wątku");
+
             trunkView.setTrunk(trunkModel);
 
             try {

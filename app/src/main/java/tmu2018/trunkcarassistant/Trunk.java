@@ -21,7 +21,9 @@ public class Trunk implements Serializable {
     }
 
     public Trunk()
-    { this.name = ""; }
+    { this.name = "";
+        this.isAcvite = true;
+    }
 
     private String name;
     private float width;
