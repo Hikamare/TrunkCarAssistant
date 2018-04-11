@@ -158,9 +158,13 @@ public class TrunkView extends View {
     }
 
     private void drawLuggage(Canvas c) {
-        float refDepth = this.lengthTrunkScale - this.lengthTrunkNow;
-        float refWeight = this.widthTrunkScale - this.widthTrunkNow;
-        float refHeight = this.heightTrunkScale - this.heightTrunkNow;
+        float refDepth = 0;
+        float refWeight = 0;
+        float refHeight = 0;
+
+        refDepth = this.lengthTrunkScale - this.lengthTrunkNow;
+        refWeight = this.widthTrunkScale - this.widthTrunkNow;
+        refHeight = this.heightTrunkScale - this.heightTrunkNow;
 
         for(int i =0;i<trunk.howLuggages();i++) {
 
@@ -241,5 +245,3 @@ public class TrunkView extends View {
     }
 
 }
-
-

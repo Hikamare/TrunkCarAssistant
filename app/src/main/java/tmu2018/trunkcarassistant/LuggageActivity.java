@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.*;
 
 import java.util.ArrayList;
@@ -57,6 +58,53 @@ public class LuggageActivity extends AppCompatActivity {
         luggageListView.setAdapter(adapter);
         luggageListView.setClickable(true);
 
+        luggageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+                View aaa = adapter.getView(position, view, luggageListView);
+
+                System.out.println("#####" + aaa.toString());
+
+
+                TextView tv = null;
+
+                System.out.println("Position = "+position+" "+"Name = "+adapter.getItem(position).getName());
+
+                if (!adapter.getItem(position).isPicked()) {
+
+                    //CheckBox cb = adapter.cb;
+                    CheckBox cb = aaa.findViewById(R.id.luggageCheckBox);
+                    adapter.getItem(position).setPicked(true);
+                    adapter.changeCheckBox(true);
+                    cb.setChecked(true);
+                    tv = adapter.name;
+                    tv.setTextColor(Color.BLUE);
+
+                    System.out.println(id+" COLOR CHANGED");
+                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage picked", Toast.LENGTH_LONG);
+                    t.show();
+
+
+                }
+                else {
+
+                    //CheckBox cb = adapter.cb;
+                    CheckBox cb = aaa.findViewById(R.id.luggageCheckBox);
+                    adapter.getItem(position).setPicked(false);
+                    adapter.changeCheckBox(false);
+                    cb.setChecked(false);
+                    tv = adapter.name;
+                    System.out.println("COLOR CHANGED");
+                    tv.setTextColor(Color.BLACK);
+                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage removed", Toast.LENGTH_LONG);
+                    t.show();
+                }
+            }
+
+        });
 
         okButton.setOnClickListener(new View.OnClickListener() {
 
@@ -64,6 +112,7 @@ public class LuggageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println("CLICKED");
                 for (int i=0; i < adapter.getCount(); ++i){
+
                     if (adapter.getItem(i).isPicked())
                         luggagesList.add(adapter.getItem(i));
                 }
@@ -85,51 +134,15 @@ public class LuggageActivity extends AppCompatActivity {
             }
         });
 
-        luggageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
-                TextView tv = null;
-
-                System.out.println("Position = "+position+" "+"Name = "+adapter.getItem(position).getName());
-
-                if (!adapter.getItem(position).isPicked()) {
-
-                    CheckBox cb = adapter.cb;
-                    adapter.getItem(position).setPicked(true);
-                    adapter.changeCheckBox(true);
-                    cb.setChecked(true);
-                    tv = adapter.name;
-                    tv.setTextColor(Color.BLUE);
-
-                    System.out.println(id+" COLOR CHANGED");
-                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage picked", Toast.LENGTH_LONG);
-                    t.show();
-
-
-                }
-                else {
-
-                    CheckBox cb = adapter.cb;
-                    adapter.getItem(position).setPicked(false);
-                    adapter.changeCheckBox(false);
-                    cb.setChecked(false);
-                    tv = adapter.name;
-                    System.out.println("COLOR CHANGED");
-                    tv.setTextColor(Color.BLACK);
-                    Toast t = Toast.makeText(LuggageActivity.this, "Luggage removed", Toast.LENGTH_LONG);
-                    t.show();
-                }
-            }
-
-        });
 
     }
 
 
     public void onCheckboxClicked(View view){
+
+        //View parent = (View)view.getParent();
+
 
     }
    // onResume will refresh luggageList each time activity is opened (i.e. when back button is pressed)

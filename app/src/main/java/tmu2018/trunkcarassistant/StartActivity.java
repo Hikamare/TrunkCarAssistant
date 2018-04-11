@@ -24,14 +24,12 @@ public class StartActivity extends AppCompatActivity {
 
     private Database dbHandler;
     private Trunk chosenTrunk;
+    private TrunkView trunkView;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-
-        chosenTrunk = new Trunk();
 
         try{
 
@@ -44,7 +42,23 @@ public class StartActivity extends AppCompatActivity {
             System.out.println("No trunk was given now\n");
         }
 
-        TrunkView trunkView = findViewById(R.id.trunkView);
+        trunkView = findViewById(R.id.trunkView);
+
+        try {
+            Thread.sleep(1000);
+
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+
+                    trunkView.invalidate();
+                }
+            });
+
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         try{
 
@@ -102,6 +116,23 @@ public class StartActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        trunkView.getTrunk().cleanLuggages();
+
+        try {
+            Thread.sleep(1000);
+
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+
+                    trunkView.invalidate();
+                }
+            });
+
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         Intent i = new Intent(StartActivity.this,MainActivity.class);
         startActivity(i);
     }
