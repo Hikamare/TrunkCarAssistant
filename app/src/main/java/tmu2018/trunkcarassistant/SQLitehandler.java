@@ -18,6 +18,7 @@ import java.util.List;
 
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Marcin on 13.03.2018.
@@ -42,6 +43,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
     private static final String luggage_length = "length";
     private static final String luggage_heigth = "heigth";
     private static final String luggage_usercreated = "usercreated";
+    private static final String luggage_color = "color";
 
     //columns trunks
     private static final String trunk_name = "name";
@@ -70,7 +72,8 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 +luggage_width+" TEXT,"
                 +luggage_length+" TEXT,"
                 +luggage_heigth+" TEXT,"
-                +luggage_usercreated+" TEXT)";
+                +luggage_usercreated+" TEXT,"
+                +luggage_color+" TEXT)";
 
         String create_trunks_table = "CREATE TABLE "+TABLE_TRUNKS+ " ("
                 +trunk_name+" TEXT,"
@@ -113,6 +116,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             values.put(luggage_length,""+luggage.getLength() );
             values.put(luggage_heigth,""+luggage.getHeight());
             values.put(luggage_usercreated,""+luggage.isUsercreated());
+            values.put(luggage_color,""+luggage.getColor());
 
             SQLiteDatabase db = this.getWritableDatabase();
             db.insert(TABLE_LUGGAGES,null,values);
@@ -188,6 +192,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 parseFloat(cursor.getString(2)),
                 parseFloat(cursor.getString(3)),
                 parseBoolean(cursor.getString(4)) );
+        luggage.setColor(parseInt(cursor.getString(5)));
         return luggage;
     }
 
@@ -209,6 +214,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                         parseFloat(cursor.getString(3)),
                         parseBoolean(cursor.getString(4))
                 );
+                luggage.setColor(parseInt(cursor.getString(5)));
 
                 luggages.add(luggage);
             } while (cursor.moveToNext());
@@ -368,8 +374,8 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
         }
 
         //old and new names are not the same, new name is already in db
-            db.close();
-            throw new IllegalArgumentException("New trunk name is already used");
+        db.close();
+        throw new IllegalArgumentException("New trunk name is already used");
 
     }
 
@@ -409,7 +415,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
 
     public List<String> readAllModels(String brand) throws IOException {
 
-        List<String> carBrands = new ArrayList<String>();
+        List<String> carModels = new ArrayList<String>();
         String carsPath = "/data/data/tmu2018.trunkcarassistant/sample.sqlite";
 
         InputStream myInput = myContext.getAssets().open("sample.sqlite");
@@ -435,10 +441,10 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
 
         if (cursor.moveToFirst()) {
             do {
-                carBrands.add(cursor.getString(0));
+                carModels.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
-        return carBrands;
+        return carModels;
     }
 
 
