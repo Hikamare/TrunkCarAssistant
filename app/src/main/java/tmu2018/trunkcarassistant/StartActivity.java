@@ -1,6 +1,9 @@
 package tmu2018.trunkcarassistant;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -25,27 +28,32 @@ public class StartActivity extends AppCompatActivity {
     private Database dbHandler;
     private Trunk chosenTrunk;
     private TrunkView trunkView;
+    private int p =0;
 
     protected void onCreate(Bundle savedInstanceState) {
-
+        if(p == 0) {
+            onConfigurationChanged(new Configuration());
+        }
+        p++;
+        System.out.println("p: "+p);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        try{
+            try {
 
-            Intent i = getIntent();
-            chosenTrunk = (Trunk) i.getSerializableExtra("Trunk");
-            System.out.println(chosenTrunk.getName());
-            chosenTrunk.info();
-        }
-        catch(NullPointerException e){
-            System.out.println("No trunk was given now\n");
-        }
+                Intent i = getIntent();
+                chosenTrunk = (Trunk) i.getSerializableExtra("Trunk");
+                System.out.println(chosenTrunk.getName());
+                chosenTrunk.info();
+            } catch (NullPointerException e) {
+                System.out.println("No trunk was given now\n");
+            }
+
 
         trunkView = findViewById(R.id.trunkView);
 
-        try {
-            Thread.sleep(1000);
+        /*try {
+            Thread.sleep(1);
 
             new Handler().post(new Runnable() {
                 @Override
@@ -58,7 +66,18 @@ public class StartActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
+
+//        chosenTrunk = new Trunk("Trunk",50,50,50,true);
+  //      List<Luggage> luggages = new ArrayList<>();
+
+        /*Luggage l = new Luggage("Number ",10,10,10,true);
+        l.setxView(10);
+        l.setyView(10);
+        l.setzView(20);
+        luggages.add(l);
+
+        chosenTrunk.addLuggages(luggages);*/
 
         try{
 
@@ -114,12 +133,40 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        chosenTrunk.setAcvite(true);
+        System.out.println("jestem w onStart()");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("jestem w onDestroy()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("jestem w onResume()");
+        chosenTrunk.setAcvite(true);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        System.out.println("jestem w onPostResume()");
+   //     chosenTrunk.setAcvite(false);
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         trunkView.getTrunk().cleanLuggages();
 
-        try {
-            Thread.sleep(1000);
+        /*try {
+            Thread.sleep(1);
 
             new Handler().post(new Runnable() {
                 @Override
@@ -132,7 +179,7 @@ public class StartActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
         Intent i = new Intent(StartActivity.this,MainActivity.class);
         startActivity(i);
     }
@@ -150,5 +197,23 @@ public class StartActivity extends AppCompatActivity {
         return true;
 
     }
-}
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+        {
+            chosenTrunk.setAcvite(false);
+        }
+        if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
+        {
+            chosenTrunk.setAcvite(false);
+        }
+
+        }
+    }
+
+
 

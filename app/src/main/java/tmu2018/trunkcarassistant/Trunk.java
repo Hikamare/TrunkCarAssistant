@@ -88,6 +88,9 @@ public class Trunk implements Serializable {
         return isAcvite;
     }
 
+    public void setAcvite(boolean acvite) {
+        isAcvite = acvite;
+    }
 
     // This method scale all luggages
     public void scaleLuggages(float h, float w, float l)
@@ -154,4 +157,6 @@ public class Trunk implements Serializable {
     public List<Luggage> getLuggages() {
         return luggages;
     }
+
+
 }

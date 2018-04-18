@@ -26,7 +26,7 @@ public class TrunkThread implements Runnable {
             trunkView.setTrunk(trunkModel);
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1);
 
                 handler.post(new Runnable() {
                     @Override
