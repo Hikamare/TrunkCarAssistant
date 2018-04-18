@@ -36,6 +36,7 @@ public class Luggage implements Serializable {
     private boolean isActive = false;
     private boolean isNew = false;
     private float refHeight,refWidth,refLength;
+    private float xView,yView,zView;
 
 
 
@@ -158,4 +159,27 @@ public class Luggage implements Serializable {
         System.out.println("refH: "+height+"_refW: "+width+"_refD: "+length);
     }
 
+    public float getxView() {
+        return xView;
+    }
+
+    public void setxView(float xView) {
+        this.xView = xView;
+    }
+
+    public float getyView() {
+        return yView;
+    }
+
+    public void setyView(float yView) {
+        this.yView = yView;
+    }
+
+    public float getzView() {
+        return zView;
+    }
+
+    public void setzView(float zView) {
+        this.zView = zView;
+    }
 }
