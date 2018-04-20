@@ -29,7 +29,7 @@ public class Luggage implements Serializable {
     private float height;
     private boolean usercreated;
     private boolean isPicked;
-
+    private int color;
 
     //Variables to draw luggages
     private float heightScale,widthScale,lengthScale;
@@ -151,6 +151,14 @@ public class Luggage implements Serializable {
 
     public boolean isPicked() {
         return isPicked;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public void info()
