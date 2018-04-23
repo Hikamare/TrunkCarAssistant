@@ -126,6 +126,10 @@ public class LuggageActivity extends AppCompatActivity {
                 chooseTrunk.addLuggages(luggagesList);
                 chooseTrunk.info();
 
+                //algorithm run
+                PackingAlgorithm algo = new PackingAlgorithm();
+                algo.PackIt(chooseTrunk);
+
                 Intent intent_trunk = new Intent(LuggageActivity.this,StartActivity.class);
                 intent_trunk.putExtra("Trunk", chooseTrunk);
 

@@ -71,11 +71,11 @@ public class PackingAlgorithm {
         Collections.reverse(luggage);
 
         //debug purposes
-        for(Luggage lug : luggage)
+        /*for(Luggage lug : luggage)
         {
             System.out.print(lug.getHeight()+" "+lug.getWidth()+" "+lug.getLength()+" ");
             System.out.println(lug.getName());
-        }
+        }*/
 
         //check if largest luggage fit into trunk
         if(luggage.get(0).getHeight() > dimensions.get(2) ||
@@ -87,36 +87,55 @@ public class PackingAlgorithm {
             return false;
         }
 
-        //early attempt to algorithm
-        if(LineAllign() == true) {
+        //CHECK VOLUME!
 
-            //debug onl
-            System.out.println("Coordinates for print");
-            for(Luggage lug : luggage) {
-                System.out.print(" X: "+lug.getRefLength());
-                System.out.print(" Y: "+lug.getRefWidth());
-                System.out.print(" Z: "+lug.getRefHeight());
-                System.out.println("");
-            }
+        //LAFF
+        List<Dimension> containers = new ArrayList<Dimension>();
+        containers.add(Dimension.newInstance(dimensionY,dimensionX,dimensionZ));
+        Packager packager = new LargestAreaFitFirstPackager(containers);
 
-            return true;
+        List<BoxItem> products = new ArrayList<BoxItem>();
+        for(Luggage lug : luggage)
+        {
+            products.add(new BoxItem(new Box(lug.getName(), (int)lug.getWidth(), (int)lug.getLength(), (int)lug.getHeight()), 1));
         }
 
+        Container match = packager.pack(products);
+
+        if(match == null)
+            System.out.println("LAFF FAIL");
+        else
+        {
+            for(Level lv : match.getLevels())
+            {
+                for(int i = 0; i < lv.size(); ++i)
+                {
+
+                    for(Luggage lug : luggage)
+                    {
+                        if(lug.getName().equals(lv.get(i).getBox().getName()))
+                        {
+                            //strange bugfix y and x swap
+                            lug.setxView(lv.get(i).getSpace().y);
+                            lug.setyView(lv.get(i).getSpace().x);
+                            lug.setzView(lv.get(i).getSpace().z);
+
+                            lug.setHeight(lv.get(i).getBox().getHeight());
+                            lug.setWidth(lv.get(i).getBox().getWidth());
+                            lug.setLength(lv.get(i).getBox().getDepth());
+
+                        }
+                    }
+                }
+            }
+        }
 
 
         //no attempts were successful
         return false;
     }
 
-    private void PurgeLuggageRef()
-    {
-        for(Luggage lug : luggage)
-        {
-            lug.setRefHeight(0);
-            lug.setRefWidth(0);
-            lug.setRefLength(0);
-        }
-    }
+
 
     private boolean LineAllign()
     {
