@@ -3,6 +3,7 @@ package tmu2018.trunkcarassistant;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class EditTrunkActivity extends AppCompatActivity {
     private Spinner spinner;
     private Spinner spinner2;
     private Button delete_Trunk;
+    private EditText TrunkLengthText, TrunkWidthText, TrunkHeightText, TrunkNick;
     Context cont;
 
 
@@ -35,10 +38,20 @@ public class EditTrunkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_trunk);
 
+        TrunkLengthText = findViewById(R.id.trunkLengthText);
+        TrunkWidthText = findViewById(R.id.trunkWidthText);
+        TrunkHeightText = findViewById(R.id.trunkHeightText);
+        TrunkNick = findViewById(R.id.trunkNickText);
+
 
         try{
             Intent i = getIntent();
             editTrunk = (Trunk) i.getSerializableExtra("entry");
+            TrunkLengthText.setText(Integer.toString((int)editTrunk.getLength()));
+            TrunkWidthText.setText(Integer.toString((int) editTrunk.getWidth()));
+            TrunkHeightText.setText(Integer.toString((int) editTrunk.getHeight()));
+            TrunkNick.setText(editTrunk.getName());
+
         }
         catch(NullPointerException e){
             System.out.println("No trunk to edit\n");
@@ -46,10 +59,6 @@ public class EditTrunkActivity extends AppCompatActivity {
 
         dbHandler = new SQLitehandler(this);
 
-        final EditText TrunkLengthText = findViewById(R.id.trunkLengthText);
-        final EditText TrunkWidthText = findViewById(R.id.trunkWidthText);
-        final EditText TrunkHeightText = findViewById(R.id.trunkHeightText);
-        final EditText TrunkNick = findViewById(R.id.trunkNickText);
         Button buttonADD = findViewById(R.id.buttonADD);
 
         //spinner for the car brand
