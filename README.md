@@ -5,3 +5,5 @@ Tuż przed wyjazdem na narty lub na wakacje własnym autem, pojawia się ważny 
 
 
 Database with car models from https://github.com/n8barr/automotive-model-year-data licensed under [CC-BY](http://creativecommons.org/licenses/by/2.5/) 
+
+Algorithm Largest Area Fit First(LAFF) from https://github.com/skjolber/3d-bin-container-packing licence https://github.com/skjolber/3d-bin-container-packing/blob/master/LICENSE
