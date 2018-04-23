@@ -16,9 +16,9 @@ public class PackIconView extends View
     public int w = 100;
     public int h = 100;
 
-    private Paint p;
-    private Paint p2;
-    private Paint p3;
+    private Paint p, p2, p3;
+
+    private int heightScreen,widthScreen;
 
     public PackIconView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -34,13 +34,15 @@ public class PackIconView extends View
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        heightScreen = h;
+        widthScreen = w;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawLine(100, 100, 300, 300, p);
+        //canvas.drawLine(100, 100, 300, 300, p);
         canvas.drawCircle(300,300,100, p3);
         //canvas.drawRect(200,400,200,400,p);
 
