@@ -81,26 +81,6 @@ public class TrunkActivity extends AppCompatActivity {
                 }
             });
         }
-        if(flag == 1) {
-            trunkListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
-                            Trunk entry = (Trunk) parent.getItemAtPosition(position);
-                            try {
-                                dbHandler.deleteTrunk(entry);
-                                Toast lToast = Toast.makeText(TrunkActivity.this,"That probably worked", Toast.LENGTH_SHORT);
-                                lToast.show();
-                            } catch(IllegalArgumentException e){
-                                Toast lToast = Toast.makeText(TrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
-                                lToast.show();
-                            }
-
-                    onResume();
-
-                    return false;
-                }
-            });
-        }
 
 
 
