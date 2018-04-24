@@ -4,87 +4,102 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/carName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp" />
+    android:layout_height="200dp"
+    android:orientation="horizontal">
 
 
-</RelativeLayout>
 
-<LinearLayout
-android:layout_width="wrap_content"
-android:layout_height="0dp"
-android:layout_marginLeft="15dp"
-android:layout_weight="1">
 
-<TextView
-    android:id="@+id/carL"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/carLength"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="26dp"
-        android:layout_weight="1"
-        android:text="Luggage length" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/carName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp" />
 
-<LinearLayout
-android:layout_width="wrap_content"
-android:layout_height="0dp"
-android:layout_marginLeft="15dp"
-android:layout_weight="1">
 
-<TextView
-    android:id="@+id/carW"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1" />
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/carWidth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="26dp"
-        android:layout_weight="1"
-        android:text="Luggage width" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1">
 
-</LinearLayout>
+            <TextView
+            android:id="@+id/carL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-<LinearLayout
-android:layout_width="wrap_content"
-android:layout_height="0dp"
-android:layout_marginLeft="15dp"
-android:layout_weight="1">
+            <TextView
+                android:id="@+id/carLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_weight="1"
+                android:text="Luggage length" />
 
-<TextView
-    android:id="@+id/carH"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/carHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="26dp"
-        android:layout_weight="1"
-        android:text="Luggage height" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/carW"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
+            <TextView
+                android:id="@+id/carWidth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_weight="1"
+                android:text="Luggage width" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/carH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/carHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_weight="1"
+                android:text="Luggage height" />
+
+        </LinearLayout>
 
     </LinearLayout>
+    <tmu2018.trunkcarassistant.LuggageIconView
+        android:id="@+id/luggageIconView5"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1" />
+</LinearLayout>
