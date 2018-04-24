@@ -31,11 +31,6 @@ public class StartActivity extends AppCompatActivity {
     private int p =0;
 
     protected void onCreate(Bundle savedInstanceState) {
-        if(p == 0) {
-            onConfigurationChanged(new Configuration());
-        }
-        p++;
-        System.out.println("p: "+p);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
@@ -52,33 +47,27 @@ public class StartActivity extends AppCompatActivity {
 
         trunkView = findViewById(R.id.trunkView);
 
-        /*try {
-            Thread.sleep(1);
+        /*chosenTrunk = new Trunk("Trunk",50,50,50,true);
+        List<Luggage> luggages = new ArrayList<>();
 
-            new Handler().post(new Runnable() {
-                @Override
-                public void run() {
-
-                    trunkView.invalidate();
-                }
-            });
-
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
-
-//        chosenTrunk = new Trunk("Trunk",50,50,50,true);
-  //      List<Luggage> luggages = new ArrayList<>();
-
-        /*Luggage l = new Luggage("Number ",10,10,10,true);
-        l.setxView(10);
-        l.setyView(10);
-        l.setzView(20);
+        Luggage l = new Luggage("Number ",10,10,10,true);
+        l.setxView(0);
+        l.setyView(0);
+        l.setzView(0);
         luggages.add(l);
+        Luggage l2 = new Luggage("Number ",10,10,10,true);
+        l2.setxView(0);
+        l2.setyView(0);
+        l2.setzView(0);
+        luggages.add(l2);
+        Luggage l3 = new Luggage("Number ",10,10,10,true);
+        l3.setxView(0);
+        l3.setyView(0);
+        l3.setzView(100);
+        luggages.add(l3);
 
-        chosenTrunk.addLuggages(luggages);*/
-
+        chosenTrunk.addLuggages(luggages);
+*/
         try{
 
             Thread t = new Thread(new TrunkThread(new Handler(), chosenTrunk,trunkView));
@@ -89,76 +78,8 @@ public class StartActivity extends AppCompatActivity {
             System.out.println("No trunk was given now\n");
         }
 
-
-
-        /*Button pack = findViewById(R.id.packit_start);
-        pack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                List<Luggage> luggages = new ArrayList<>();
-                TrunkView trunkView;
-                trunkView = findViewById(R.id.trunkView);
-
-                try {
-                    //Example (list)
-
-                    //Make luggages (we will be taking lugagges from "database")
-
-                    for (int i = 0; i < 3; i++) {
-                        Luggage l = new Luggage("Number "+i,5*(i+1),5*(i+1),5*(i+1),true);
-                        luggages.add(l);
-                    }
-                    //Make trunk (we will be taking trunk from "database")
-                    //Trunk trunkModel = new Trunk("Trunk",50,50,50,true);
-                    //Add luggages to trunk
-                    chosenTrunk.addLuggages(luggages);
-                    //We make new thread for trunk and luggages
-                    Thread t = new Thread(new TrunkThread(new Handler(), chosenTrunk,trunkView));
-                    t.start();
-                } catch (NullPointerException e) {
-                    if (chosenTrunk == null) {
-                        Intent intent_trunk2 = new Intent(StartActivity.this, TrunkActivity.class);
-                        startActivity(intent_trunk2);
-                        System.out.println("No trunk was chosen");
-                    }
-
-                }
-            }
-
-
-        });*/
-
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        chosenTrunk.setAcvite(true);
-        System.out.println("jestem w onStart()");
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        System.out.println("jestem w onDestroy()");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("jestem w onResume()");
-        chosenTrunk.setAcvite(true);
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        System.out.println("jestem w onPostResume()");
-   //     chosenTrunk.setAcvite(false);
-    }
 
     @Override
     public void onBackPressed() {

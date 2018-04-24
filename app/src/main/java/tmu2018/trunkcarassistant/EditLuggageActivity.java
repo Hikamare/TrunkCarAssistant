@@ -28,21 +28,25 @@ public class EditLuggageActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_luggage);
 
+        edit_length = findViewById(R.id.editText_length);
+        edit_height = findViewById(R.id.editText_height);
+        edit_width =  findViewById(R.id.editText_width);
+        edit_name = findViewById(R.id.editText_name);
+
         try{
             Intent i = getIntent();
             editLuggage = (Luggage) i.getSerializableExtra("luggage");
+            edit_length.setText((int)editLuggage.getLength()+"");
+            edit_width.setText((int)editLuggage.getWidth()+"");
+            edit_height.setText((int)editLuggage.getHeight()+"");
+            edit_name.setText((String)editLuggage.getName());
         }
         catch(NullPointerException e){
             System.out.println("No luggage to edit\n");
         }
 
-        dbHandler = new SQLitehandler(this);
-        final Luggage lLuggage = new Luggage();
 
-        edit_length = findViewById(R.id.editText_length);
-        edit_height = findViewById(R.id.editText_height);
-        edit_width =  findViewById(R.id.editText_width);
-        edit_name = findViewById(R.id.editText_name);
+        final Luggage lLuggage = new Luggage();
 
         // Handle the save button
         save_luggage = findViewById(R.id.button_save);
@@ -54,7 +58,6 @@ public class EditLuggageActivity extends AppCompatActivity{
                 lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
                 lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
                 lLuggage.setName(edit_name.getText().toString());
-                //dbHandler.addLuggage(lLuggage);
 
                 try {
                     dbHandler.updateLuggage(editLuggage,lLuggage);
@@ -73,7 +76,6 @@ public class EditLuggageActivity extends AppCompatActivity{
 
             @Override
             public void onClick(View v) {
-                System.out.println("zal");
 
                 try {
                     System.out.println(editLuggage.getName());

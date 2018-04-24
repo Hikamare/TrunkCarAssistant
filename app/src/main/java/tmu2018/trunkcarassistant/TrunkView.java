@@ -239,6 +239,17 @@ public class TrunkView extends View {
             luggageV.lineTo((float) (y + (float)(trunk.getLuggage(i).getyView()*5.38)- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxView()*1.19), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) -  (float)(trunk.getLuggage(i).getzView()*2.85) + (float)(trunk.getLuggage(i).getxView()*1.2));
             c.drawPath(luggageV, cLugg);
 
+            /*Path luggageV = new Path();
+            luggageV.reset();
+            luggageV.moveTo((float) (y + (float)(trunk.getLuggage(i).getyView())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxView()) , (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) -  (float)(trunk.getLuggage(i).getzView()*2.85) + (float)(trunk.getLuggage(i).getxView()));
+            luggageV.lineTo((float) (y + (float)(trunk.getLuggage(i).getyView())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxView()), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)-  (float)(trunk.getLuggage(i).getzView())+ (float)(trunk.getLuggage(i).getxView())));
+            luggageV.lineTo(y+(float)(trunk.getLuggage(i).getyView())- (float)(trunk.getLuggage(i).getxView()), x - trunk.getLuggage(i).getHeightScale() -  (float)(trunk.getLuggage(i).getzView())+ (float)(trunk.getLuggage(i).getxView()) );
+            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale() + (float)(trunk.getLuggage(i).getyView())- (float)(trunk.getLuggage(i).getxView()), x - trunk.getLuggage(i).getHeightScale() - (float)(trunk.getLuggage(i).getzView()) + (float)(trunk.getLuggage(i).getxView()));
+            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale()+(float)(trunk.getLuggage(i).getyView())- (float)(trunk.getLuggage(i).getxView()), x + (float)(trunk.getLuggage(i).getxView()) -  (float)(trunk.getLuggage(i).getzView()));
+            luggageV.lineTo((float) (y + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+(float)(trunk.getLuggage(i).getyView()))- (float)(trunk.getLuggage(i).getxView()), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))- (float)(trunk.getLuggage(i).getzView()) + (float)(trunk.getLuggage(i).getxView()));
+            luggageV.lineTo((float) (y + (float)(trunk.getLuggage(i).getyView())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxView()), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) -  (float)(trunk.getLuggage(i).getzView()) + (float)(trunk.getLuggage(i).getxView()));
+            c.drawPath(luggageV, cLugg);*/
+
 
             //10
             c.drawLine((float) (y- (float)(trunk.getLuggage(i).getxView()*1.19) + (float)(trunk.getLuggage(i).getyView()*5.38)- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))  , (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getzView()*2.85) + (float)(trunk.getLuggage(i).getxView()*1.2) ,(float) (y   + (float)(trunk.getLuggage(i).getyView()*5.38)- (float)(trunk.getLuggage(i).getxView()*1.19)- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)- (float)(trunk.getLuggage(i).getzView()*2.85)+ (float)(trunk.getLuggage(i).getxView()*1.2)), cLuggageEnd);

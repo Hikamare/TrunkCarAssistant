@@ -164,7 +164,8 @@ public class Luggage implements Serializable {
     public void info()
     {
         //System.out.println("refH: "+refHeight+"_refW: "+refWidth+"_refD: "+refLength);
-        System.out.println("refH: "+height+"_refW: "+width+"_refD: "+length);
+        //System.out.println("refH: "+height+"_refW: "+width+"_refD: "+length);
+        System.out.println("X: "+getxView()+", Y: "+getyView()+", Z: "+getzView());
     }
 
     public float getxView() {

@@ -109,8 +109,9 @@ public class EditTrunkActivity extends AppCompatActivity {
                 float lLength = Integer.parseInt(TrunkLengthText.getText().toString());
                 float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());
                 float lHeight = Integer.parseInt(TrunkHeightText.getText().toString());
+                String lName = TrunkNick.getText().toString();
 
-                lTrunk.setName(trunkName);
+                lTrunk.setName(lName);
                 lTrunk.setLength(lLength);
                 lTrunk.setWidth(lWidth);
                 lTrunk.setHeight(lHeight);
