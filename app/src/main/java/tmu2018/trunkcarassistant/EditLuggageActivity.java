@@ -33,6 +33,8 @@ public class EditLuggageActivity extends AppCompatActivity{
         edit_width =  findViewById(R.id.editText_width);
         edit_name = findViewById(R.id.editText_name);
 
+        dbHandler = new SQLitehandler(this);
+
         try{
             Intent i = getIntent();
             editLuggage = (Luggage) i.getSerializableExtra("luggage");
