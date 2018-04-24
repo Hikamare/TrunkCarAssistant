@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +26,12 @@ import java.util.ArrayList;
 public class StartActivity extends AppCompatActivity {
 
 
-    private Database dbHandler;
+    private Database dbHandler = new SQLitehandler(this);
     private Trunk chosenTrunk;
     private TrunkView trunkView;
     private int p =0;
+    private ListView list;
+    private LuggageArrayAdapter adapter2;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +80,11 @@ public class StartActivity extends AppCompatActivity {
         catch(NullPointerException e){
             System.out.println("No trunk was given now\n");
         }
+
+        list=findViewById(R.id.luggage_list);
+        adapter2 = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );
+        list.setAdapter(adapter2);
+
 
     }
 
