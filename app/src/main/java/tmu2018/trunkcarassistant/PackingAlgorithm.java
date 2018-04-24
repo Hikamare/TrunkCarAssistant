@@ -128,6 +128,7 @@ public class PackingAlgorithm {
                     }
                 }
             }
+            return true;
         }
 
 

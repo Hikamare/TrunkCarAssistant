@@ -30,6 +30,7 @@ public class LuggageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_luggage);
 
 
+
         try {
             Intent i = getIntent();
             chooseTrunk = (Trunk) i.getSerializableExtra("entry");
@@ -128,13 +129,38 @@ public class LuggageActivity extends AppCompatActivity {
 
                 //algorithm run
                 PackingAlgorithm algo = new PackingAlgorithm();
-                algo.PackIt(chooseTrunk);
+                if(algo.PackIt(chooseTrunk) == false){
+
+                    Toast t = Toast.makeText(LuggageActivity.this, "Za dużo bagaży", Toast.LENGTH_LONG);
+                    t.show();
+                    Intent intent_trunk = new Intent(LuggageActivity.this,TrunkActivity.class);
+                    startActivity(intent_trunk);
+
+                }
+                else
+                {
+                //debug
+                List<Luggage> list = chooseTrunk.getLuggages();
+                for(Luggage lug : list)
+                {
+                    System.out.print(" x: "+lug.getxView()+" ");
+                    System.out.print(" y: "+lug.getyView()+" ");
+                    System.out.print(" z: "+lug.getzView()+" ");
+                    System.out.println(" ");
+
+                    //System.out.print(" x: "+" "+lug.getLength());
+                    //System.out.print(" y: "+" "+lug.getWidth());
+                    //System.out.print(" z: "+" "+lug.getHeight());
+                    System.out.println(" ");
+
+                }
 
                 Intent intent_trunk = new Intent(LuggageActivity.this,StartActivity.class);
                 intent_trunk.putExtra("Trunk", chooseTrunk);
 
                 //intent_trunk.putExtra("which_activ",ActivityContants.TrunkActivity);
                 startActivity(intent_trunk);
+                }
             }
         });
 
