@@ -1,9 +1,11 @@
 package tmu2018.trunkcarassistant;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -79,16 +81,35 @@ public class EditLuggageActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                try {
-                    System.out.println(editLuggage.getName());
-                    dbHandler.deleteLuggage(editLuggage);
-                    Toast lToast = Toast.makeText(EditLuggageActivity.this,"Remove", Toast.LENGTH_SHORT);
-                    lToast.show();
-                } catch(IllegalArgumentException e){
-                    Toast lToast = Toast.makeText(EditLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
-                    lToast.show();
-                }
-                onBackPressed();
+                AlertDialog.Builder adb = new AlertDialog.Builder(EditLuggageActivity.this);
+                adb.setTitle("Remove");
+                adb.setMessage("Do you want remove this luggage? ")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            System.out.println(editLuggage.getName());
+                            dbHandler.deleteLuggage(editLuggage);
+                            Toast lToast = Toast.makeText(EditLuggageActivity.this,"Remove", Toast.LENGTH_SHORT);
+                            lToast.show();
+                        } catch(IllegalArgumentException e){
+                            Toast lToast = Toast.makeText(EditLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                            lToast.show();
+                        }
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = adb.create();
+                alertDialog.show();
+
+
+                //
             }
         });
 
@@ -137,6 +158,14 @@ public class EditLuggageActivity extends AppCompatActivity{
                     edit_height.setText("");
                 }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(EditLuggageActivity.this,LuggageToEditActivity.class);
+        startActivity(i);
+        finishActivity(this.hashCode());
     }
 }
 

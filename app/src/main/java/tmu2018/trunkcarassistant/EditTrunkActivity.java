@@ -1,11 +1,13 @@
 package tmu2018.trunkcarassistant;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -142,15 +144,32 @@ public class EditTrunkActivity extends AppCompatActivity {
         delete_Trunk.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                try {
-                    dbHandler.deleteTrunk(editTrunk);
-                    Toast lToast = Toast.makeText(EditTrunkActivity.this,"Removed", Toast.LENGTH_SHORT);
-                    lToast.show();
-                } catch(IllegalArgumentException e){
-                    Toast lToast = Toast.makeText(EditTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
-                    lToast.show();
-                }
-                onBackPressed();
+                AlertDialog.Builder adb = new AlertDialog.Builder(EditTrunkActivity.this);
+                adb.setTitle("Remove");
+                adb.setMessage("Do you want remove this trunk? ")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                try {
+                                    dbHandler.deleteTrunk(editTrunk);
+                                    Toast lToast = Toast.makeText(EditTrunkActivity.this,"Removed", Toast.LENGTH_SHORT);
+                                    lToast.show();
+                                } catch(IllegalArgumentException e){
+                                    Toast lToast = Toast.makeText(EditTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                                    lToast.show();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = adb.create();
+                alertDialog.show();
             }
         });
 

@@ -68,6 +68,14 @@ public class LuggageToEditActivity extends AppCompatActivity {
         adapter = new EditLuggageArrayAdapter(this, dbHandler.readAllLuggages() );
         trunkListView.setAdapter(adapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(LuggageToEditActivity.this,MainActivity.class);
+        startActivity(i);
+        finishActivity(this.hashCode());
+    }
 }
 
 

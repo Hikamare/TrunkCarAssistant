@@ -31,19 +31,20 @@ public class StartActivity extends AppCompatActivity {
     private TrunkView trunkView;
     private ListView list;
     private LuggageArrayAdapter adapter2;
+    private TextView trunkName;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        trunkName = findViewById(R.id.carIDTextView);
             try {
 
                 Intent i = getIntent();
                 chosenTrunk = (Trunk) i.getSerializableExtra("Trunk");
-                System.out.println(chosenTrunk.getName());
-                chosenTrunk.info();
+                trunkName.setText(chosenTrunk.getName().toString());
             } catch (NullPointerException e) {
                 System.out.println("No trunk was given now\n");
+                trunkName.setText("Lack of trunk");
             }
 
 
@@ -74,6 +75,7 @@ public class StartActivity extends AppCompatActivity {
         trunkView.getTrunk().cleanLuggages();
         Intent i = new Intent(StartActivity.this,MainActivity.class);
         startActivity(i);
+        finishActivity(this.hashCode());
     }
 
     public boolean pickTrunk() {

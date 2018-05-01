@@ -94,4 +94,12 @@ public class TrunkActivity extends AppCompatActivity {
         adapter = new TrunkArrayAdapter(this, dbHandler.readAllTrunks() );
         trunkListView.setAdapter(adapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(TrunkActivity.this,MainActivity.class);
+        startActivity(i);
+        finishActivity(this.hashCode());
+    }
 }
