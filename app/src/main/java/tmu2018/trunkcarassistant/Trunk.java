@@ -104,6 +104,10 @@ public class Trunk implements Serializable {
             luggages.get(i).setHeightScale(luggages.get(i).getHeight() * heightScale/height);
             luggages.get(i).setWidthScale(luggages.get(i).getWidth() * widthScale /width);
             luggages.get(i).setLengthScale(luggages.get(i).getLength() * lengthScale /length);
+
+            luggages.get(i).setxViewScale(luggages.get(i).getxView() * lengthScale /length);
+            luggages.get(i).setyViewScale(luggages.get(i).getyView() * widthScale /width);
+            luggages.get(i).setzViewScale(luggages.get(i).getzView() *heightScale/height);
         }
     }
 
