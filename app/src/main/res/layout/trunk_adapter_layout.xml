@@ -21,7 +21,8 @@
                 android:id="@+id/carName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:textSize="24sp" />
 
 
         </RelativeLayout>
