@@ -48,13 +48,13 @@
                 android:focusable="false" />
 
             <TextView
-                android:id="@+id/luggageHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_weight="1"
-                android:focusable="false"
-                android:text="luggage height" />
+                    android:id="@+id/luggageHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/luggageHeight"/>
 
         </LinearLayout>
 
@@ -74,13 +74,13 @@
                 android:focusable="false" />
 
             <TextView
-                android:id="@+id/luggageLength"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_weight="1"
-                android:focusable="false"
-                android:text="luggage length" />
+                    android:id="@+id/luggageLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/luggageDepth"/>
         </LinearLayout>
 
         <LinearLayout
@@ -97,13 +97,13 @@
                 android:focusable="false" />
 
             <TextView
-                android:id="@+id/luggageWidth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_weight="1"
-                android:focusable="false"
-                android:text="luggage width" />
+                    android:id="@+id/luggageWidth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/luggageWidth"/>
 
         </LinearLayout>
 

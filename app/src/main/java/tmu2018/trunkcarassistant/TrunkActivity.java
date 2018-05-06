@@ -33,7 +33,6 @@ public class TrunkActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent_trunk = new Intent(TrunkActivity.this,AddTrunkActivity.class);
-
                 startActivity(intent_trunk);
             }
         });

@@ -40,12 +40,12 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/carLength"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_weight="1"
-                android:text="Car length" />
+                    android:id="@+id/carLength"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:text="@string/carLength"/>
 
         </LinearLayout>
 
@@ -62,12 +62,12 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/carWidth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_weight="1"
-                android:text="Car width" />
+                    android:id="@+id/carWidth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:text="@string/carWidth"/>
 
         </LinearLayout>
 
@@ -84,12 +84,12 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/carHeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_weight="1"
-                android:text="Car height" />
+                    android:id="@+id/carHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:text="@string/carHeight"/>
 
         </LinearLayout>
     </LinearLayout>
