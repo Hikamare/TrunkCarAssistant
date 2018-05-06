@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:orientation="horizontal" android:clickable="false">
+
+    // Name + check box
+
+
+    <LinearLayout
+            android:layout_width="212dp"
+            android:layout_height="100dp"
+            android:orientation="vertical" android:clickable="false">
+
+        <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="2dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" android:clickable="false">
+
+            <TextView
+                    android:id="@+id/luggageName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:textSize="24sp" android:clickable="false"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:focusable="false" android:clickable="false">
+
+            <TextView
+                    android:id="@+id/luggageH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:focusable="false" android:clickable="false"/>
+
+            <TextView
+                    android:id="@+id/luggageHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/luggageHeight" android:clickable="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:orientation="horizontal" android:clickable="false">
+
+            <TextView
+                    android:id="@+id/luggageL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:focusable="false" android:clickable="false"/>
+
+            <TextView
+                    android:id="@+id/luggageLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/luggageDepth" android:clickable="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1" android:clickable="false">
+
+            <TextView
+                    android:id="@+id/luggageW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:focusable="false" android:clickable="false"/>
+
+            <TextView
+                    android:id="@+id/luggageWidth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/luggageWidth" android:clickable="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:clickable="false">
+
+        <tmu2018.trunkcarassistant.LuggageIconView
+                android:id="@+id/luggageIconView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1" android:clickable="false"/>
+    </LinearLayout>
+
+
+</LinearLayout>

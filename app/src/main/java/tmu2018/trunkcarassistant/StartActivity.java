@@ -30,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
     private Trunk chosenTrunk;
     private TrunkView trunkView;
     private ListView list;
-    private LuggageArrayAdapter adapter2;
+    private LuggageArrayAdapterNoCheckbox adapter2;
     private TextView trunkName;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +62,11 @@ public class StartActivity extends AppCompatActivity {
 
         list=findViewById(R.id.luggage_list);
         //adapter2 = new LuggageArrayAdapter(this, dbHandler.readAllLuggages() );
-        adapter2 = new LuggageArrayAdapter(this,chosenTrunk.getLuggages() );
+        adapter2 = new LuggageArrayAdapterNoCheckbox(this,chosenTrunk.getLuggages() );
         list.setAdapter(adapter2);
 
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -77,20 +76,6 @@ public class StartActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finishActivity(this.hashCode());
-    }
-
-    public boolean pickTrunk() {
-
-        if (dbHandler.readAllTrunks().isEmpty()) {
-            Intent intent_trunk2 = new Intent(StartActivity.this, TrunkActivity.class);
-            startActivity(intent_trunk2);
-            Toast lToast = Toast.makeText(this, "You don't have any trunk picked yet. \nAdd one!", Toast.LENGTH_SHORT);
-            lToast.show();
-            return false;
-        }
-
-        return true;
-
     }
 
     }

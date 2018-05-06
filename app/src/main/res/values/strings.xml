@@ -9,7 +9,7 @@
     <string name="S">S</string>
     <string name="M">M</string>
     <string name="L">L</string>
-    <string name="carTextView">Picked car: </string>
+    <string name="carTextView">Picked car:</string>
     <string name="pickTrunkDialogTitle">Pick a trunk</string>
     <string name="TrunkLenTextView">Trunk depth [cm]</string>
     <string name="TrunkWidTextView">Trunk width [cm]</string>
