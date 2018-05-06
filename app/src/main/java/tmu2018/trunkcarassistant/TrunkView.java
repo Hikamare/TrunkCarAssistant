@@ -102,10 +102,10 @@ public class TrunkView extends View {
             if (!isInit) {
                 initCarLaggage();
             }
-            drawTrunk(canvas);
-            widthTrunkNow = 0;
-            heightTrunkNow = 0;
-            lengthTrunkNow = 0;
+            //drawTrunkpart1(canvas);
+            //widthTrunkNow = 0;
+            //heightTrunkNow = 0;
+            //lengthTrunkNow = 0;
             //if(isLuggage == true)
             // {
             //if(trunk.isP() == true) {
@@ -116,8 +116,8 @@ public class TrunkView extends View {
                 //    if (trunk.getLuggage(i).isNew()) {
                 trunk.scaleLuggages(heightTrunkScale, widthTrunkScale, lengthTrunkScale);
                 trunk.getLuggage(i).setRefWidth(widthTrunkNow);
-                widthTrunkNow += trunk.getLuggage(i).getWidthScale();
-                System.out.println(trunk.getLuggage(i).getWidthScale());
+                //widthTrunkNow += trunk.getLuggage(i).getWidthScale();
+                //System.out.println(trunk.getLuggage(i).getWidthScale());
                 //  }
                 // }
                 // }
@@ -125,22 +125,21 @@ public class TrunkView extends View {
                 //   }
                 //trunk.isntNew();
                 //drawLuggage(canvas);
-                drawLuggages(canvas);
+                //drawLuggages(canvas);
             }
+            drawTrunkpart1(canvas);
+            drawLuggages(canvas);
+            drawTrunkpart2(canvas);
+
         }
+
             //This circle is used as a reference point
             //canvas.drawCircle(widthScreen/4 + widthScreen/16,heightScreen/2,5,circle);
         }
 
 
-    private void drawTrunk(Canvas c)
+    private void drawTrunkpart2(Canvas c)
     {
-        //1
-        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen*3/4+ widthScreen/16,heightScreen/2,cEnd);
-        //2
-        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen/4+ widthScreen/16,heightScreen*1/6,cEnd);
-        //3
-        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen/4+ widthScreen/16 - 120,heightScreen/2+120,cEnd);
         //4
         c.drawLine(widthScreen*3/4+ widthScreen/16,heightScreen/2,widthScreen*3/4+ widthScreen/16-120,heightScreen/2+120,cFront);
         //5
@@ -159,6 +158,17 @@ public class TrunkView extends View {
         c.drawLine(widthScreen*3/4+ widthScreen/16-120,heightScreen/6+120,widthScreen*3/4+ widthScreen/16,heightScreen/6,cFront);
         //12
         c.drawLine(widthScreen/4+ widthScreen/16-120,heightScreen/6+120,widthScreen/4+ widthScreen/16,heightScreen/6,cFront);
+    }
+
+    private void drawTrunkpart1(Canvas c)
+    {
+        //1
+        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen*3/4+ widthScreen/16,heightScreen/2,cEnd);
+        //2
+        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen/4+ widthScreen/16,heightScreen*1/6,cEnd);
+        //3
+        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen/4+ widthScreen/16 - 120,heightScreen/2+120,cEnd);
+
     }
 
     private void drawLuggage(Canvas c) {
