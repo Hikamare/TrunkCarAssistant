@@ -159,6 +159,7 @@ public class EditTrunkActivity extends AppCompatActivity {
                                     Toast lToast = Toast.makeText(EditTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
                                     lToast.show();
                                 }
+                                onBackPressed();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

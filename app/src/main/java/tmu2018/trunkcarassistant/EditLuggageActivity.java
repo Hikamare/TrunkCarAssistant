@@ -96,6 +96,7 @@ public class EditLuggageActivity extends AppCompatActivity{
                             Toast lToast = Toast.makeText(EditLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
                             lToast.show();
                         }
+                        onBackPressed();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -164,6 +165,7 @@ public class EditLuggageActivity extends AppCompatActivity{
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(EditLuggageActivity.this,LuggageToEditActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finishActivity(this.hashCode());
     }

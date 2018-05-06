@@ -49,6 +49,7 @@ public class LuggageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent_luggage = new Intent(LuggageActivity.this, AddLuggageActivity.class);
+                intent_luggage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent_luggage);
             }
         });
@@ -135,6 +136,7 @@ public class LuggageActivity extends AppCompatActivity {
                     Toast t = Toast.makeText(LuggageActivity.this, "Za dużo bagaży", Toast.LENGTH_LONG);
                     t.show();
                     Intent intent_trunk = new Intent(LuggageActivity.this,TrunkActivity.class);
+                    intent_trunk.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent_trunk);
 
                 }
@@ -158,6 +160,7 @@ public class LuggageActivity extends AppCompatActivity {
 
                 Intent intent_trunk = new Intent(LuggageActivity.this,StartActivity.class);
                 intent_trunk.putExtra("Trunk", chooseTrunk);
+                intent_trunk.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 //intent_trunk.putExtra("which_activ",ActivityContants.TrunkActivity);
                 startActivity(intent_trunk);

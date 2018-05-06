@@ -98,6 +98,7 @@ public class TrunkActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(TrunkActivity.this,MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finishActivity(this.hashCode());
     }

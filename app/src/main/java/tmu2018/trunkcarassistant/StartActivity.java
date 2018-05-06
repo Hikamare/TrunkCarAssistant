@@ -74,6 +74,7 @@ public class StartActivity extends AppCompatActivity {
         super.onBackPressed();
         trunkView.getTrunk().cleanLuggages();
         Intent i = new Intent(StartActivity.this,MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finishActivity(this.hashCode());
     }
