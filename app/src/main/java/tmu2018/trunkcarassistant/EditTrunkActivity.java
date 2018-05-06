@@ -100,6 +100,18 @@ public class EditTrunkActivity extends AppCompatActivity {
 
             }
         });
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                TrunkNick.setText(spinner.getSelectedItem().toString()+" "+spinner2.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         buttonADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
