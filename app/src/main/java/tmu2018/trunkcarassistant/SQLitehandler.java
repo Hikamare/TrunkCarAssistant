@@ -219,6 +219,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 luggages.add(luggage);
             } while (cursor.moveToNext());
         }
+        Collections.sort(luggages, Luggage.compareByName);
 
         return luggages;
     }
@@ -283,7 +284,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 trunks.add(trunk);
             } while (cursor.moveToNext());
         }
-
+        Collections.sort(trunks, Trunk.compareByName);
         return trunks;
     }
 

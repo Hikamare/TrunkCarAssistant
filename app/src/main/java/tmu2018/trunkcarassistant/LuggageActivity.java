@@ -12,6 +12,7 @@ import android.view.ViewParent;
 import android.widget.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -168,13 +169,6 @@ public class LuggageActivity extends AppCompatActivity {
 
     }
 
-
-    public void onCheckboxClicked(View view){
-
-        //View parent = (View)view.getParent();
-
-
-    }
    // onResume will refresh luggageList each time activity is opened (i.e. when back button is pressed)
     @Override
     protected void onResume() {

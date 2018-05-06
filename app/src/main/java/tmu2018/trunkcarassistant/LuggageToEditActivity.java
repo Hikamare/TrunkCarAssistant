@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.List;
+
 public class LuggageToEditActivity extends AppCompatActivity {
 
     private Database dbHandler = new SQLitehandler(this);
@@ -34,7 +37,8 @@ public class LuggageToEditActivity extends AppCompatActivity {
             }
         });
 
-        // List of all already added trunks
+        // List of all already added lugagges
+        Collections.sort(dbHandler.readAllLuggages(), Luggage.compareByName);
         adapter = new EditLuggageArrayAdapter(this, dbHandler.readAllLuggages() );
         trunkListView.setAdapter(adapter);
 

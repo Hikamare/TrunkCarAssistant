@@ -1,6 +1,7 @@
 package tmu2018.trunkcarassistant;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Created by Marcin on 13.03.2018.
@@ -216,4 +217,10 @@ public class Luggage implements Serializable {
     public void setzViewScale(float zViewScale) {
         this.zViewScale = zViewScale;
     }
+
+    public static Comparator<Luggage> compareByName = new Comparator<Luggage>() {
+        public int compare(Luggage A, Luggage B) {
+            return A.name.compareTo(B.name);
+        }
+    };
 }

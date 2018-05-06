@@ -2,6 +2,7 @@ package tmu2018.trunkcarassistant;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -162,5 +163,10 @@ public class Trunk implements Serializable {
         return luggages;
     }
 
+    public static Comparator<Trunk> compareByName = new Comparator<Trunk>() {
+        public int compare(Trunk A, Trunk B) {
+            return A.name.compareTo(B.name);
+        }
+    };
 
 }
