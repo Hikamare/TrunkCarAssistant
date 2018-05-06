@@ -47,10 +47,10 @@ public class AddTrunkActivity extends AppCompatActivity {
         Button buttonADD = findViewById(R.id.buttonADD);
 
         //spinner for the car brand
-        spinner = (Spinner)findViewById(R.id.car_spinner);
+        spinner = findViewById(R.id.car_spinner);
 
         //spinner for the car model
-        spinner2 = (Spinner)findViewById(R.id.model_spinner);
+        spinner2 = findViewById(R.id.model_spinner);
 
         cont = this;
 
@@ -84,8 +84,17 @@ public class AddTrunkActivity extends AppCompatActivity {
             }
         });
 
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                TrunkNick.setText(spinner.getSelectedItem().toString()+" "+spinner2.getSelectedItem().toString());
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
         buttonADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

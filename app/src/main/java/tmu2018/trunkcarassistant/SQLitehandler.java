@@ -4,10 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
+
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -193,6 +192,8 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 parseFloat(cursor.getString(3)),
                 parseBoolean(cursor.getString(4)) );
         luggage.setColor(parseInt(cursor.getString(5)));
+
+        cursor.close();
         return luggage;
     }
 
@@ -221,6 +222,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
         }
         Collections.sort(luggages, Luggage.compareByName);
 
+        cursor.close();
         return luggages;
     }
 
@@ -259,6 +261,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 parseFloat(cursor.getString(3)),
                 parseBoolean(cursor.getString(4)) );
 
+        cursor.close();
         return trunk;
     }
 
@@ -266,7 +269,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
     public List<Trunk> readAllTrunks()
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Trunk> trunks = new ArrayList<Trunk>();
+        List<Trunk> trunks = new ArrayList<>();
 
         String string_query = "SELECT * FROM "+TABLE_TRUNKS;
         Cursor cursor = db.rawQuery(string_query, null);
@@ -285,6 +288,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
             } while (cursor.moveToNext());
         }
         Collections.sort(trunks, Trunk.compareByName);
+        cursor.close();
         return trunks;
     }
 
@@ -411,6 +415,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 carBrands.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return carBrands;
     }
 
@@ -445,6 +450,7 @@ public class SQLitehandler extends SQLiteOpenHelper implements Database{
                 carModels.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return carModels;
     }
 

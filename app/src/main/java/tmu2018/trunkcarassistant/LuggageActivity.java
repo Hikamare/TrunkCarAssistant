@@ -71,7 +71,7 @@ public class LuggageActivity extends AppCompatActivity {
                 System.out.println("#####" + aaa.toString());
 
 
-                TextView tv = null;
+                TextView tv;
 
                 System.out.println("Position = "+position+" "+"Name = "+adapter.getItem(position).getName());
 
@@ -130,7 +130,7 @@ public class LuggageActivity extends AppCompatActivity {
 
                 //algorithm run
                 PackingAlgorithm algo = new PackingAlgorithm();
-                if(algo.PackIt(chooseTrunk) == false){
+                if(!algo.PackIt(chooseTrunk)){
 
                     Toast t = Toast.makeText(LuggageActivity.this, "Za dużo bagaży", Toast.LENGTH_LONG);
                     t.show();
