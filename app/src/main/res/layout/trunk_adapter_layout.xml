@@ -93,8 +93,8 @@
 
         </LinearLayout>
     </LinearLayout>
-    <tmu2018.trunkcarassistant.TrunkIconView
-        android:id="@+id/trunkIconView"
+    <tmu2018.trunkcarassistant.TrunkIconAdapterView
+        android:id="@+id/trunkIconAdapterView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="100dp"

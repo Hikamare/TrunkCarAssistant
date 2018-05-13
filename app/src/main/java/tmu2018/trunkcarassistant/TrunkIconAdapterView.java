@@ -10,18 +10,18 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by anorb on 09.04.2018.
+ * Created by anorb on 13.05.2018.
  */
 
-public class TrunkIconView extends View
+public class TrunkIconAdapterView extends View
 {
-    public int w = 420;
-    public int h = 365;
+    public int w = 310;
+    public int h = 260;
 
     private Paint p, p2, p3;
     private int heightScreen,widthScreen;
 
-    public TrunkIconView(Context context, AttributeSet attrs) {
+    public TrunkIconAdapterView(Context context, AttributeSet attrs) {
         super(context, attrs);
         p = new Paint(Paint.ANTI_ALIAS_FLAG);
         p.setColor(Color.RED);

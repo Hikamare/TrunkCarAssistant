@@ -94,8 +94,8 @@
         </LinearLayout>
 
     </LinearLayout>
-    <tmu2018.trunkcarassistant.LuggageIconView
-        android:id="@+id/luggageIconView5"
+    <tmu2018.trunkcarassistant.LuggageIconAdapterView
+        android:id="@+id/luggageIconAdapterView5"
         android:layout_width="160dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="30dp"

@@ -6,20 +6,21 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+
 /**
- * Created by anorb on 09.04.2018.
+ * Created by anorb on 13.05.2018.
  */
 
 
-public class LuggageIconView extends View
+public class LuggageIconAdapterView extends View
 {
-    public int w = 420;
-    public int h = 365;
+    public int w = 310;
+    public int h = 260;
 
     private Paint p, p2, p3;
     private int heightScreen,widthScreen;
 
-    public LuggageIconView(Context context, AttributeSet attrs) {
+    public LuggageIconAdapterView(Context context, AttributeSet attrs) {
         super(context, attrs);
         p = new Paint(Paint.ANTI_ALIAS_FLAG);
         p.setColor(Color.RED);
