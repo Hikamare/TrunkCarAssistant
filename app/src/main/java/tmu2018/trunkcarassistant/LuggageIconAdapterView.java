@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.View;
 
 /**
@@ -14,6 +15,7 @@ import android.view.View;
 
 public class LuggageIconAdapterView extends View
 {
+
     public int w = 310;
     public int h = 260;
 
@@ -26,6 +28,8 @@ public class LuggageIconAdapterView extends View
         p.setColor(Color.RED);
         p2 = new Paint(Paint.ANTI_ALIAS_FLAG);
         p2.setColor(Color.LTGRAY);
+        p3 = new Paint(Paint.ANTI_ALIAS_FLAG);
+        p3.setColor(Color.BLACK);
     }
 
     @Override
@@ -44,23 +48,23 @@ public class LuggageIconAdapterView extends View
 
         RectF rectF = new RectF (0, 0, w, h);
         canvas.drawRect(rectF,p2);
-        RectF rectL1 = new RectF (w*(float)0.031,h*(float)0.316, w*(float)0.109,h*(float)0.894);
+        RectF rectL1 = new RectF (w*(float)0.031,h*(float)0.316, w*(float)0.109,h*(float)0.852);
         canvas.drawRect(rectL1,p);
         RectF rectL2 = new RectF (w*(float)0.109,h*(float)0.223,w*(float)0.188,h*(float)0.949);
         canvas.drawRect(rectL2,p);
         canvas.drawCircle(w*(float)0.109,h*(float)0.316,w*(float)0.078, p);
-        canvas.drawCircle(w*(float)0.109,h*(float)0.856,w*(float)0.078, p);
+        canvas.drawCircle(w*(float)0.109,h*(float)0.852,w*(float)0.078, p);
         RectF rectC = new RectF (w*(float)0.219,h*(float)0.223,w*(float)0.781,h*(float)0.949);
         canvas.drawRect(rectC,p);
         RectF rectR1 = new RectF (w*(float)0.813,h*(float)0.223,w*(float)0.891,h*(float)0.949);
         canvas.drawRect(rectR1,p);
-        RectF rectR2 = new RectF (w*(float)0.891,h*(float)0.316,w*(float)0.969,h*(float)0.894);
+        RectF rectR2 = new RectF (w*(float)0.890,h*(float)0.316,w*(float)0.972,h*(float)0.852);
         canvas.drawRect(rectR2,p);
         canvas.drawCircle(w*(float)0.891,h*(float)0.316,w*(float)0.078, p);
-        canvas.drawCircle(w*(float)0.891,h*(float)0.856,w*(float)0.078, p);
-        RectF rectHCircle1 = new RectF (w*(float)0.344,h*(float)0.037,w*(float)0.5,h*(float)0.223);
+        canvas.drawCircle(w*(float)0.891,h*(float)0.852,w*(float)0.078, p);
+        RectF rectHCircle1 = new RectF (w*(float)0.342,h*(float)0.0355,w*(float)0.5,h*(float)0.22);
         canvas.drawArc(rectHCircle1, 180,90,true,p);
-        RectF rectHCircle2 = new RectF (w*(float)0.5,h*(float)0.037,w*(float)0.656,h*(float)0.223);
+        RectF rectHCircle2 = new RectF (w*(float)0.49,h*(float)0.0355,w*(float)0.656,h*(float)0.22);
         canvas.drawArc(rectHCircle2, 270,90,true,p);
         RectF rectHL1 = new RectF (w*(float)0.344,h*(float)0.130,w*(float)0.422,h*(float)0.223);
         canvas.drawRect(rectHL1,p);
