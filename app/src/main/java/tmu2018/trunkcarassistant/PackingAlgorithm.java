@@ -92,16 +92,23 @@ public class PackingAlgorithm {
         //LAFF
         List<Dimension> containers = new ArrayList<Dimension>();
         containers.add(Dimension.newInstance(dimensionY,dimensionX,dimensionZ));
+
         Packager packager = new LargestAreaFitFirstPackager(containers);
+        Packager brute = new BruteForcePackager(containers);
+
 
         List<BoxItem> products = new ArrayList<BoxItem>();
         for(Luggage lug : luggage)
         {
             products.add(new BoxItem(new Box(lug.getName(), (int)lug.getWidth(), (int)lug.getLength(), (int)lug.getHeight()), 1));
         }
+        long deadline = System.currentTimeMillis() + 15000;
 
-        Container match = packager.pack(products);
-
+        Container match = brute.pack(products,deadline);
+        if(match == null)
+        {
+            match = packager.pack(products);
+        }
         if(match == null)
             System.out.println("LAFF FAIL");
         else
