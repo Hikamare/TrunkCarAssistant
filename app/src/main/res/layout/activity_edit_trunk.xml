@@ -7,12 +7,20 @@
     android:orientation="vertical"
     tools:context="tmu2018.trunkcarassistant.AddTrunkActivity">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose brand"
+        android:visibility="visible"/>
     <Spinner
         android:id="@+id/car_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose model"
+        android:visibility="visible"/>
     <Spinner
         android:id="@+id/model_spinner"
         android:layout_width="match_parent"

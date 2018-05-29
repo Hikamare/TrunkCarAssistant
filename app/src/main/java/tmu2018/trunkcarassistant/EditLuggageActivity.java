@@ -1,5 +1,6 @@
 package tmu2018.trunkcarassistant;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class EditLuggageActivity extends AppCompatActivity{
 
@@ -24,6 +28,9 @@ public class EditLuggageActivity extends AppCompatActivity{
     private Button delete_luggage;
     private Database dbHandler;
     private Luggage editLuggage;
+    private Button button1;
+    TextView text1;
+    int color = 0xffffff00;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,8 @@ public class EditLuggageActivity extends AppCompatActivity{
         edit_height = findViewById(R.id.editText_height);
         edit_width =  findViewById(R.id.editText_width);
         edit_name = findViewById(R.id.editText_name);
-
+        button1 = findViewById(R.id.button1);
+        text1 = findViewById(R.id.text1);
         dbHandler = new SQLitehandler(this);
 
         try{
@@ -62,6 +70,7 @@ public class EditLuggageActivity extends AppCompatActivity{
                 lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
                 lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
                 lLuggage.setName(edit_name.getText().toString());
+                lLuggage.setColor(color);
 
                 try {
                     dbHandler.updateLuggage(editLuggage,lLuggage);
@@ -73,6 +82,14 @@ public class EditLuggageActivity extends AppCompatActivity{
                 }
                 onBackPressed();
             }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog(false);
+            }
+
         });
 
         delete_luggage = findViewById(R.id.delete);
@@ -168,6 +185,28 @@ public class EditLuggageActivity extends AppCompatActivity{
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finishActivity(this.hashCode());
+    }
+
+    void openDialog(boolean supportsAlpha) {
+        AmbilWarnaDialog dialog = new AmbilWarnaDialog(EditLuggageActivity.this, color, supportsAlpha, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
+                EditLuggageActivity.this.color = color;
+                displayColor();
+            }
+
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+                Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
+    }
+
+    void displayColor() {
+        text1.setText(String.format("Current color: 0x%08x", color));
     }
 }
 
