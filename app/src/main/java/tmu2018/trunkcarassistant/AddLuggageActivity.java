@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import petrov.kristiyan.colorpicker.ColorPicker;
-import yuku.ambilwarna.AmbilWarnaDialog;
+
 
 /**
  * Created by anorb on 09.03.2018.
