@@ -16,9 +16,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import petrov.kristiyan.colorpicker.ColorPicker;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class EditLuggageActivity extends AppCompatActivity{
+public class EditLuggageActivity extends AppCompatActivity {
 
     private EditText edit_length;
     private EditText edit_height;
@@ -28,9 +31,8 @@ public class EditLuggageActivity extends AppCompatActivity{
     private Button delete_luggage;
     private Database dbHandler;
     private Luggage editLuggage;
-    private Button button1;
-    TextView text1;
-    int color = 0xffffff00;
+    private Button colorpickerbtn;
+    private int color2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +41,21 @@ public class EditLuggageActivity extends AppCompatActivity{
 
         edit_length = findViewById(R.id.editText_length);
         edit_height = findViewById(R.id.editText_height);
-        edit_width =  findViewById(R.id.editText_width);
+        edit_width = findViewById(R.id.editText_width);
         edit_name = findViewById(R.id.editText_name);
-        button1 = findViewById(R.id.button1);
-        text1 = findViewById(R.id.text1);
+        colorpickerbtn = findViewById(R.id.colorpickerbtn);
         dbHandler = new SQLitehandler(this);
 
-        try{
+        try {
             Intent i = getIntent();
             editLuggage = (Luggage) i.getSerializableExtra("luggage");
-            edit_length.setText((int)editLuggage.getLength()+"");
-            edit_width.setText((int)editLuggage.getWidth()+"");
-            edit_height.setText((int)editLuggage.getHeight()+"");
-            edit_name.setText((String)editLuggage.getName());
-        }
-        catch(NullPointerException e){
+            edit_length.setText((int) editLuggage.getLength() + "");
+            edit_width.setText((int) editLuggage.getWidth() + "");
+            edit_height.setText((int) editLuggage.getHeight() + "");
+            edit_name.setText((String) editLuggage.getName());
+
+
+        } catch (NullPointerException e) {
             System.out.println("No luggage to edit\n");
         }
 
@@ -70,30 +72,37 @@ public class EditLuggageActivity extends AppCompatActivity{
                 lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
                 lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
                 lLuggage.setName(edit_name.getText().toString());
-                lLuggage.setColor(color);
+                lLuggage.setColor(color2);
+
 
                 try {
-                    dbHandler.updateLuggage(editLuggage,lLuggage);
-                    Toast lToast = Toast.makeText(EditLuggageActivity.this,"That probably worked", Toast.LENGTH_SHORT);
+                    dbHandler.updateLuggage(editLuggage, lLuggage);
+                    Toast lToast = Toast.makeText(EditLuggageActivity.this, "That probably worked", Toast.LENGTH_SHORT);
                     lToast.show();
-                } catch(IllegalArgumentException e){
-                    Toast lToast = Toast.makeText(EditLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                } catch (IllegalArgumentException e) {
+                    Toast lToast = Toast.makeText(EditLuggageActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
                     lToast.show();
                 }
                 onBackPressed();
+
+
+
             }
         });
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog(false);
-            }
+        colorpickerbtn.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View view) {
+                                                  opencolorpicker();
 
-        });
+
+                                              }
+                                          }
+        );
+
 
         delete_luggage = findViewById(R.id.delete);
-        delete_luggage.setOnClickListener(new View.OnClickListener(){
+        delete_luggage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -101,27 +110,27 @@ public class EditLuggageActivity extends AppCompatActivity{
                 AlertDialog.Builder adb = new AlertDialog.Builder(EditLuggageActivity.this);
                 adb.setTitle("Remove");
                 adb.setMessage("Do you want remove this luggage? ")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        try {
-                            System.out.println(editLuggage.getName());
-                            dbHandler.deleteLuggage(editLuggage);
-                            Toast lToast = Toast.makeText(EditLuggageActivity.this,"Remove", Toast.LENGTH_SHORT);
-                            lToast.show();
-                        } catch(IllegalArgumentException e){
-                            Toast lToast = Toast.makeText(EditLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
-                            lToast.show();
-                        }
-                        onBackPressed();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    System.out.println(editLuggage.getName());
+                                    dbHandler.deleteLuggage(editLuggage);
+                                    Toast lToast = Toast.makeText(EditLuggageActivity.this, "Remove", Toast.LENGTH_SHORT);
+                                    lToast.show();
+                                } catch (IllegalArgumentException e) {
+                                    Toast lToast = Toast.makeText(EditLuggageActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                                    lToast.show();
+                                }
+                                onBackPressed();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
 
                 AlertDialog alertDialog = adb.create();
                 alertDialog.show();
@@ -134,18 +143,17 @@ public class EditLuggageActivity extends AppCompatActivity{
     }
 
 
-    public void onRadioButtonClicked(View v)
-    {
+    public void onRadioButtonClicked(View v) {
 
         //is the current radio button now checked?
-        boolean  checked = ((RadioButton) v).isChecked();
+        boolean checked = ((RadioButton) v).isChecked();
 
         //now check which radio button is selected
         //android switch statement
-        switch(v.getId()){
+        switch (v.getId()) {
 
             case R.id.radioButton_S:
-                if(checked){
+                if (checked) {
                     // Set textView of all dimensions to inactive for all radioButtons
                     edit_length.setText("37");
                     edit_width.setText("20");
@@ -154,7 +162,7 @@ public class EditLuggageActivity extends AppCompatActivity{
                 break;
 
             case R.id.radioButton_M:
-                if(checked){
+                if (checked) {
                     edit_length.setText("46");
                     edit_width.setText("23");
                     edit_height.setText("68");
@@ -162,7 +170,7 @@ public class EditLuggageActivity extends AppCompatActivity{
                 break;
 
             case R.id.radioButton_L:
-                if(checked){
+                if (checked) {
                     edit_length.setText("53");
                     edit_width.setText("27");
                     edit_height.setText("79");
@@ -170,7 +178,7 @@ public class EditLuggageActivity extends AppCompatActivity{
                 break;
 
             case R.id.radioButton_O:
-                if(checked){
+                if (checked) {
                     edit_length.setText("");
                     edit_width.setText("");
                     edit_height.setText("");
@@ -181,32 +189,39 @@ public class EditLuggageActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(EditLuggageActivity.this,LuggageToEditActivity.class);
+        Intent i = new Intent(EditLuggageActivity.this, LuggageToEditActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finishActivity(this.hashCode());
     }
 
-    void openDialog(boolean supportsAlpha) {
-        AmbilWarnaDialog dialog = new AmbilWarnaDialog(EditLuggageActivity.this, color, supportsAlpha, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+    public void opencolorpicker() {
+        final ColorPicker colorpicker = new ColorPicker(this);
+        ArrayList<String> colors = new ArrayList<>();
+        colors.add("#82B926");
+        colors.add("#a276eb");
+        colors.add("#6a3ab2");
+        colors.add("#666666");
+        colors.add("#FFFF00");
+        colors.add("#3C8D2F");
+        colors.add("#FA9F00");
+        colors.add("#FF0000");
 
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_SHORT).show();
-                EditLuggageActivity.this.color = color;
-                displayColor();
-            }
+        colorpicker.setColors(colors)
+                .setColumns(5)
+                .setRoundColorButton(true)
+                .setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
+                    @Override
+                    public void onChooseColor(int position, int color) {
+                        color2 = color;
 
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-                Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_SHORT).show();
-            }
-        });
-        dialog.show();
-    }
+                    }
 
-    void displayColor() {
-        text1.setText(String.format("Current color: 0x%08x", color));
+                    @Override
+                    public void onCancel() {
+
+                    }
+                }).show();
     }
 }
 

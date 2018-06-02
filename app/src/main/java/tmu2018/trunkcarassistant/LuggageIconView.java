@@ -27,6 +27,7 @@ public class LuggageIconView extends View
         p2.setColor(Color.LTGRAY);
         p3 = new Paint(Paint.ANTI_ALIAS_FLAG);
         p3.setColor(Color.BLACK);
+
     }
 
     @Override

@@ -25,10 +25,10 @@ public class TrunkView extends View {
     private Paint[] cTable = new Paint[10];
 
     private boolean isInit = false;
-    private float heightTrunkReal,widthTrunkReal,lengthTrunkReal; // CarLuggage
-    private float heightTrunkScale,widthTrunkScale,lengthTrunkScale; // CarLuggage
-    private float heightTrunkNow,widthTrunkNow,lengthTrunkNow; // CarLuggage
-    private int heightScreen,widthScreen;
+    private float heightTrunkReal, widthTrunkReal, lengthTrunkReal; // CarLuggage
+    private float heightTrunkScale, widthTrunkScale, lengthTrunkScale; // CarLuggage
+    private float heightTrunkNow, widthTrunkNow, lengthTrunkNow; // CarLuggage
+    private int heightScreen, widthScreen;
 
     private Trunk trunk;
     private boolean isLuggage = false;
@@ -48,40 +48,38 @@ public class TrunkView extends View {
 
     public TrunkView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        for(int i =0; i<cTable.length; i++)
-        {
+        for (int i = 0; i < cTable.length; i++) {
             cTable[i] = new Paint();
             cTable[i].setStyle(Paint.Style.FILL);
         }
-        cTable[0].setColor(Color.rgb(205,255,0));
-        cTable[1].setColor(Color.rgb(0,255,230));
-        cTable[2].setColor(Color.rgb(9,0,255));
-        cTable[3].setColor(Color.rgb(255,0,51));
-        cTable[4].setColor(Color.rgb(255,0,205));
-        cTable[5].setColor(Color.rgb(198,15,243));
-        cTable[6].setColor(Color.rgb(15,144,243));
-        cTable[7].setColor(Color.rgb(243,243,15));
-        cTable[8].setColor(Color.rgb(243,190,15));
-        cTable[9].setColor(Color.rgb(243,68,15));
-
+        cTable[0].setColor(Color.rgb(205, 255, 0));
+        cTable[1].setColor(Color.rgb(0, 255, 230));
+        cTable[2].setColor(Color.rgb(9, 0, 255));
+        cTable[3].setColor(Color.rgb(255, 0, 51));
+        cTable[4].setColor(Color.rgb(255, 0, 205));
+        cTable[5].setColor(Color.rgb(198, 15, 243));
+        cTable[6].setColor(Color.rgb(15, 144, 243));
+        cTable[7].setColor(Color.rgb(243, 243, 15));
+        cTable[8].setColor(Color.rgb(243, 190, 15));
+        cTable[9].setColor(Color.rgb(243, 68, 15));
 
 
     }
-    private void initCarLaggage()
-    {
+
+    private void initCarLaggage() {
         cFront.setColor(Color.RED);
         cEnd.setColor(Color.GRAY);
         cLuggageEnd.setColor(Color.BLACK);
         cLugg.setColor(Color.BLUE);
         cLugg.setStyle(Paint.Style.FILL);
-        widthTrunkScale = (float) Math.sqrt(Math.pow(((widthScreen/4+ widthScreen/16)-(widthScreen*3/4+ widthScreen/16)),2)+Math.pow((heightScreen/2-heightScreen/2),2));
-        heightTrunkScale = (float) Math.sqrt(Math.pow((widthScreen*3/4+ widthScreen/16)-(widthScreen*3/4+ widthScreen/16),2)+Math.pow((heightScreen/2 - heightScreen/6),2));
+        widthTrunkScale = (float) Math.sqrt(Math.pow(((widthScreen / 4 + widthScreen / 16) - (widthScreen * 3 / 4 + widthScreen / 16)), 2) + Math.pow((heightScreen / 2 - heightScreen / 2), 2));
+        heightTrunkScale = (float) Math.sqrt(Math.pow((widthScreen * 3 / 4 + widthScreen / 16) - (widthScreen * 3 / 4 + widthScreen / 16), 2) + Math.pow((heightScreen / 2 - heightScreen / 6), 2));
 
-        float x1 = (widthScreen/4+ widthScreen/16);
-        float y1 = heightScreen/2;
-        float x2 = widthScreen/4+ widthScreen/16 - 120;
-        float y2 = heightScreen/2 + 120;
-        lengthTrunkScale = (float) Math.sqrt( Math.pow((double)(x1-x2),2) + Math.pow((double)(y1-y2),2));
+        float x1 = (widthScreen / 4 + widthScreen / 16);
+        float y1 = heightScreen / 2;
+        float x2 = widthScreen / 4 + widthScreen / 16 - 120;
+        float y2 = heightScreen / 2 + 120;
+        lengthTrunkScale = (float) Math.sqrt(Math.pow((double) (x1 - x2), 2) + Math.pow((double) (y1 - y2), 2));
 
         /*widthTrunkNow = 0;
         heightTrunkNow = 0;
@@ -94,10 +92,10 @@ public class TrunkView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-           if (trunk == null) {
-                return;
-            }
-        if(trunk.isAcvite()) {
+        if (trunk == null) {
+            return;
+        }
+        if (trunk.isAcvite()) {
 
             if (!isInit) {
                 initCarLaggage();
@@ -133,156 +131,83 @@ public class TrunkView extends View {
 
         }
 
-            //This circle is used as a reference point
-            //canvas.drawCircle(widthScreen/4 + widthScreen/16,heightScreen/2,5,circle);
-        }
+        //This circle is used as a reference point
+        //canvas.drawCircle(widthScreen/4 + widthScreen/16,heightScreen/2,5,circle);
+    }
 
 
-    private void drawTrunkpart2(Canvas c)
-    {
+    private void drawTrunkpart2(Canvas c) {
         //4
-        c.drawLine(widthScreen*3/4+ widthScreen/16,heightScreen/2,widthScreen*3/4+ widthScreen/16-120,heightScreen/2+120,cFront);
+        c.drawLine(widthScreen * 3 / 4 + widthScreen / 16, heightScreen / 2, widthScreen * 3 / 4 + widthScreen / 16 - 120, heightScreen / 2 + 120, cFront);
         //5
-        c.drawLine(widthScreen/4+ widthScreen/16-120,heightScreen/2+120,widthScreen*3/4+ widthScreen/16-120,heightScreen/2+120,cFront);
+        c.drawLine(widthScreen / 4 + widthScreen / 16 - 120, heightScreen / 2 + 120, widthScreen * 3 / 4 + widthScreen / 16 - 120, heightScreen / 2 + 120, cFront);
         //6
-        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/6,widthScreen*3/4+ widthScreen/16,heightScreen/6,cFront);
+        c.drawLine(widthScreen / 4 + widthScreen / 16, heightScreen / 6, widthScreen * 3 / 4 + widthScreen / 16, heightScreen / 6, cFront);
         //7
-        c.drawLine(widthScreen*3/4+ widthScreen/16,heightScreen/2,widthScreen*3/4+ widthScreen/16,heightScreen/6,cFront);
+        c.drawLine(widthScreen * 3 / 4 + widthScreen / 16, heightScreen / 2, widthScreen * 3 / 4 + widthScreen / 16, heightScreen / 6, cFront);
         //8
-        c.drawLine(widthScreen*3/4+ widthScreen/16-120,heightScreen/2+120,widthScreen*3/4+ widthScreen/16-120,heightScreen/6+120,cFront);
+        c.drawLine(widthScreen * 3 / 4 + widthScreen / 16 - 120, heightScreen / 2 + 120, widthScreen * 3 / 4 + widthScreen / 16 - 120, heightScreen / 6 + 120, cFront);
         //9
-        c.drawLine(widthScreen/4+ widthScreen/16-120,heightScreen*1/6+120,widthScreen*3/4+ widthScreen/16-120,heightScreen/6+120,cFront);
+        c.drawLine(widthScreen / 4 + widthScreen / 16 - 120, heightScreen * 1 / 6 + 120, widthScreen * 3 / 4 + widthScreen / 16 - 120, heightScreen / 6 + 120, cFront);
         //10
-        c.drawLine(widthScreen/4+ widthScreen/16-120,heightScreen/2+120,widthScreen/4+ widthScreen/16-120,heightScreen*1/6+120,cFront);
+        c.drawLine(widthScreen / 4 + widthScreen / 16 - 120, heightScreen / 2 + 120, widthScreen / 4 + widthScreen / 16 - 120, heightScreen * 1 / 6 + 120, cFront);
         //11
-        c.drawLine(widthScreen*3/4+ widthScreen/16-120,heightScreen/6+120,widthScreen*3/4+ widthScreen/16,heightScreen/6,cFront);
+        c.drawLine(widthScreen * 3 / 4 + widthScreen / 16 - 120, heightScreen / 6 + 120, widthScreen * 3 / 4 + widthScreen / 16, heightScreen / 6, cFront);
         //12
-        c.drawLine(widthScreen/4+ widthScreen/16-120,heightScreen/6+120,widthScreen/4+ widthScreen/16,heightScreen/6,cFront);
+        c.drawLine(widthScreen / 4 + widthScreen / 16 - 120, heightScreen / 6 + 120, widthScreen / 4 + widthScreen / 16, heightScreen / 6, cFront);
     }
 
-    private void drawTrunkpart1(Canvas c)
-    {
+    private void drawTrunkpart1(Canvas c) {
         //1
-        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen*3/4+ widthScreen/16,heightScreen/2,cEnd);
+        c.drawLine(widthScreen / 4 + widthScreen / 16, heightScreen / 2, widthScreen * 3 / 4 + widthScreen / 16, heightScreen / 2, cEnd);
         //2
-        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen/4+ widthScreen/16,heightScreen*1/6,cEnd);
+        c.drawLine(widthScreen / 4 + widthScreen / 16, heightScreen / 2, widthScreen / 4 + widthScreen / 16, heightScreen * 1 / 6, cEnd);
         //3
-        c.drawLine(widthScreen/4+ widthScreen/16,heightScreen/2,widthScreen/4+ widthScreen/16 - 120,heightScreen/2+120,cEnd);
+        c.drawLine(widthScreen / 4 + widthScreen / 16, heightScreen / 2, widthScreen / 4 + widthScreen / 16 - 120, heightScreen / 2 + 120, cEnd);
 
     }
 
-    private void drawLuggage(Canvas c) {
-        float refDepth = 0;
-        float refWeight = 0;
-        float refHeight = 0;
+    public void drawLuggages(Canvas c) {
 
-        refDepth = this.lengthTrunkScale - this.lengthTrunkNow;
-        refWeight = this.widthTrunkScale - this.widthTrunkNow;
-        refHeight = this.heightTrunkScale - this.heightTrunkNow;
+        for (int i = 0; i < trunk.howLuggages(); i++) {
 
-        for(int i =0;i<trunk.howLuggages();i++) {
 
-            if (trunk.getLuggage(i).getWidthScale() < refWeight && trunk.getLuggage(i).getHeightScale() < refHeight && trunk.getLuggage(i).getLengthScale() < refDepth) {
-                Random r = new Random();
-                int a = r.nextInt(10);
-                cLugg = cTable[a];
-                float x = (widthScreen / 4 + widthScreen / 16);// + trunk.getLuggage(i).getRefWidth();
-                float y = heightScreen / 2;
-
-                Path luggageV = new Path();
-                luggageV.reset();
-                luggageV.moveTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
-                luggageV.lineTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
-                luggageV.lineTo(x, y - trunk.getLuggage(i).getHeightScale());
-                luggageV.lineTo(x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale());
-                luggageV.lineTo(x + trunk.getLuggage(i).getWidthScale(), y);
-                luggageV.lineTo( (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
-                luggageV.lineTo((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)));
-                c.drawPath(luggageV,cLugg);
-
-                //1
-                //c.drawLine(x, y, x + trunk.getLuggage(i).getWidthScale(), y,cLuggageEnd );
-                //2
-                //c.drawLine(x, y, x, y - trunk.getLuggage(i).getHeightScale(), cLuggageEnd);
-                //3
-                //c.drawLine(x, y, (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)),cLuggageEnd );
-                //4
-                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y, (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
-                //5
-                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
-                //6
-                c.drawLine(x, y - trunk.getLuggage(i).getHeightScale(), x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), cLuggageEnd);
-                //7
-                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y, x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), cLuggageEnd);
-                //8
-                c.drawLine((float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
-                //9
-                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), cLuggageEnd);//6
-                //10
-                c.drawLine((float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), cLuggageEnd);
-                //11
-                c.drawLine(x + trunk.getLuggage(i).getWidthScale(), y - trunk.getLuggage(i).getHeightScale(), (float) (x + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - trunk.getLuggage(i).getHeightScale()), cLuggageEnd);
-                //12
-                c.drawLine(x, y - trunk.getLuggage(i).getHeightScale(), (float) (x - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (y - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)),cLuggageEnd);
-            }
-        }
-    }
-
-    public void drawLuggages(Canvas c){
-
-        for(int i =0;i<trunk.howLuggages();i++) {
-            Random r = new Random();
-            int a = r.nextInt(10);
-            cLugg = cTable[a];
             float y = (widthScreen / 4 + widthScreen / 16);
             float x = heightScreen / 2;
 
-
-
-/*
-            Path luggageV = new Path();
-            luggageV.reset();
-            luggageV.moveTo((float) (y + (float)(trunk.getLuggage(i).getyViewScale()*5.38)- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxViewScale()*1.19) , (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) -  (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*1.2));
-            luggageV.lineTo((float) (y + (float)(trunk.getLuggage(i).getyViewScale()*5.38)- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxViewScale()*1.19), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)-  (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*1.2)));
-            luggageV.lineTo(y+(float)(trunk.getLuggage(i).getyViewScale()*5.38)- (float)(trunk.getLuggage(i).getxViewScale()*1.19), x - trunk.getLuggage(i).getHeightScale() -  (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*1.2) );
-            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale() + (float)(trunk.getLuggage(i).getyViewScale()*5.38)- (float)(trunk.getLuggage(i).getxViewScale()*1.19), x - trunk.getLuggage(i).getHeightScale() - (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*1.2));
-            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale()+(float)(trunk.getLuggage(i).getyViewScale()*5.38)- (float)(trunk.getLuggage(i).getxViewScale()*1.19), x + (float)(trunk.getLuggage(i).getxViewScale()*1.2) -  (float)(trunk.getLuggage(i).getzViewScale()));
-            luggageV.lineTo((float) (y + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+(float)(trunk.getLuggage(i).getyViewScale()*5.38))- (float)(trunk.getLuggage(i).getxViewScale()*1.19), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))- (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*1.2));
-            luggageV.lineTo((float) (y + (float)(trunk.getLuggage(i).getyViewScale()*5.38)- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxViewScale()*1.19), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) -  (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*1.2));
-            c.drawPath(luggageV, cLugg);
-*/
-            c.drawLine(y,x,y,(float)(x-14.2),cLugg);
+            c.drawLine(y, x, y, (float) (x - 14.2), cLugg);
 
             Path luggageV = new Path();
             luggageV.reset();
-            luggageV.moveTo((float) (y + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxViewScale()*0.71) , (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) -  (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71));
-            luggageV.lineTo((float) (y + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxViewScale()*0.71), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)-  (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71)));
-            luggageV.lineTo(y+(float)(trunk.getLuggage(i).getyViewScale())- (float)(trunk.getLuggage(i).getxViewScale()*0.71), x - trunk.getLuggage(i).getHeightScale() -  (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71) );
-            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale() + (float)(trunk.getLuggage(i).getyViewScale())- (float)(trunk.getLuggage(i).getxViewScale()*0.71), x - trunk.getLuggage(i).getHeightScale() - (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71));
-            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale()+(float)(trunk.getLuggage(i).getyViewScale())- (float)(trunk.getLuggage(i).getxViewScale()*0.71), x + (float)(trunk.getLuggage(i).getxViewScale()*0.71) -  (float)(trunk.getLuggage(i).getzViewScale()));
-            luggageV.lineTo((float) (y + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+(float)(trunk.getLuggage(i).getyViewScale()))- (float)(trunk.getLuggage(i).getxViewScale()*0.71), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))- (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71));
-            luggageV.lineTo((float) (y + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getxViewScale()*0.71), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) -  (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71));
+            luggageV.moveTo((float) (y + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71));
+            luggageV.lineTo((float) (y + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71)));
+            luggageV.lineTo(y + (float) (trunk.getLuggage(i).getyViewScale()) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), x - trunk.getLuggage(i).getHeightScale() - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71));
+            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale() + (float) (trunk.getLuggage(i).getyViewScale()) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), x - trunk.getLuggage(i).getHeightScale() - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71));
+            luggageV.lineTo(y + trunk.getLuggage(i).getWidthScale() + (float) (trunk.getLuggage(i).getyViewScale()) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), x + (float) (trunk.getLuggage(i).getxViewScale() * 0.71) - (float) (trunk.getLuggage(i).getzViewScale()));
+            luggageV.lineTo((float) (y + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) + (float) (trunk.getLuggage(i).getyViewScale())) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71));
+            luggageV.lineTo((float) (y + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71));
+            cLugg.setColor(trunk.getLuggage(i).getColor());
             c.drawPath(luggageV, cLugg);
 
 
             //10
-            c.drawLine((float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71) + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))  , (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71) ,(float) (y   + (float)(trunk.getLuggage(i).getyViewScale())- (float)(trunk.getLuggage(i).getxViewScale()*0.71)- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)- (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71)), cLuggageEnd);
+            c.drawLine((float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (y + (float) (trunk.getLuggage(i).getyViewScale()) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71)), cLuggageEnd);
             //12
-            c.drawLine((float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71)  + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)- (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71)),y+(float)(trunk.getLuggage(i).getyViewScale())- (float)(trunk.getLuggage(i).getxViewScale()*0.71) , x - trunk.getLuggage(i).getHeightScale() - (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71), cLuggageEnd);
+            c.drawLine((float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71)), y + (float) (trunk.getLuggage(i).getyViewScale()) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), x - trunk.getLuggage(i).getHeightScale() - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), cLuggageEnd);
             //6
-            c.drawLine(y- (float)(trunk.getLuggage(i).getxViewScale()*0.71) +(float)(trunk.getLuggage(i).getyViewScale()), x - trunk.getLuggage(i).getHeightScale() - (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71),y   + trunk.getLuggage(i).getWidthScale() + (float)(trunk.getLuggage(i).getyViewScale())- (float)(trunk.getLuggage(i).getxViewScale()*0.71), x - trunk.getLuggage(i).getHeightScale() -(float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71), cLuggageEnd);
+            c.drawLine(y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()), x - trunk.getLuggage(i).getHeightScale() - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), y + trunk.getLuggage(i).getWidthScale() + (float) (trunk.getLuggage(i).getyViewScale()) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), x - trunk.getLuggage(i).getHeightScale() - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), cLuggageEnd);
             //7
-            c.drawLine(y- (float)(trunk.getLuggage(i).getxViewScale()*0.71)  + trunk.getLuggage(i).getWidthScale() + (float)(trunk.getLuggage(i).getyViewScale()), x - trunk.getLuggage(i).getHeightScale() -(float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71),y  + trunk.getLuggage(i).getWidthScale() +(float)(trunk.getLuggage(i).getyViewScale())- (float)(trunk.getLuggage(i).getxViewScale()*0.71), x + (float)(trunk.getLuggage(i).getxViewScale()*0.71) - (float)(trunk.getLuggage(i).getzViewScale()), cLuggageEnd);
+            c.drawLine(y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + trunk.getLuggage(i).getWidthScale() + (float) (trunk.getLuggage(i).getyViewScale()), x - trunk.getLuggage(i).getHeightScale() - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), y + trunk.getLuggage(i).getWidthScale() + (float) (trunk.getLuggage(i).getyViewScale()) - (float) (trunk.getLuggage(i).getxViewScale() * 0.71), x + (float) (trunk.getLuggage(i).getxViewScale() * 0.71) - (float) (trunk.getLuggage(i).getzViewScale()), cLuggageEnd);
             //4
-            c.drawLine((float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71) + trunk.getLuggage(i).getWidthScale() +(float)(trunk.getLuggage(i).getyViewScale())), x + (float)(trunk.getLuggage(i).getxViewScale()*0.71) - (float)(trunk.getLuggage(i).getzViewScale()),(float) (y - (float)(trunk.getLuggage(i).getxViewScale()*0.71) + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+(float)(trunk.getLuggage(i).getyViewScale())), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))-(float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71), cLuggageEnd);
+            c.drawLine((float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + trunk.getLuggage(i).getWidthScale() + (float) (trunk.getLuggage(i).getyViewScale())), x + (float) (trunk.getLuggage(i).getxViewScale() * 0.71) - (float) (trunk.getLuggage(i).getzViewScale()), (float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) + (float) (trunk.getLuggage(i).getyViewScale())), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), cLuggageEnd);
             //5
-            c.drawLine((float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71) + trunk.getLuggage(i).getWidthScale()  - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+(float)(trunk.getLuggage(i).getyViewScale())) , (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))-(float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71),(float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71) + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) , (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71), cLuggageEnd);//6
+            c.drawLine((float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) + (float) (trunk.getLuggage(i).getyViewScale())), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), cLuggageEnd);//6
             //8
-            c.drawLine((float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71) + trunk.getLuggage(i).getWidthScale()  - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+(float)(trunk.getLuggage(i).getyViewScale()) ), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0))-(float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71),(float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71) + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+ trunk.getLuggage(i).getWidthScale()), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)- (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71)), cLuggageEnd);
+            c.drawLine((float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + trunk.getLuggage(i).getWidthScale() - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) + (float) (trunk.getLuggage(i).getyViewScale())), (float) (x + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) + trunk.getLuggage(i).getWidthScale()), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71)), cLuggageEnd);
             //11
-            c.drawLine((float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71)  + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+ trunk.getLuggage(i).getWidthScale()), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)- (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71)),(float) (y- (float)(trunk.getLuggage(i).getxViewScale()*0.71)  + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)- (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71)), cLuggageEnd);
+            c.drawLine((float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) + trunk.getLuggage(i).getWidthScale()), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71)), (float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71)), cLuggageEnd);
             //12
-            c.drawLine(y - (float)(trunk.getLuggage(i).getxViewScale()*0.71) + trunk.getLuggage(i).getWidthScale() + (float)(trunk.getLuggage(i).getyViewScale()), x - trunk.getLuggage(i).getHeightScale() -(float)(trunk.getLuggage(i).getzViewScale()) + (float)(trunk.getLuggage(i).getxViewScale()*0.71), (float)(y- (float)(trunk.getLuggage(i).getxViewScale()*0.71)  + (float)(trunk.getLuggage(i).getyViewScale())- trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)+ trunk.getLuggage(i).getWidthScale()), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0)- (float)(trunk.getLuggage(i).getzViewScale())+ (float)(trunk.getLuggage(i).getxViewScale()*0.71)),cLuggageEnd);
+            c.drawLine(y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + trunk.getLuggage(i).getWidthScale() + (float) (trunk.getLuggage(i).getyViewScale()), x - trunk.getLuggage(i).getHeightScale() - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71), (float) (y - (float) (trunk.getLuggage(i).getxViewScale() * 0.71) + (float) (trunk.getLuggage(i).getyViewScale()) - trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) + trunk.getLuggage(i).getWidthScale()), (float) (x - trunk.getLuggage(i).getHeightScale() + trunk.getLuggage(i).getLengthScale() / Math.sqrt(2.0) - (float) (trunk.getLuggage(i).getzViewScale()) + (float) (trunk.getLuggage(i).getxViewScale() * 0.71)), cLuggageEnd);
 
         }
 

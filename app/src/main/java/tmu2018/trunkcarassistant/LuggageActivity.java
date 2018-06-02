@@ -74,7 +74,6 @@ public class LuggageActivity extends AppCompatActivity {
 
                 TextView tv;
 
-                System.out.println("Position = "+position+" "+"Name = "+adapter.getItem(position).getName());
 
                 if (!adapter.getItem(position).isPicked()) {
 
@@ -100,7 +99,6 @@ public class LuggageActivity extends AppCompatActivity {
                     adapter.changeCheckBox(false);
                     cb.setChecked(false);
                     tv = adapter.name;
-                    System.out.println("COLOR CHANGED");
                     tv.setTextColor(Color.BLACK);
                     Toast t = Toast.makeText(LuggageActivity.this, "Luggage removed", Toast.LENGTH_LONG);
                     t.show();
@@ -113,7 +111,6 @@ public class LuggageActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                System.out.println("CLICKED");
                 for (int i=0; i < adapter.getCount(); ++i){
 
                     if (adapter.getItem(i).isPicked())

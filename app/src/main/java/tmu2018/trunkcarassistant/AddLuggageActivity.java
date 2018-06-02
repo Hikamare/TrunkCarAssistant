@@ -12,6 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import petrov.kristiyan.colorpicker.ColorPicker;
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 /**
  * Created by anorb on 09.03.2018.
  * TODO: Handle empty input or incorrect data. Luggage sizes shall be moved to string.xml
@@ -24,6 +29,9 @@ public class AddLuggageActivity extends AppCompatActivity{
     private EditText edit_name;
     private Button save_luggage;
     private Database dbHandler;
+    private Button colorpickerbtn;
+    private int color2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,9 @@ public class AddLuggageActivity extends AppCompatActivity{
         edit_height = findViewById(R.id.editText_height);
         edit_width =  findViewById(R.id.editText_width);
         edit_name = findViewById(R.id.editText_name);
+        colorpickerbtn = findViewById(R.id.colorpickerbtn);
+
+
 
         // Handle the save button
         save_luggage = findViewById(R.id.button_save);
@@ -48,6 +59,10 @@ public class AddLuggageActivity extends AppCompatActivity{
                 lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
                 lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
                 lLuggage.setName(edit_name.getText().toString());
+                lLuggage.setColor(color2);
+                System.out.println("INSIDE ONCLICK");
+                System.out.println(String.format("Current color: 0x%08x", lLuggage.getColor()));
+
 
                     try {
                         dbHandler.addLuggage(lLuggage);
@@ -58,8 +73,23 @@ public class AddLuggageActivity extends AppCompatActivity{
                         lToast.show();
                     }
                     onBackPressed();
+
+
+
             }
         });
+
+        colorpickerbtn.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View view) {
+                                                  opencolorpicker();
+
+
+                                              }
+                                          }
+        );
+
+
     }
 
 
@@ -105,5 +135,35 @@ public class AddLuggageActivity extends AppCompatActivity{
                     edit_height.setText("");
                 }
         }
+    }
+
+    public void opencolorpicker() {
+        final ColorPicker colorpicker = new ColorPicker(this);
+        ArrayList<String> colors = new ArrayList<>();
+        colors.add("#82B926");
+        colors.add("#a276eb");
+        colors.add("#6a3ab2");
+        colors.add("#666666");
+        colors.add("#FFFF00");
+        colors.add("#3C8D2F");
+        colors.add("#FA9F00");
+        colors.add("#FF0000");
+
+        colorpicker.setColors(colors)
+                .setColumns(5)
+                .setRoundColorButton(true)
+                .setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
+                    @Override
+                    public void onChooseColor(int position, int color) {
+                        color2 = color;
+                        System.out.println(String.format("Current color: 0x%08x", color));
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                }).show();
     }
 }

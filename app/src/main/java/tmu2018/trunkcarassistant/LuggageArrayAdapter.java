@@ -36,6 +36,7 @@ public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {
 
         // Get the data item for this position
         Luggage lLuggage = getItem(position);
+        System.out.println("ITEM AT POSITION "+position+" picked");
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.luggage_adapter_layout, parent, false);
@@ -43,7 +44,7 @@ public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {
         // Lookup view for data population
         this.cb = convertView.findViewById(R.id.luggageCheckBox);
         TextView luggageName = convertView.findViewById(R.id.luggageName);
-        this.name = convertView.findViewById(R.id.luggageName);
+        // this.name = convertView.findViewById(R.id.luggageName);
         TextView luggageH = convertView.findViewById(R.id.luggageH);
         TextView luggageW = convertView.findViewById(R.id.luggageW);
         TextView luggageL = convertView.findViewById(R.id.luggageL);
@@ -55,6 +56,8 @@ public class LuggageArrayAdapter extends ArrayAdapter<Luggage> {
         luggageH.setText( carHString );
         luggageW.setText( carWString );
         luggageL.setText( carLString );
+        LuggageIconAdapterView luggageIcon = convertView.findViewById(R.id.luggageIconAdapterView2);
+        luggageIcon.setCurrentColor(lLuggage.getColor());
         // Return the completed view to render on screen
         return convertView;
   }

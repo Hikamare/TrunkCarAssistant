@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by anorb on 13.05.2018.
@@ -21,9 +22,11 @@ public class LuggageIconAdapterView extends View
 
     private Paint p, p2, p3;
     private int heightScreen,widthScreen;
+    public int currentColor;
 
     public LuggageIconAdapterView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         p = new Paint(Paint.ANTI_ALIAS_FLAG);
         p.setColor(Color.RED);
         p2 = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -32,6 +35,10 @@ public class LuggageIconAdapterView extends View
         p3.setColor(Color.BLACK);
     }
 
+    public void setCurrentColor(int aColor){
+        currentColor = aColor;
+
+    }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
