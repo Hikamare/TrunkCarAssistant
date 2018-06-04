@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tmu2018.trunkcarassistant.StartActivity">
+    tools:context="tmu2018.trunkcarassistant.activity.StartActivity">
 
-    <tmu2018.trunkcarassistant.TrunkView
+    <tmu2018.trunkcarassistant.rendering.TrunkView
         android:id="@+id/trunkView"
         android:layout_width="match_parent"
         android:layout_height="325dp" />

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TCA_Theme">
-        <activity android:name=".MainActivity"
+        <activity android:name=".activity.MainActivity"
             android:theme="@style/TCA_Theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,28 +17,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StartActivity"/>
-        <activity android:name=".LuggageActivity" />
-        <activity android:name=".TrunkActivity" />
-        <activity android:name=".AddLuggageActivity" />
-        <activity android:name=".AddTrunkActivity" />
+        <activity android:name=".activity.StartActivity"/>
+        <activity android:name=".activity.LuggageActivity" />
+        <activity android:name=".activity.TrunkActivity" />
+        <activity android:name=".activity.AddLuggageActivity" />
+        <activity android:name=".activity.AddTrunkActivity" />
         <activity
-            android:name=".EditTrunkActivity"
+            android:name=".activity.EditTrunkActivity"
             android:label="@string/title_activity_edit_trunk"
             android:theme="@style/AppTheme.NoActionBar"
             android:noHistory="true"/>
         <activity
-            android:name=".EditLuggageArrayAdapter"
+            android:name=".adapters.EditLuggageArrayAdapter"
             android:label="@string/title_activity_edit_luggage_array_adapter"
             android:theme="@style/AppTheme.NoActionBar"
             android:noHistory="true"/>
         <activity
-            android:name=".EditLuggageActivity"
+            android:name=".activity.EditLuggageActivity"
             android:label="@string/title_activity_edit_luggage"
             android:theme="@style/AppTheme.NoActionBar"
             android:noHistory="true"/>
         <activity
-            android:name=".LuggageToEditActivity"
+            android:name=".activity.LuggageToEditActivity"
             android:label="@string/title_activity_luggage_to_edit"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tmu2018.trunkcarassistant.AddTrunkActivity">
+    tools:context="tmu2018.trunkcarassistant.activity.AddTrunkActivity">
 
     <TextView
         android:layout_width="match_parent"

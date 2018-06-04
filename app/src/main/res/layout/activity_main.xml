@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tmu2018.trunkcarassistant.MainActivity">
+    tools:context="tmu2018.trunkcarassistant.activity.MainActivity">
 
 
-    <tmu2018.trunkcarassistant.TrunkIconView
+    <tmu2018.trunkcarassistant.icons.TrunkIconView
         android:id="@+id/trunkIconView6"
         android:layout_width="160dp"
         android:layout_height="135dp"
@@ -24,7 +24,7 @@
          />
 
 
-    <tmu2018.trunkcarassistant.LuggageIconView
+    <tmu2018.trunkcarassistant.icons.LuggageIconView
         android:id="@+id/luggageIconView4"
         android:layout_width="160dp"
         android:layout_height="135dp"
@@ -39,7 +39,7 @@
          />
 
 
-    <tmu2018.trunkcarassistant.PackIconView
+    <tmu2018.trunkcarassistant.icons.PackIconView
         android:layout_width="160dp"
         android:layout_height="135dp"
         android:layout_gravity="center_vertical|center_horizontal" />

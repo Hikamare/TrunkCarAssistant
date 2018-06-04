@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tmu2018.trunkcarassistant.EditLuggageActivity">
+    tools:context="tmu2018.trunkcarassistant.activity.EditLuggageActivity">
 
     <RadioGroup
         android:layout_width="wrap_content"
