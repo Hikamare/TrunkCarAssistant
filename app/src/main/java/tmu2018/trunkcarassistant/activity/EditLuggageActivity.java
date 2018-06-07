@@ -49,7 +49,6 @@ public class EditLuggageActivity extends AppCompatActivity {
         colorpickerbtn = findViewById(R.id.colorpickerbtn);
         dbHandler = new SQLitehandler(this);
 
-
         try {
             Intent i = getIntent();
             editLuggage = (Luggage) i.getSerializableExtra("luggage");
@@ -58,7 +57,7 @@ public class EditLuggageActivity extends AppCompatActivity {
             edit_height.setText((int) editLuggage.getHeight() + "");
             edit_name.setText((String) editLuggage.getName());
 
-            onBackPressed();
+
         } catch (NullPointerException e) {
             System.out.println("No luggage to edit\n");
         }
@@ -73,17 +72,18 @@ public class EditLuggageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+
                 Matcher h = DimPattern.matcher(edit_height.getText().toString());
                 Matcher w = DimPattern.matcher(edit_width.getText().toString());
                 Matcher l = DimPattern.matcher(edit_length.getText().toString());
                 Matcher n = NamePattern.matcher(edit_name.getText().toString());
 
                 if (h.find() && w.find() && l.find() && n.find()) {
-                lLuggage.setHeight(Integer.parseInt(edit_height.getText().toString()));
-                lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
-                lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
-                lLuggage.setName(edit_name.getText().toString());
-                lLuggage.setColor(color2);
+                    lLuggage.setHeight(Integer.parseInt(edit_height.getText().toString()));
+                    lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
+                    lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
+                    lLuggage.setName(edit_name.getText().toString());
+                    lLuggage.setColor(color2);
 
 
                     try {
