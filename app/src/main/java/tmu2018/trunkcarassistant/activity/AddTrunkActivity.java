@@ -38,7 +38,7 @@ public class AddTrunkActivity extends AppCompatActivity {
     private Database dbHandler;
     Context cont;
     Pattern DimPattern = Pattern.compile("\\b[1-9]{1}[0-9]{0,1}[0-9]{0,1}\\b");
-    Pattern NamePattern = Pattern.compile("[\\x20a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż.!-]{1,15}");
+    Pattern NamePattern = Pattern.compile("[\\x20a-zA-Z0-9ĄąĆćĘęŁłŃńÓóŚśŹźŻż.!-]{1,15}");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class AddTrunkActivity extends AppCompatActivity {
                 Matcher l = DimPattern.matcher(TrunkLengthText.getText().toString());
                 Matcher n = NamePattern.matcher(TrunkNick.getText().toString());
 
-                if (h.find() && w.find() && l.find() && n.find()) {
+                if (h.find() && w.find() && l.find() && n.matches()) {
                     Trunk lTrunk = new Trunk();
                     float lLength = Integer.parseInt(TrunkLengthText.getText().toString());
                     float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());

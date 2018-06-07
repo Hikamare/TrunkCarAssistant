@@ -34,7 +34,7 @@ public class AddLuggageActivity extends AppCompatActivity {
     private Button colorpickerbtn;
     private int color2;
     Pattern DimPattern = Pattern.compile("\\b[1-9]{1}[0-9]{0,1}[0-9]{0,1}\\b");
-    Pattern NamePattern = Pattern.compile("[\\x20a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż.!-]{1,15}");
+    Pattern NamePattern = Pattern.compile("[\\x20a-zA-Z0-9ĄąĆćĘęŁłŃńÓóŚśŹźŻż.!-]{1,15}");
 
 
     @Override
@@ -64,7 +64,7 @@ public class AddLuggageActivity extends AppCompatActivity {
                 Matcher l = DimPattern.matcher(edit_length.getText().toString());
                 Matcher n = NamePattern.matcher(edit_name.getText().toString());
 
-                if (h.find() && w.find() && l.find() && n.find()) {
+                if (h.find() && w.find() && l.find() && n.matches()) {
                     lLuggage.setHeight(Integer.parseInt(edit_height.getText().toString()));
                     lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
                     lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
