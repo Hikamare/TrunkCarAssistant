@@ -12,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import petrov.kristiyan.colorpicker.ColorPicker;
 import tmu2018.trunkcarassistant.database.Database;
@@ -32,6 +34,8 @@ public class EditLuggageActivity extends AppCompatActivity {
     private Luggage editLuggage;
     private Button colorpickerbtn;
     private int color2;
+    Pattern DimPattern = Pattern.compile("\\b[1-9]{1}[0-9]{0,1}[0-9]{0,1}\\b");
+    Pattern NamePattern = Pattern.compile("[\\x20a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż.!-]{1,15}");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class EditLuggageActivity extends AppCompatActivity {
         colorpickerbtn = findViewById(R.id.colorpickerbtn);
         dbHandler = new SQLitehandler(this);
 
+
         try {
             Intent i = getIntent();
             editLuggage = (Luggage) i.getSerializableExtra("luggage");
@@ -53,7 +58,7 @@ public class EditLuggageActivity extends AppCompatActivity {
             edit_height.setText((int) editLuggage.getHeight() + "");
             edit_name.setText((String) editLuggage.getName());
 
-
+            onBackPressed();
         } catch (NullPointerException e) {
             System.out.println("No luggage to edit\n");
         }
@@ -67,6 +72,13 @@ public class EditLuggageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+                Matcher h = DimPattern.matcher(edit_height.getText().toString());
+                Matcher w = DimPattern.matcher(edit_width.getText().toString());
+                Matcher l = DimPattern.matcher(edit_length.getText().toString());
+                Matcher n = NamePattern.matcher(edit_name.getText().toString());
+
+                if (h.find() && w.find() && l.find() && n.find()) {
                 lLuggage.setHeight(Integer.parseInt(edit_height.getText().toString()));
                 lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
                 lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
@@ -74,16 +86,20 @@ public class EditLuggageActivity extends AppCompatActivity {
                 lLuggage.setColor(color2);
 
 
-                try {
-                    dbHandler.updateLuggage(editLuggage, lLuggage);
-                    Toast lToast = Toast.makeText(EditLuggageActivity.this, "That probably worked", Toast.LENGTH_SHORT);
-                    lToast.show();
-                } catch (IllegalArgumentException e) {
-                    Toast lToast = Toast.makeText(EditLuggageActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                    try {
+                        dbHandler.updateLuggage(editLuggage, lLuggage);
+                        Toast lToast = Toast.makeText(EditLuggageActivity.this, "That probably worked", Toast.LENGTH_SHORT);
+                        lToast.show();
+                        onBackPressed();
+                    } catch (IllegalArgumentException e) {
+                        Toast lToast = Toast.makeText(EditLuggageActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                        lToast.show();
+                    }
+
+                } else {
+                    Toast lToast = Toast.makeText(EditLuggageActivity.this, "Enter correct data", Toast.LENGTH_SHORT);
                     lToast.show();
                 }
-                onBackPressed();
-
 
 
             }

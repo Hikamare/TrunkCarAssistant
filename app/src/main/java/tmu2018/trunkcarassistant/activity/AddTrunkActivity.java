@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import tmu2018.trunkcarassistant.database.Database;
 import tmu2018.trunkcarassistant.R;
@@ -35,6 +37,8 @@ public class AddTrunkActivity extends AppCompatActivity {
     Spinner spinner2;
     private Database dbHandler;
     Context cont;
+    Pattern DimPattern = Pattern.compile("\\b[1-9]{1}[0-9]{0,1}[0-9]{0,1}\\b");
+    Pattern NamePattern = Pattern.compile("[\\x20a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż.!-]{1,15}");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class AddTrunkActivity extends AppCompatActivity {
         final EditText TrunkHeightText = findViewById(R.id.trunkHeightText);
         final EditText TrunkNick = findViewById(R.id.trunkNickText);
         Button buttonADD = findViewById(R.id.buttonADD);
+
 
         //spinner for the car brand
         spinner = findViewById(R.id.car_spinner);
@@ -91,7 +96,7 @@ public class AddTrunkActivity extends AppCompatActivity {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                TrunkNick.setText(spinner.getSelectedItem().toString()+" "+spinner2.getSelectedItem().toString());
+                TrunkNick.setText(spinner.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString());
             }
 
             @Override
@@ -102,27 +107,38 @@ public class AddTrunkActivity extends AppCompatActivity {
         buttonADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Matcher h = DimPattern.matcher(TrunkHeightText.getText().toString());
+                Matcher w = DimPattern.matcher(TrunkWidthText.getText().toString());
+                Matcher l = DimPattern.matcher(TrunkLengthText.getText().toString());
+                Matcher n = NamePattern.matcher(TrunkNick.getText().toString());
 
-                Trunk lTrunk = new Trunk();
-                float lLength = Integer.parseInt(TrunkLengthText.getText().toString());
-                float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());
-                float lHeight = Integer.parseInt(TrunkHeightText.getText().toString());
-                lTrunk.setName(spinner.getSelectedItem().toString()+" "+spinner2.getSelectedItem().toString()+" "+TrunkNick.getText());
-                lTrunk.setLength(lLength);
-                lTrunk.setWidth(lWidth);
-                lTrunk.setHeight(lHeight);
+                if (h.find() && w.find() && l.find() && n.find()) {
+                    Trunk lTrunk = new Trunk();
+                    float lLength = Integer.parseInt(TrunkLengthText.getText().toString());
+                    float lWidth = Integer.parseInt(TrunkWidthText.getText().toString());
+                    float lHeight = Integer.parseInt(TrunkHeightText.getText().toString());
+                    lTrunk.setName(spinner.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString() + " " + TrunkNick.getText());
+                    lTrunk.setLength(lLength);
+                    lTrunk.setWidth(lWidth);
+                    lTrunk.setHeight(lHeight);
 
 
-                // If a trunk is already added an exception will be caught
-                try {
-                    dbHandler.addTrunk(lTrunk);
-                    Toast lToast = Toast.makeText(AddTrunkActivity.this,"That probably worked", Toast.LENGTH_SHORT);
-                    lToast.show();
-                } catch(IllegalArgumentException e){
-                    Toast lToast = Toast.makeText(AddTrunkActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                    // If a trunk is already added an exception will be caught
+                    try {
+                        dbHandler.addTrunk(lTrunk);
+                        Toast lToast = Toast.makeText(AddTrunkActivity.this, "That probably worked", Toast.LENGTH_SHORT);
+                        lToast.show();
+                        onBackPressed();
+                    } catch (IllegalArgumentException e) {
+                        Toast lToast = Toast.makeText(AddTrunkActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                        lToast.show();
+                    }
+
+                } else {
+                    Toast lToast = Toast.makeText(AddTrunkActivity.this, "Enter correct data", Toast.LENGTH_SHORT);
                     lToast.show();
                 }
-            onBackPressed();
+
             }
         });
 

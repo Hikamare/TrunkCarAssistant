@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import petrov.kristiyan.colorpicker.ColorPicker;
 import tmu2018.trunkcarassistant.database.Database;
@@ -20,8 +22,8 @@ import tmu2018.trunkcarassistant.database.SQLitehandler;
 /**
  * Created by anorb on 09.03.2018.
  * TODO: Handle empty input or incorrect data. Luggage sizes shall be moved to string.xml
-*/
-public class AddLuggageActivity extends AppCompatActivity{
+ */
+public class AddLuggageActivity extends AppCompatActivity {
 
     private EditText edit_length;
     private EditText edit_height;
@@ -31,6 +33,8 @@ public class AddLuggageActivity extends AppCompatActivity{
     private Database dbHandler;
     private Button colorpickerbtn;
     private int color2;
+    Pattern DimPattern = Pattern.compile("\\b[1-9]{1}[0-9]{0,1}[0-9]{0,1}\\b");
+    Pattern NamePattern = Pattern.compile("[\\x20a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż.!-]{1,15}");
 
 
     @Override
@@ -43,10 +47,9 @@ public class AddLuggageActivity extends AppCompatActivity{
 
         edit_length = findViewById(R.id.editText_length);
         edit_height = findViewById(R.id.editText_height);
-        edit_width =  findViewById(R.id.editText_width);
+        edit_width = findViewById(R.id.editText_width);
         edit_name = findViewById(R.id.editText_name);
         colorpickerbtn = findViewById(R.id.colorpickerbtn);
-
 
 
         // Handle the save button
@@ -55,25 +58,32 @@ public class AddLuggageActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                lLuggage.setHeight(Integer.parseInt(edit_height.getText().toString()));
-                lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
-                lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
-                lLuggage.setName(edit_name.getText().toString());
-                lLuggage.setColor(color2);
-                System.out.println("INSIDE ONCLICK");
-                System.out.println(String.format("Current color: 0x%08x", lLuggage.getColor()));
 
+                Matcher h = DimPattern.matcher(edit_height.getText().toString());
+                Matcher w = DimPattern.matcher(edit_width.getText().toString());
+                Matcher l = DimPattern.matcher(edit_length.getText().toString());
+                Matcher n = NamePattern.matcher(edit_name.getText().toString());
+
+                if (h.find() && w.find() && l.find() && n.find()) {
+                    lLuggage.setHeight(Integer.parseInt(edit_height.getText().toString()));
+                    lLuggage.setWidth(Integer.parseInt(edit_width.getText().toString()));
+                    lLuggage.setLength(Integer.parseInt(edit_length.getText().toString()));
+                    lLuggage.setName(edit_name.getText().toString());
+                    lLuggage.setColor(color2);
 
                     try {
                         dbHandler.addLuggage(lLuggage);
-                        Toast lToast = Toast.makeText(AddLuggageActivity.this,"That probably worked", Toast.LENGTH_SHORT);
+                        Toast lToast = Toast.makeText(AddLuggageActivity.this, "That probably worked", Toast.LENGTH_SHORT);
                         lToast.show();
-                    } catch(IllegalArgumentException e){
-                        Toast lToast = Toast.makeText(AddLuggageActivity.this,e.getMessage(), Toast.LENGTH_SHORT);
+                        onBackPressed();
+                    } catch (IllegalArgumentException e) {
+                        Toast lToast = Toast.makeText(AddLuggageActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
                         lToast.show();
                     }
-                    onBackPressed();
-
+                } else {
+                    Toast lToast = Toast.makeText(AddLuggageActivity.this, "Enter correct data", Toast.LENGTH_SHORT);
+                    lToast.show();
+                }
 
 
             }
@@ -93,18 +103,17 @@ public class AddLuggageActivity extends AppCompatActivity{
     }
 
 
-    public void onRadioButtonClicked(View v)
-    {
+    public void onRadioButtonClicked(View v) {
 
         //is the current radio button now checked?
-        boolean  checked = ((RadioButton) v).isChecked();
+        boolean checked = ((RadioButton) v).isChecked();
 
         //now check which radio button is selected
         //android switch statement
-        switch(v.getId()){
+        switch (v.getId()) {
 
             case R.id.radioButton_S:
-                if(checked){
+                if (checked) {
                     // Set textView of all dimensions to inactive for all radioButtons
                     edit_length.setText("37");
                     edit_width.setText("20");
@@ -113,7 +122,7 @@ public class AddLuggageActivity extends AppCompatActivity{
                 break;
 
             case R.id.radioButton_M:
-                if(checked){
+                if (checked) {
                     edit_length.setText("46");
                     edit_width.setText("23");
                     edit_height.setText("68");
@@ -121,7 +130,7 @@ public class AddLuggageActivity extends AppCompatActivity{
                 break;
 
             case R.id.radioButton_L:
-                if(checked){
+                if (checked) {
                     edit_length.setText("53");
                     edit_width.setText("27");
                     edit_height.setText("79");
@@ -129,7 +138,7 @@ public class AddLuggageActivity extends AppCompatActivity{
                 break;
 
             case R.id.radioButton_O:
-                if(checked){
+                if (checked) {
                     edit_length.setText("");
                     edit_width.setText("");
                     edit_height.setText("");
